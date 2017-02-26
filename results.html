@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Eventerpreneur</title>
+		<meta name="description" content="">
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+		<link rel="icon" href="res/calendar-icon.png">
+		<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
+		<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
+
+		<!-- load Ink's javascript files from the cdn -->
+		<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
+		<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
+		<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
+		<style type="text/css">
+			html{
+				margin-left:10%;
+				margin-right: 10%;
+			}
+			header h1 small:before  {
+				content: "|";
+				margin: 0 0.5em;
+				font-size: 1.6em;
+			}
+			body {
+				background: #ededed;
+			}
+			footer {
+				background: #ccc;
+			}
+			#advanced-search{
+				background: #ccc;
+			}
+        </style>
+	</head>
+	<body>
+		<div id = "header">
+			<header class="vertical-space">
+					<h1>Eventerpreneur<small>Manage yourself</small></h1>
+					<nav class="ink-navigation">
+						<ul class="menu horizontal black">
+							<li class="heading"><a href="homepage.html">Home</a></li>
+							<li>
+								<a href="#">Events</a>
+								<ul class="submenu">
+									<li><a href="#">Public Events</a></li>
+									<li><a href="#">Search</a></li>
+									<li><a href="#">Create</a></li>
+								</ul>
+							</li>
+							<li><a href="#">My Account</a></li>
+						</ul>
+					</nav>
+			</header>
+		</div>
+		
+		<div id="search" class="ink-grid">
+			<div class="column-group half-gutters">
+				<div class="column push-left all-20">
+					<form action="#" class="ink-form" >
+						<fieldset class="small-100 tiny-100">
+							<legend>Advanced search</legend>
+							<p class="label">Select one or more options</p>
+							<ul class="control unstyled">
+								<li><input type="checkbox" id="cb1" name="cb1" value=""><label for="cb1">Chimaira</label></li>
+								<li><input type="checkbox" id="cb2" name="cb2" value=""><label for="cb2">Metallica</label></li>
+								<li><input type="checkbox" id="cb3" name="cb3" value=""><label for="cb3">Motörhead</label></li>
+								<li><input type="checkbox" id="cb4" name="cb4" value=""><label for="cb4">Pantera</label></li>
+								<li><input type="checkbox" id="cb5" name="cb5" value=""><label for="cb5">Slayer</label></li>
+								<li><input type="checkbox" id="cb6" name="cb6" value=""><label for="cb6">Switchtense</label></li>
+							</ul>
+						</fieldset>
+					</form>
+				</div>
+				
+				<div class="column push-right all-80">
+					<table class="ink-table alternating">
+						<tbody>
+							<tr>
+							  <td>Evento 1</td>
+							</tr>
+							<tr>
+								<td>Evento 2</td>
+							</tr>
+							<tr>
+								<td>Evento 3</td>
+							</tr>
+							<tr>
+								<td>Evento 4</td>
+							</tr>
+							<tr>
+								<td>Evento 5</td>
+							</tr>
+							<tr>
+								<td>Evento 6</td>
+							</tr>
+							<tr>
+								<td>Evento 7</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<footer class="clearfix">
+            <div align="center" class="ink-grid">
+                <ul class="unstyled inline half-vertical-space">
+                    <li class="active"><a href="#">About</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+                <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
+            </div>
+		</footer>
+	</body>
+</html>
