@@ -13,6 +13,7 @@
        <link rel="icon" href="res/calendar-icon.png">
        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
+       <link rel="stylesheet" href="styles/login_style.css">
 
        <!-- load Ink's javascript files from the cdn -->
       <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
@@ -31,7 +32,7 @@
               content: "|";
               margin: 0 0.5em;
               font-size: 1.6em;
-          }
+        }
       </style>
   </head>
 
@@ -56,26 +57,24 @@
         </header>
     </div>
 
-    <div id="login" >
-      <div class="ink-alert basic" role="info">
-        <button class="ink-dismiss">&times;</button>
-        <p>You need to log in to gain full access</p>
-    </div>
-      <h2> Log In </h1>
-      <form class="ink-form">
-          <div class="control-group all-40">
-              <label for="username">Username</label>
-              <div class="control">
-                  <input id="username" name="username" type="text">
-              </div>
-              <label for="password">Password</label>
-              <div class="control">
-                  <input id="password" name="password" type="password">
-              </div>
-          </div>
-          <button class="ink-button">Log in</button>
-      </form>
+    <div class="ink-alert basic" role="info">
+      <button class="ink-dismiss">&times;</button>
+      <p><b>Note: </b>You need to log in to gain full access</p>
     </div>
 
+    <div id="login" align="center" >
+      <h2 > Log In </h1>
+      <form class="ink-form">
+          <div class="control-group all-70">
+              <div class="control">
+                  <input id="username" name="username" type="text" placeholder="Username">
+              </div>
+              <div class="control">
+                  <input  id="password" name="password" type="password" placeholder="Password">
+              </div>
+          </div>
+          <button class="ink-button blue">Log in</button>
+      </form>
+    </div>
   </body>
 </html>
