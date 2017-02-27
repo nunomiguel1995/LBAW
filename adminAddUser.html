@@ -12,6 +12,7 @@
        <link rel="icon" href="res/calendar-icon.png">
        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
+       <link rel="stylesheet" href="styles/createUser.css">
 
        <!-- load Ink's javascript files from the cdn -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
@@ -56,18 +57,12 @@
             footer {
                 background: #ccc;
             }
-			#sidebar{
-				position:absolute;
-				left: -130px; top:0px; 
-				width: 115px;
-			
-			}
         </style>
   </head>
-   
+
 
     <body>
-        
+
             <div id = "header">
       <header class="vertical-space">
                 <h1>Eventerpreneur<small>Manage yourself</small></h1>
@@ -87,86 +82,107 @@
                 </nav>
         </header>
     </div>
-	<nav class="ink-navigation">
-		<ul class="menu vertical black" id="sidebar">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Create User</a></li>
-			<li><a href="#">All Events</a>
-			<ul class="submenu">
-                <li><a href="#">Public Events</a></li>
-                <li><a href="#">Private Events</a></li>
-                <li><a href="#">Reported Events</a></li>
-			</ul>
-			</li>
-			<li><a href="#">All Users</a>
-			<ul class="submenu">
-                <li><a href="#">Collaborators</a></li>
-                <li><a href="#">Managers</a></li>
-                <li><a href="#">Directors</a></li>
-				<li><a href="#">Reported Users</a></li>
-			</ul>
-			</li>
-		</ul>
-	</nav>
-	<form class="ink-form">
-		<div class="control group">
-			<div class="control-group all-100">
-				<label for="username">Username</label>
-				<div class="control">
-					<input id="username" name="username" type="text" placeholder="New User Name">
-				</div>
-			</div>
-			<div class="control-group all-100">
-				<label for="fullname">Full Name</label>
-				<div class="control">
-					<input id="fullname" name="fullname" type="text" placeholder="Full Name">
-				</div>
-			</div>
-			<div class="column-group gutters">
-			<div class="control-group all-50">
-				<label for="password">Password</label>
-				<div class="control">
-					<input id="password" name="password" type="text" placeholder="Password">
-				</div>
-			</div>
-			<div class="control-group all-50">
-				<label for="password">Retype Password</label>
-				<div class="control">
-					<input id="password" name="password" type="text" placeholder="Retype Password">
-				</div>
-			</div>
-			</div>
-			<div class="control-group all-100">
-				<label for="fullname">Department</label>
-				<div class="control">
-					<input id="department" name="department" type="text" placeholder="Department">
-				</div>
-			</div>
-			<div class="control-group all-100">
-				<label for="fullname">Position</label>
-				<div class="control">
-					<input id="position" name="position" type="text" placeholder="Position">
-				</div>
-			</div>
-		</div>
-	<fieldset>
-        <div class="control-group">
-            <p class="label">Type of User</p>
-            <ul class="control unstyled">
-                <li><input type="radio" id="rb1" name="rb" value="Collaborator"><label for="rb1">Collaborator</label></li>
-                <li><input type="radio" id="rb2" name="rb" value="Manager"><label for="rb2">Manager</label></li>
-                <li><input type="radio" id="rb3" name="rb" value="Director"><label for="rb3">Director</label></li>
-            </ul>
+
+  <h2 align="center"> Create new User </h2>
+
+  <div class="ink-grid" style="margin-bottom:5%">
+    <div class="formulario">
+    <div class="column-group push-center">
+      <div class="all-70">
+      	<form class="ink-form ink-formvalidator" method="post" action="#">
+            <h5> Personal Information</h5>
+             <div class="profilepic all-30">
+               <figure class = "ink-image">
+                 <img src="res/user.png" alt="user image">
+               </figure>
+               <input type="file" id="photo">
+             </div>
+              <div class="control-group required ">
+                   <label for="fullname">Full Name</label>
+                   <div class="control">
+                       <input id="fullname" name="fullname" type="text"  data-rules="required|text[true,false]" placeholder="User Full Name">
+                   </div>
+               </div>
+               <div id="stacker-container" class="column-group required">
+                 <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+                   <div class="control-group all-95 required">
+                      <label for="username">Username</label>
+                      <div class="control">
+                          <input id="username" name="username" type="text"  data-rules="required|text[true,false]" placeholder="New Username">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+                    <div class="control-group all-95 required">
+                       <label for="email">Email</label>
+                       <div class="control">
+                           <input id="email" name="email" type="text" data-rules="required|email" placeholder="E-mail">
+                       </div>
+                    </div>
+                   </div>
+               </div>
+
+        <div id="stacker-container" class="column-group required">
+            <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+                <div class="control-group all-95 required">
+                    <label for="password">Password</label>
+                    <div class="control">
+                        <input type="password" name="password" id="password" data-rules="required|min_length[8]" placeholder="New Password">
+                    </div>
+                </div>
+            </div>
+            <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+                <div class="control-group all-95 required">
+                    <label for="retypepass">Retype</label>
+                    <div class="control">
+                        <input type="password" name="retype" id="retypepass" data-rules="matches[password]" placeholder="Retype the password">
+                    </div>
+                </div>
+            </div>
         </div>
-    </fieldset>
-	<p class="label">Photo</p>
-	<input type="file" id="myFile">
-	<p>
-	<p>
-	<p>
-	<input type="submit" name="sub" value="Submit" class="ink-button success" />
-	</form>
-	
+
+          <h5> Company Information </h5>
+          <div id="stacker-container" class="column-group required">
+            <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+              <div class="control-group all-95 required">
+                  <label for="department">Department</label>
+                  <div class="control">
+                      <input type="text" name="department" id="department" data-rules="required|text[true,false]" placeholder="Department">
+                  </div>
+              </div>
+            </div>
+            <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+              <div class="control-group all-95 required">
+                  <label for="position">Position</label>
+                  <div class="control">
+                      <input type="text" name="position" id="position" data-rules="required|text[true,false]" placeholder="Position">
+                  </div>
+              </div>
+            </div>
+          </div>
+      	  <fieldset>
+              <div class="control-group required">
+                  <label class="type">Type of User
+                    <span class="ink-tooltip" data-tip-html="<h6> The different types of users have different permissions:</h6> <ul> <li>Collaborator: can't create events</li>
+                      <li>Supervisor: can create low level events</li> <li>Director: can create every type of event</li> </ul> "
+                      data-tip-where="right" data-tip-color="grey">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </span>
+                  </label>
+                  <ul class="control unstyled">
+                      <li><input type="radio" id="rb1" name="rb" value="Collaborator"><label for="rb1">Collaborator</label></li>
+                      <li><input type="radio" id="rb2" name="rb" value="Manager"><label for="rb2">Manager</label></li>
+                      <li><input type="radio" id="rb3" name="rb" value="Director"><label for="rb3">Director</label></li>
+                  </ul>
+              </div>
+          </fieldset>
+          <div align="center">
+            <input type="submit" name="sub" value="Submit" class="ink-button success blue" />
+          </div>
+      	</form>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
