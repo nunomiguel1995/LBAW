@@ -55,48 +55,22 @@
             footer {
                 background: #ccc;
             }
-			#sidebar{
-				position:absolute;
-				left: -130px; top:0px; 
-				width: 115px;
-			
-			}
-			.control{
-				padding-top: 20px;
-				padding-bottom: 5px;
-			}
-			label{
-			float: left;
-			width: 300px;
-			
-			}
-			#evtype{
-				border-radius: 25px;
-				background-color: #f6f6f6;
-				background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eae8e8));
-				background-image: -webkit-linear-gradient(top, #f6f6f6, #eae8e8);
-				background-image: -moz-linear-gradient(top, #f6f6f6, #eae8e8);
-				background-image: -ms-linear-gradient(top, #f6f6f6, #eae8e8);
-				background-image: -o-linear-gradient(top, #f6f6f6, #eae8e8);
-				background-image: linear-gradient(top, #f6f6f6, #eae8e8);
-				border-color: #dedede #bababa #aaa #bababa;
-				border-style: solid;
-				border-width: 1px;
-				-webkit-border-radius: 10px;
-				-moz-border-radius: 10px;
-				border-radius: 10px;
-				-webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-				-moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-				box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-				text-align:center-left;
-				
-			}
+        		label{
+        		float: left;
+        		}
+              #page{
+                background: white;
+                border-radius: 15px;
+                border-style: solid;
+                border-width: 2px;
+                border-color: #dbdbdb;
+              }
         </style>
   </head>
-   
+
 
     <body>
-        
+
             <div id = "header">
       <header class="vertical-space">
                 <h1>Eventerpreneur<small>Manage yourself</small></h1>
@@ -116,44 +90,139 @@
                 </nav>
         </header>
     </div>
-	
-	 <div id="nEvent"  align = "center">
-      <h2 > New Event </h1>
-      <form class="ink-form">
-          <div class="control-group all-70">
-			  <label for="eventname" align = "left">Enter a name for the event:</label>
-              <div class="control">
-                  <input id="eventname" name="eventname" type="text" placeholder="Event Name">
-              </div>
-			   <label for="location" align = "left">Enter a location for the event:</label>
-              <div class="control">
-                  <input  id="location" name="location" type="text" placeholder="Event Location">
-              </div>
-			  <div class="column-group gutters">
-				<div class="control all-30" align="left ">
-					<input type="text" class="ink-datepicker" data-format="d-m-Y" />
-				</div>
-				<div class="control all-30" align="left ">
-					<input type="time" name="timePicker" />
-				</div>
-			  </div>
-			  <fieldset align="left" id="evtype">
-				<div class="control-group">
-					<ul class="control unstyled" id="evoptions">
-						<li><input type="radio" id="rb1" name="rb" value="Private"><label for="rb1">Private</label></li>
-						<li><input type="radio" id="rb2" name="rb" value="Public"><label for="rb2">Public</label></li>
-					</ul>
-				</div>
-			</fieldset>
-		  </div>
-		
-			 
-          <button class="ink-button blue">Create Event</button>
-      </form>
+
+    <div id="createEvent" class="ink-carousel" data-pagination="#my-carousel-1-pagination" align="center">
+      <h4> Create Event </h4>
+      <form class="ink-form ink-formvalidator ">
+          <ul class="stage column-group half-gutters" >
+              <li class="slide xlarge-100 all-100 small-100 tiny-100" id="page">
+                      <div class="control-group all-70">
+                        <h5 align="left" style="margin-top:2%">Basic Information</h5>
+                        <div class="control-group required">
+                          <label for="eventname" align = "left">Enter a name for the event:</label>
+                          <div class="control">
+                              <input id="eventname" name="eventname" type="text" data-rules="required|text[true,false]" placeholder="Event Name">
+                          </div>
+                        </div>
+                        <div class="control-group required">
+                           <label for="location" align = "left">Enter a location for the event:</label>
+                          <div class="control">
+                              <input  id="location" name="location" type="text" data-rules="required|text[true,false]" placeholder="Event Location">
+                          </div>
+                        </div>
+                        <label for="date" align="left">Date</label><br>
+                        <div id="stacker-container" class="column-group">
+                          <div class="xlarge-40 large-40 medium-40 tiny-100 stacker-column" align="left">
+                              <input type="text" class="ink-datepicker" data-format="d-m-Y" />
+                          </div>
+                          <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column" align="left">
+                            <input type="time" name="timePicker" />
+                          </div>
+                        </div>
+                          <div id="stacker-container" class="column-group">
+                            <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column push-middle" align="left">
+                              <fieldset>
+                                  <div class="control-group required">
+                                    <label for="type" align="left">Type</label><br>
+                                      <ul class="control unstyled">
+                                          <li><input type="radio" id="rb1" name="rb" value="Meeting"><label for="rb1">Meeting</label></li>
+                                          <li><input type="radio" id="rb2" name="rb" value="Workshop"><label for="rb2">Workshop</label></li>
+                                          <li><input type="radio" id="rb3" name="rb" value="Social"><label for="rb3">Social Gathering</label></li>
+                                          <li><input type="radio" id="rb4" name="rb" value="Lecture/Conference"><label for="rb4">Lecture/Conference</label></li>
+                                          <li><input type="radio" id="rb5" name="rb" value="Kick-off"><label for="rb5">Kick-off Meeting</label></li>
+                                      </ul>
+                                  </div>
+                              </fieldset>
+                            </div>
+                            <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column push-middle" align="left">
+                              <fieldset>
+                                  <div class="control-group" align = "left">
+                                      <ul class="control unstyled">
+                                          <li><input type="checkbox" id="publiv" name="public" value="Public"><label for="cb5">Make Event Public</label></li>
+                                      </ul>
+                                  </div>
+                              </fieldset>
+                            </div>
+                          </div>
+                      </div>
+              </li>
+
+              <li class="slide xlarge-100 all-100 small-100 tiny-100" id="page">
+                <div class="control-group all-70">
+                  <h5 for="description" align = "left" style="margin-top:2%">Description <small>(Optional)</small></h5>
+                  <div class="control">
+                    <textarea id="description" rows="4" cols="50"></textarea>
+                  </div>
+                </div>
+
+                <div class="control-group all-70">
+                  <div class="control">
+                    <h5 for="description" align = "left">Choose Event Photo <small>(Optional)</small></h5>
+                    <div class="profilepic all-55">
+                      <figure class = "ink-image">
+                        <img src="res/event_general.jpeg" alt="event image">
+                      </figure>
+                      <input type="file" id="eventphoto">
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="slide xlarge-100 all-100 small-100 tiny-100" id="page">
+                <div class="control-group all-70">
+                  <h5 for="description" align = "left" style="margin-top:2%">Invite People </small></h5>
+                  <div class="control" id="invited">
+                    <div class="ink-shade fade">
+                        <div id="myModal" class="ink-modal fade" data-trigger="#myModalTrigger2" data-width="80%" data-height="80%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
+                            <div class="modal-header">
+                                <button class="modal-close ink-dismiss"></button>
+                                <h2 id="modal-title">Invite People</h2>
+                            </div>
+                            <div class="modal-body" id="modalContent">
+                              <form class="ink-form">
+                                <fieldset>
+                                  <div class="control-group">
+                                     <ul class="control unstyled">
+                                       <li> <input type="checkbox" id="cb5" name="cb5" value="Chimaira">
+                                        <div class="user all-65">
+                                            <div id="stacker-container" class="column-group">
+                                              <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
+                                                <img src="res/joaosantos.jpg" width="50px" height="50px">
+                                              </div>
+                                              <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+                                                <a href="#"> João Santos </a>
+                                              </div>
+                                          </div>
+                                        </div>
+                                      </input></li>
+                                    </ul>
+                                  </div>
+                                </fieldset>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="push-center">
+                                    <button class="ink-button blue">Done</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" id="myModalTrigger2" class="ink-button green"><i class="fa fa-plus" aria-hidden="true"></i>  Invite</a><br>
+                    <p>No people invited </p>
+                  </div>
+                </div>
+                <div align="center">
+                  <input type="submit" name="sub" value="Create Event" class="ink-button success blue" />
+                </div>
+              </li>
+          </ul>
+          <nav id="my-carousel-1-pagination" class="ink-navigation">
+              <ul class="pagination grey"> </ul>
+          </nav>
+        </form>
     </div>
-	
-	
-	
+
+
 </body>
 
 </html>
