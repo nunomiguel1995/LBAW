@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Eventerpreneur</title>
+		<meta name="description" content="">
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+		<link rel="icon" href="res/calendar-icon.png">
+		<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
+		<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
+
+		<!-- load Ink's javascript files from the cdn -->
+		<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
+		<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
+		<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
+
+		<style type="text/css">
+			html{
+				margin-left:10%;
+				margin-right: 10%;
+			}
+			header h1 small:before  {
+				content: "|";
+				margin: 0 0.5em;
+				font-size: 1.6em;
+			}
+			body {
+				background: #ededed;
+			}
+			footer {
+				background: #ccc;
+			}
+			#advanced-search{
+				background: #ccc;
+			}
+        </style>
+	</head>
+	<body>
+		<div id = "header">
+			<header class="vertical-space">
+					<h1>Eventerpreneur<small>Manage yourself</small></h1>
+					<nav class="ink-navigation">
+						<ul class="menu horizontal black">
+							<li class="heading"><a href="homepage.html">Home</a></li>
+							<li>
+								<a href="#">Events</a>
+								<ul class="submenu">
+									<li><a href="#">Public Events</a></li>
+									<li><a href="#">Search</a></li>
+									<li><a href="#">Create</a></li>
+								</ul>
+							</li>
+							<li><a href="#">My Account</a></li>
+						</ul>
+					</nav>
+			</header>
+		</div>
+
+        <div class="ink-form">
+            <fieldset>
+                <legend>My events</legend>
+                <div class="control-group column-group gutters">
+                    <div class="control all-20 small-100 tiny-100">
+                        <label for="calendar">Pick a date:</label>
+                        <input
+                            id="calendar"
+                            name="calendar"
+                            type="text"
+                            class="ink-datepicker"
+                            data-css-class="ink-calendar my-never-closing-datepicker"
+                            data-format="d-m-Y"
+                            data-shy="false"
+                            data-auto-open="true"
+                            data-show-clean="false"
+                            data-show-close="false" />
+                    </div>
+                    <div class="control all-80 small-100 tiny-100">
+                        <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">
+                            <tbody >
+                                <tr>
+                                    <td >
+                                        <a href="#">Meeting</a> 
+                                        <p class="fw-300">05/03/2017-16:30</p>
+            Meetings, meetings, meetings ... you've got to have at least some to keep the team communicating, but which ones, why, and with whom in attendance? Check out one team's approach in their meeting-phobic environment; describing their critical "types" meetings in a way that portrays their practicality and value(!).						
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">Conference</a>
+                                        <p class="fw-300">08/04/2017-10:00</p>
+                                            How difficult can it be to give a test? You’ve probably heard this from your family, friends, and perhaps even your supervisor, but as testing professionals, we know it can be challenging and stressful. In this workshop, attendees will explore stressors you might encounter in your work day and ways to handle them by way of desserts and entertaining. The presentation, a participatory format layered with stories and examples, glazed with handouts, and dipped in humor, will offer a creative view of stress, as well as, a quirky sprinkling of creativity to get you through the day. The interactive workshop will have you wanting a second helping but you’ll be ready to get back to work to try your new recipes for success.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">Meeting</a>
+                                        <p class="fw-300"> 09/07/2017-14:00</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <style>
+        .my-never-closing-datepicker {
+            position: static;
+            display: inline-block;
+            overflow: hidden;
+        }
+        </style>
+
+        <footer class="clearfix">
+            <div align="center" class="ink-grid">
+                <ul class="unstyled inline half-vertical-space">
+                    <li class="active"><a href="#">About</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+                <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
+            </div>
+		</footer>
+	</body>
+</html>
