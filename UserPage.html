@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <link rel="stylesheet" type="text/css" href="ink-3.1.10/css/ink-flex.min.css">
+       <link rel="stylesheet" type="text/css" href="ink-3.1.10/css/font-awesome.min.css">
+    </head>
+    <script>
+          var imagequery = new Ink.UI.ImageQuery('.imagequery', {
+            src: 'res/company.jpg',
+            queries: [
+              {
+                  label: 'tiny',
+                  width: 320
+              },
+              {
+                  label: 'medium',
+                  width: 960
+              },
+              {
+                  label: 'large',
+                  width: 1200
+              },
+              {
+                  label: 'xlarge',
+                  width: 1400
+              }
+            ]
+          });
+        </script>
+        <style type="text/css">
+          html{
+            margin-left:10%;
+            margin-right: 10%;
+          }
+          header h1 small:before  {
+                content: "|";
+                margin: 0 0.5em;
+                font-size: 1.6em;
+            }
+            body {
+                background: #ededed;
+            }
+            footer {
+                background: #ccc;
+            }
+            #column{
+              background: white;
+              padding: 3%;
+              border-bottom-left-radius: 15px;
+              border-bottom-right-radius: 15px;
+              margin-bottom: 4%;
+            }
+        </style>
+    <body>
+        <header class="vertical-space">
+            <h1>Eventerpreneur<small>Manage yourself</small></h1>
+            <nav class="ink-navigation">
+                <ul class="menu horizontal black">
+                    <li class="heading"><a href="homepage.html">Home</a></li>
+                    <li>
+                        <a href="#">Events</a>
+                        <ul class="submenu">
+                            <li><a href="#">Public Events</a></li>
+                            <li><a href="#">Search</a></li>
+                            <li><a href="#">Create</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="login.html">My Account</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="ink-grid">
+            <div class="column-group horizontal-gutters">
+                <div class="all-40 small-100 tiny-100">
+                    <figure class="ink-image push-center" style="max-width:350px">
+                        <img src="img/profile_picture_by_naivety_stock-d5x8lbn.jpg">
+                        <figcaption class="over-bottom" style="padding-bottom:5px;padding-top:5px">
+                            <h6 align="center" style="margin-bottom:0px">John Doe</h6>
+                        </figcaption>
+                    </figure>
+                    <br>
+                    <div id="column" class="push-center" style="max-width:350px">
+                        <h4 align="center">Info</h4>
+                        <h5 style="margin-bottom:2px"><small>Email</small></h5>
+                        <p>johndoe@eventerpreneur.com</p>
+                        <h5 style="margin-bottom:2px"><small>Position</small></h5>
+                        <p>Leader Designer</p>
+                        <h5 style="margin-bottom:2px"><small>Department</small></h5>
+                        <p>Design</p>
+                    </div>
+                </div>
+                <div class="all-60 small-100 tiny-100 push-left" style="max-width:500px">
+                    <div id="column">
+                        <h4 align="center">Upcoming Events</h4>
+                        <div class="ink-grid">
+                            <div class="column-group">
+                                <p class="all-60"><a><big>Weekly Design Meeting</big></a></p>
+                                <h6 align="right" class="all-40" style="padding-top:6px"><small>11/11/2014</small></h6>
+                                <p class="all-60"><a><big>Visual Interactive Design Workshop</big></a></p>
+                                <h6 align="right" class="all-40" style="padding-top:6px"><small>13/11/2014</small></h6>
+                                <p class="all-60"><a><big>Pam's Birthday Party</big></a></p>
+                                <h6 align="right" class="all-40" style="padding-top:6px"><small>20/04/2014</small></h6>
+                                <p class="all-60"><a><big>Sonae Clients Meet</big></a></p>
+                                <h6 align="right" class="all-40" style="padding-top:6px"><small>25/04/2014</small></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="clearfix">
+            <div align="center" class="ink-grid">
+                <ul class="unstyled inline half-vertical-space">
+                    <li class="active"><a href="#">About</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+                <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
+            </div>
+    </footer>
+    </body>
+    <script type="text/javascript" src="ink-3.1.10/js/ink-all.js"></script>
+    <script type="text/javascript" src="ink-3.1.10/js/autoload.js"></script>
+</html>
