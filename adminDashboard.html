@@ -1,89 +1,85 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-       <title>Eventerpreneur</title>
-       <meta name="description" content="">
-       <meta name="HandheldFriendly" content="True">
-       <meta name="MobileOptimized" content="320">
-       <meta name="mobile-web-app-capable" content="yes">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-       <link rel="icon" href="res/calendar-icon.png">
-       <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
-       <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
+      <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     <title>Eventerpreneur</title>
+     <meta name="description" content="">
+     <meta name="HandheldFriendly" content="True">
+     <meta name="MobileOptimized" content="320">
+     <meta name="mobile-web-app-capable" content="yes">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+     <link rel="icon" href="res/calendar-icon.png">
+     <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
+     <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
 
-       <!-- load Ink's javascript files from the cdn -->
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
-        <script>
-          var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-            src: 'res/company.jpg',
-            queries: [
-              {
-                  label: 'tiny',
-                  width: 320
-              },
-              {
-                  label: 'medium',
-                  width: 960
-              },
-              {
-                  label: 'large',
-                  width: 1200
-              },
-              {
-                  label: 'xlarge',
-                  width: 1400
-              }
-            ]
-          });
-        </script>
-        <style type="text/css">
-          html{
-            margin-left:10%;
-            margin-right: 10%;
+     <!-- load Ink's javascript files from the cdn -->
+      <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
+      <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
+      <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
+      <script>
+        var imagequery = new Ink.UI.ImageQuery('.imagequery', {
+          src: 'res/company.jpg',
+          queries: [
+            {
+                label: 'tiny',
+                width: 320
+            },
+            {
+                label: 'medium',
+                width: 960
+            },
+            {
+                label: 'large',
+                width: 1200
+            },
+            {
+                label: 'xlarge',
+                width: 1400
+            }
+          ]
+        });
+      </script>
+      <style type="text/css">
+        header h1 small:before  {
+              content: "|";
+              margin: 0 0.5em;
+              font-size: 1.6em;
           }
-          header h1 small:before  {
-                content: "|";
-                margin: 0 0.5em;
-                font-size: 1.6em;
-            }
-            body {
-                background: #ededed;
-            }
-            footer {
-                background: #ccc;
-            }
-            #tabContent{
-              background: white;
-              padding: 3%;
-              border-bottom-left-radius: 15px;
-              border-bottom-right-radius: 15px;
-              margin-bottom: 4%;
-            }
-            #usersearchform{
-              margin-bottom: 3%;
-            }
-            .user{
+          body {
               background: #ededed;
-              padding: 1%;
-              border-style: solid;
-              border-color: #dbdbdb;
-              border-radius: 15px;
-              margin-bottom: 2%;
-            }
+          }
+          footer {
+              background: #ccc;
+          }
+          #tabContent{
+            background: white;
+            padding: 3%;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            margin-bottom: 4%;
+          }
+          #usersearchform{
+            margin-bottom: 3%;
+          }
+          .user{
+            background: #ededed;
+            padding: 1%;
+            border-style: solid;
+            border-color: #dbdbdb;
+            border-radius: 15px;
+            margin-bottom: 2%;
+          }
 
-            .notification{
-              background: #ededed;
-              padding: 1%;
-              border-style: solid;
-              border-color: #dbdbdb;
-              border-radius: 15px;
-              margin-bottom: 2%;
-            }
-        </style>
+          .notification{
+            background: #ededed;
+            padding: 1%;
+            border-style: solid;
+            border-color: #dbdbdb;
+            border-radius: 15px;
+            margin-bottom: 2%;
+          }
+      </style>
   </head>
 
   <body>
@@ -116,6 +112,7 @@
         </header>
     </div>
 
+<div class="all-80 small-100 tiny-100 push-center">
     <div class="ink-tabs top" data-prevent-url-change="true">
         <!-- If you're using 'bottom' positioning, put this div AFTER the content. -->
         <ul class="tabs-nav" style="margin-bottom:0%">
@@ -173,7 +170,7 @@
               </div>
           </div>
 
-          <div class="user all-65 push-center">
+          <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
             <div id="stacker-container" class="column-group">
               <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
                 <img src="res/user.png" width="50px" height="50px">
@@ -193,7 +190,7 @@
           </div>
 
 
-          <div class="user all-65 push-center">
+          <div class="user xlarge-70 large-70 medium-100 tiny-100  push-center">
             <div id="stacker-container" class="column-group">
               <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
                 <img src="res/joaosantos.jpg" width="50px" height="50px">
@@ -236,15 +233,14 @@
 
 
           <div id="notifications" class="tabs-content" style="margin-top:0%">
-            <div class="notification all-65 push-center">
+            <div class="notification xlarge-70 large-70 medium-100 tiny-100 push-center">
               <div id="stacker-container" class="column-group">
                 <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
                   <img src="res/user.png" width="50px" height="50px">
                 </div>
                 <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                   <p> <a href="#"> Fernando Lopes </a> wants to add a new profile picture.</p>
-                </div>
-                  <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
+                  <div class="xlarge-20 large-20 medium-20 tiny-100 push-middle" align="right">
                     <span class="ink-tooltip" data-tip-text="Accept" data-tip-color="grey" style="padding:4%">
                       <i class="fa fa-check" aria-hidden="true"></i>
                     </span>
@@ -252,17 +248,17 @@
                       <i class="fa fa-times" aria-hidden="true"></i>
                     </span>
                   </div>
+                </div>
               </div>
             </div>
-            <div class="notification all-65 push-center">
+            <div class="notification xlarge-70 large-70 medium-100 tiny-100 push-center">
               <div id="stacker-container" class="column-group">
                 <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
                   <img src="res/user.png" width="50px" height="50px">
                 </div>
                 <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                   <p> <a href="#"> John Doe </a> wants to add an alternative e-mail address.</p>
-                </div>
-                  <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
+                  <div class="xlarge-20 large-20 medium-20 tiny-100 push-middle" align="right">
                     <span class="ink-tooltip" data-tip-text="Accept" data-tip-color="grey" style="padding:4%">
                       <i class="fa fa-check" aria-hidden="true"></i>
                     </span>
@@ -270,11 +266,14 @@
                       <i class="fa fa-times" aria-hidden="true"></i>
                     </span>
                   </div>
+                </div>
+
               </div>
             </div>
           </div>
       </div>
     </div>
+  </div>
 
     <footer class="clearfix">
             <div align="center" class="ink-grid">
