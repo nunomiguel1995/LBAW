@@ -12,7 +12,7 @@ function getEvents($text){
     global $conn;
     $stmt = $conn->prepare("SELECT *
                             FROM event
-                            WHERE name LIKE '".$text."%'");
+                            WHERE name ILIKE '".$text."%'");
     $stmt->execute();
     return $stmt->fetchAll();
 }
