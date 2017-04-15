@@ -255,20 +255,13 @@ EXECUTE PROCEDURE only_1_vote_func(id_user, id_poll_option);
 
 CREATE OR REPLACE FUNCTION non_invited_cant_post_func()
     RETURNS TRIGGER AS $$
-DECLARE
-	id_e int;
-	id_u int;
-	calendar_d date;
-	calendar_t time without time zone;
-	post_t text;
-	id_c int;
 BEGIN
-	id_e := TG_ARGV[0];
-	id_u := TG_ARGV[1];
-	calendar_d := TG_ARGV[2];
-	calendar_t := TG_ARGV[3];
-	post_t := TG_ARGV[4];
-	id_c := TG_ARGV[5];
+    SELECT TG_ARGV[0] INTO id_e;
+    SELECT TG_ARGV[1] INTO id_u;
+    SELECT TG_ARGV[2] INTO calendar_d;
+    SELECT TG_ARGV[3] INTO calendar_t;
+    SELECT TG_ARGV[4] INTO post_t;
+    SELECT TG_ARGV[5] INTO id_c;
 
     SELECT accepted
     FROM invitation, event
