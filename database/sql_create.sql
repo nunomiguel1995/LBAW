@@ -133,9 +133,9 @@ CREATE TABLE post (
 CREATE TABLE doc (
     "idDoc" serial PRIMARY KEY NOT NULL,
     name text NOT NULL,
-    "idPost" integer NOT NULL REFERENCES post ON DELETE CASCADE,
-    "idUser" integer NOT NULL REFERENCES "appUser" ON DELETE CASCADE,
-    "idEvent" integer NOT NULL REFERENCES event ON DELETE CASCADE
+    "idPost" integer REFERENCES post ON DELETE CASCADE,
+    "idUser" integer REFERENCES "appUser" ON DELETE CASCADE,
+    "idEvent" integer REFERENCES event ON DELETE CASCADE
 );
 
 CREATE TABLE invitation (
@@ -209,98 +209,3 @@ CREATE INDEX "Email_idx" ON "appUser" USING gin (to_tsvector('english', email));
 
 CREATE INDEX "Message_text_idx" ON message USING gin (to_tsvector('english', message_text));
 CREATE INDEX "Post_text_idx" ON post USING gin (to_tsvector('english', post_text)); 
-
---TRIGGERS
-CREATE OR REPLACE FUNCTION inc_votes_func()
-    RETURNS TRIGGER AS $$
-BEGIN
-    SELECT TG_ARGV[0] INTO id_o;
-
-	UPDATE "pollOption"
-	SET votes = votes + 1
-	WHERE "idOption" = id_o;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER inc_votes
-AFTER INSERT ON vote
-EXECUTE PROCEDURE inc_votes_func(new_option);
-
-
-CREATE OR REPLACE FUNCTION only_1_vote_func()
-    RETURNS TRIGGER AS $$
-BEGIN
-    SELECT TG_ARGV[0] INTO id_u;
-    SELECT TG_ARGV[] INTO id_po;
-	
-    INSERT INTO user_votes (SELECT "idUser"
-                    FROM vote
-                    WHERE "idPollOption" = id_po
-                    AND "vote"."idUser" = "idUser");
-	
-	IF count(user_votes) == 1 THEN
-		INSERT INTO vote ("idUser", "idPollOption") values (id_u, id_po);
-	END IF;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER only_1_vote
-BEFORE INSERT ON vote
-EXECUTE PROCEDURE only_1_vote_func(id_user, id_poll_option);
-
-CREATE OR REPLACE FUNCTION non_invited_cant_post_func()
-    RETURNS TRIGGER AS $$
-BEGIN
-    SELECT TG_ARGV[0] INTO id_e;
-    SELECT TG_ARGV[1] INTO id_u;
-    SELECT TG_ARGV[2] INTO calendar_d;
-    SELECT TG_ARGV[3] INTO calendar_t;
-    SELECT TG_ARGV[4] INTO post_t;
-    SELECT TG_ARGV[5] INTO id_c;
-
-    SELECT accepted
-    FROM invitation, event
-    WHERE invitation."idEvent" = id_e
-    AND invitation."idUser" = id_u
-    OR (event."idCreator" = id_u);
-
-    IF accepted == true THEN
-        INSERT INTO post (calendar_date, calendar_time, post_text, "idCreator", "idEvent") values (calendar_d, calendar_t, post_t, id_c, id_e);
-    END IF;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER non_invited_cant_post
-BEFORE INSERT ON post
-EXECUTE PROCEDURE non_invited_cant_post_func(id_event, id_user, calendar_date, calendar_time, post_text, id_creator);
-
-CREATE OR REPLACE FUNCTION user_event_creation_restrictions_func()
-    RETURNS TRIGGER AS $$
-BEGIN
-    SELECT TG_ARGV[0] INTO id_u;
-	SELECT TG_ARGV[1] INTO event_t;
-	SELECT TG_ARGV[2] INTO event_n;
-	SELECT TG_ARGV[3] INTO calendar_d;
-	SELECT TG_ARGV[4] INTO calendar_t;
-	SELECT TG_ARGV[5] INTO locat;
-	SELECT TG_ARGV[6] INTO id_locat;
-	SELECT TG_ARGV[7] INTO descr;
-	SELECT TG_ARGV[8] INTO is_pub;
-
-    SELECT user_type
-    FROM "appUser"
-    WHERE "idUser" = id_u;
-    
-    IF user_type == "Collaborator" THEN
-        RETURN false;
-    ELSEIF (user_type == "Supervisor" AND (event_t == "Meeting" || event_t == "Gathering" || event_t == "Workshop")) THEN      
-        INSERT INTO event (name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator") values (event_n, calendar_d, calendar_t, locat, id_locat, descr, is_pub, id_u);
-    ELSEIF user_type == "Director" THEN
-        INSERT INTO event (name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator") values (event_n, calendar_d, calendar_t, locat, id_locat, descr, is_pub, id_u);
-    END IF;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER user_event_creation_restrictions
-BEFORE INSERT ON event
-EXECUTE PROCEDURE user_event_creation_restrictions_func(id_user, event_type, event_name, calendar_date, calendar_time, location, id_location, description, is_public);
