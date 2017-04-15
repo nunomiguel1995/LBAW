@@ -288,26 +288,16 @@ EXECUTE PROCEDURE non_invited_cant_post_func(id_event, id_user, calendar_date, c
 
 CREATE OR REPLACE FUNCTION user_event_creation_restrictions_func()
     RETURNS TRIGGER AS $$
-DECLARE
-	id_u int;
-	event_t "eventType";
-	event_n text;
-	calendar_d date;
-	calendar_t time without time zone;
-	locat text;
-	id_locat int;
-	descr text;
-	is_pub boolean;
 BEGIN
-    SELECT TG_ARGV[1] INTO id_u;
-	event_t := TG_ARGV[1];
-	event_n := TG_ARGV[2];
-	calendar_d := TG_ARGV[3];
-	calendar_t := TG_ARGV[4];
-	locat := TG_ARGV[5];
-	id_locat := TG_ARGV[6];
-	descr := TG_ARGV[7];
-	is_pub := TG_ARGV[8];	
+    SELECT TG_ARGV[0] INTO id_u;
+	SELECT TG_ARGV[1] INTO event_t;
+	SELECT TG_ARGV[2] INTO event_n;
+	SELECT TG_ARGV[3] INTO calendar_d;
+	SELECT TG_ARGV[4] INTO calendar_t;
+	SELECT TG_ARGV[5] INTO locat;
+	SELECT TG_ARGV[6] INTO id_locat;
+	SELECT TG_ARGV[7] INTO descr;
+	SELECT TG_ARGV[8] INTO is_pub;
 
     SELECT user_type
     FROM "appUser"
