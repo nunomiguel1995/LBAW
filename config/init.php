@@ -7,11 +7,11 @@
   $BASE_DIR = '/opt/lbaw/lbaw1635/public_html/test/'; //FIXME
   $BASE_URL = '/~lbaw1635/test/'; //FIXME
 
-  $conn = new PDO('pgsql:host=dbm;dbname=lbaw1635', 'lbaw1635', 'it74oc59'); //FIXME
+  $conn = new PDO('pgsql:host=dbm;dbname=lbaw1635', 'lbaw1635', 'it74oc59');
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $conn->exec('SET SCHEMA \'test\''); //FIXME?
+  $conn->exec('SET SCHEMA \'public\''); //FIXME?
 
   include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
 
