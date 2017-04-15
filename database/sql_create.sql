@@ -213,14 +213,12 @@ CREATE INDEX "Post_text_idx" ON post USING gin (to_tsvector('english', post_text
 --TRIGGERS
 CREATE OR REPLACE FUNCTION inc_votes_func()
     RETURNS TRIGGER AS $$
-DECLARE
-	id_option int;
 BEGIN
-	id_option := TG_ARGV[0];
+    SELECT TG_ARGV[0] INTO id_o;
 
 	UPDATE "pollOption"
 	SET votes = votes + 1
-	WHERE "idOption" = id_option;
+	WHERE "idOption" = id_o;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -231,20 +229,17 @@ EXECUTE PROCEDURE inc_votes_func(new_option);
 
 CREATE OR REPLACE FUNCTION only_1_vote_func()
     RETURNS TRIGGER AS $$
-DECLARE
-	id_user int;
-	id_poll_option int;
 BEGIN
-	id_user := TG_ARGV[0];
-	id_poll_option := TG_ARGV[1];
+    SELECT TG_ARGV[0] INTO id_u;
+    SELECT TG_ARGV[] INTO id_po;
 	
     INSERT INTO user_votes (SELECT "idUser"
                     FROM vote
-                    WHERE "idPollOption" = id_poll_option
+                    WHERE "idPollOption" = id_po
                     AND "vote"."idUser" = "idUser");
 	
 	IF count(user_votes) == 1 THEN
-		INSERT INTO vote ("idUser", "idPollOption") values (id_user, id_poll_option);
+		INSERT INTO vote ("idUser", "idPollOption") values (id_u, id_po);
 	END IF;
 END;
 $$ LANGUAGE plpgsql;
