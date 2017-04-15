@@ -213,10 +213,14 @@ CREATE INDEX "Post_text_idx" ON post USING gin (to_tsvector('english', post_text
 --TRIGGERS
 CREATE OR REPLACE FUNCTION inc_votes_func()
     RETURNS TRIGGER AS $$
+DECLARE
+	id_option int;
 BEGIN
+	id_option := TG_ARGV[0];
+
 	UPDATE "pollOption"
 	SET votes = votes + 1
-	WHERE "idOption" = TG_ARGV[0];
+	WHERE "idOption" = id_option;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -227,14 +231,20 @@ EXECUTE PROCEDURE inc_votes_func(new_option);
 
 CREATE OR REPLACE FUNCTION only_1_vote_func()
     RETURNS TRIGGER AS $$
+DECLARE
+	id_user int;
+	id_poll_option int;
 BEGIN
+	id_user := TG_ARGV[0];
+	id_poll_option := TG_ARGV[1];
+	
     INSERT INTO user_votes (SELECT "idUser"
                     FROM vote
-                    WHERE "idPollOption" = TG_ARGV[1]
+                    WHERE "idPollOption" = id_poll_option
                     AND "vote"."idUser" = "idUser");
 	
 	IF count(user_votes) == 1 THEN
-		INSERT INTO vote ("idUser", "idPollOption") values (TG_ARGV[0], TG_ARGV[1]);
+		INSERT INTO vote ("idUser", "idPollOption") values (id_user, id_poll_option);
 	END IF;
 END;
 $$ LANGUAGE plpgsql;
@@ -245,40 +255,74 @@ EXECUTE PROCEDURE only_1_vote_func(id_user, id_poll_option);
 
 CREATE OR REPLACE FUNCTION non_invited_cant_post_func()
     RETURNS TRIGGER AS $$
+DECLARE
+	id_e int;
+	id_u int;
+	calendar_d date;
+	calendar_t time without time zone;
+	post_t text;
+	id_c int;
 BEGIN
+	id_e := TG_ARGV[0];
+	id_u := TG_ARGV[1];
+	calendar_d := TG_ARGV[2];
+	calendar_t := TG_ARGV[3];
+	post_t := TG_ARGV[4];
+	id_c := TG_ARGV[5];
+
     SELECT accepted
     FROM invitation, event
-    WHERE invitation."idEvent" = TG_ARGV[0]
-    AND invitation."idUser" = TG_ARGV[1]
-    OR (event."idCreator" = TG_ARGV[1]);
+    WHERE invitation."idEvent" = id_e
+    AND invitation."idUser" = id_u
+    OR (event."idCreator" = id_u);
 
     IF accepted == true THEN
-        INSERT INTO post ("idPost", calendar_date, calendar_time, post_text, "idCreator", "idEvent") values (TG_ARGV[2], TG_ARGV[3], TG_ARGV[4], TG_ARGV[5], TG_ARGV[6], TG_ARGV[7]);
+        INSERT INTO post (calendar_date, calendar_time, post_text, "idCreator", "idEvent") values (calendar_d, calendar_t, post_t, id_c, id_e);
     END IF;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER non_invited_cant_post
 BEFORE INSERT ON post
-EXECUTE PROCEDURE non_invited_cant_post_func(id_event, id_user, id_post, calendar_date, calendar_time, post_text, id_creator, id_event);
+EXECUTE PROCEDURE non_invited_cant_post_func(id_event, id_user, calendar_date, calendar_time, post_text, id_creator);
 
 CREATE OR REPLACE FUNCTION user_event_creation_restrictions_func()
     RETURNS TRIGGER AS $$
+DECLARE
+	id_u int;
+	event_t "eventType";
+	event_n text;
+	calendar_d date;
+	calendar_t time without time zone;
+	locat text;
+	id_locat int;
+	descr text;
+	is_pub boolean;
 BEGIN
+    SELECT TG_ARGV[1] INTO id_u;
+	event_t := TG_ARGV[1];
+	event_n := TG_ARGV[2];
+	calendar_d := TG_ARGV[3];
+	calendar_t := TG_ARGV[4];
+	locat := TG_ARGV[5];
+	id_locat := TG_ARGV[6];
+	descr := TG_ARGV[7];
+	is_pub := TG_ARGV[8];	
+
     SELECT user_type
     FROM "appUser"
-    WHERE "idUser" = TG_ARGV[0];
+    WHERE "idUser" = id_u;
     
     IF user_type == "Collaborator" THEN
         RETURN false;
-    ELSEIF (user_type == "Supervisor" AND (TG_ARGV[1] == "Meeting" ||TG_ARGV[1] == "Gathering" || TG_ARGV[1] == "Workshop")) THEN      
-        INSERT INTO event ("idEvent", name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator") values (TG_ARGV[2], TG_ARGV[3], TG_ARGV[4], TG_ARGV[5], TG_ARGV[6], TG_ARGV[7], TG_ARGV[8], TG_ARGV[9], TG_ARGV[0]);
+    ELSEIF (user_type == "Supervisor" AND (event_t == "Meeting" || event_t == "Gathering" || event_t == "Workshop")) THEN      
+        INSERT INTO event (name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator") values (event_n, calendar_d, calendar_t, locat, id_locat, descr, is_pub, id_u);
     ELSEIF user_type == "Director" THEN
-        INSERT INTO event ("idEvent", name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator") values (TG_ARGV[2], TG_ARGV[3], TG_ARGV[4], TG_ARGV[5], TG_ARGV[6], TG_ARGV[7], TG_ARGV[8], TG_ARGV[9], TG_ARGV[0]);
+        INSERT INTO event (name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator") values (event_n, calendar_d, calendar_t, locat, id_locat, descr, is_pub, id_u);
     END IF;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER user_event_creation_restrictions
 BEFORE INSERT ON event
-EXECUTE PROCEDURE user_event_creation_restrictions_func(id_user, event_type, id_event, event_name, calendar_date, calendar_time, location, id_location, description, is_public);
+EXECUTE PROCEDURE user_event_creation_restrictions_func(id_user, event_type, event_name, calendar_date, calendar_time, location, id_location, description, is_public);
