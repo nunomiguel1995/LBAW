@@ -1,130 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-       <meta charset="utf-8">
-       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-       <title>Eventerpreneur</title>
-       <meta name="description" content="">
-       <meta name="HandheldFriendly" content="True">
-       <meta name="MobileOptimized" content="320">
-       <meta name="mobile-web-app-capable" content="yes">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-       <link rel="icon" href="res/calendar-icon.png">
-       <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
-       <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
-       <!-- load Ink's javascript files from the cdn -->
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
-        <script>
-          var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-            src: 'res/company.jpg',
-            queries: [
-              {
-                  label: 'tiny',
-                  width: 320
-              },
-              {
-                  label: 'medium',
-                  width: 960
-              },
-              {
-                  label: 'large',
-                  width: 1200
-              },
-              {
-                  label: 'xlarge',
-                  width: 1400
-              }
-            ]
-          });
-        </script>
-        <style type="text/css">
+<?php
+  include_once('../config/init.php');
+  include_once($BASE_DIR .'templates/common/header.tpl');
+?>
 
-          header h1 small:before  {
-                content: "|";
-                margin: 0 0.5em;
-                font-size: 1.6em;
-            }
-            body {
-                background: #ededed;
-            }
-            footer {
-                background: #ccc;
-            }
-        		label{
-        		float: left;
-        		}
-              #page{
-                background: white;
-                border-radius: 15px;
-                border-style: solid;
-                border-width: 2px;
-                border-color: #dbdbdb;
-              }
-              .user{
-                background: #ededed;
-                padding: 1%;
-                border-style: solid;
-                border-color: #dbdbdb;
-                border-radius: 15px;
-                margin-bottom: 2%;
-              }
-        </style>
-  </head>
-
-
-    <body>
-      <div id = "header">
-        <header class="vertical-space">
-                  <div style="margin-left:1%"> <h1>Eventerpreneur<small>Manage your business</small></h1> </div>
-                  <nav class="ink-navigation">
-                      <ul class="menu horizontal black">
-                          <li class="heading"><a href="homepage.html">Home</a></li>
-                          <li>
-                              <a href="#">Events</a>
-                              <ul class="submenu">
-                                  <li><a href="publicEvents.html">Public Events</a></li>
-                                  <li><a href="searchEvents.html">Search</a></li>
-                                  <li><a href="addEvent.html">Create</a></li>
-                              </ul>
-                          </li>
-                          <li><a href="#">My Account</a>
-                              <ul class = "submenu">
-                                <li><a href="UserPage.html">My Profile </a></li>
-                                <li><a href="MyEvents.html">My Events </a></li>
-                              </ul>
-                          </li>
-                          <div  class="push-right">
-                            <div class="ink-shade fade">
-                                <div id="myModal" class="ink-modal fade" data-trigger="#myModalTrigger2" data-width="55%" data-height="55%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
-                                    <div class="modal-header">
-                                        <button class="modal-close ink-dismiss"></button>
-                                    </div>
-                                    <div class="modal-body" id="modalContent">
-                                      <div id="login" align="center" >
-                                        <h2 > Log In </h1>
-                                        <form class="ink-form ink-formvalidator">
-                                            <div class="control-group required all-70">
-                                                <div class="control" style="margin:5%">
-                                                    <input id="username" name="username" type="text" data-rules="required|text[true,false]" placeholder="Username">
-                                                </div>
-                                                <div class="control" style="margin:5%">
-                                                    <input  id="password" name="password" type="password" data-rules="required|min_length[8]" placeholder="Password">
-                                                </div>
-                                            </div>
-                                            <button class="ink-button blue">Log in</button>
-                                        </form>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <li><a href="#" id="myModalTrigger2" class="ink-button black">Log In</a></li>
-                          </div>
-                      </ul>
-                  </nav>
-          </header>
-      </div>
+    <style type="text/css">
+      #page{
+        background: white;
+        border-radius: 15px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: #dbdbdb;
+      }
+      .user{
+        background: #ededed;
+        padding: 1%;
+        border-style: solid;
+        border-color: #dbdbdb;
+        border-radius: 15px;
+        margin-bottom: 2%;
+      }
+    </style>
 
     <div class="all-80 small-100 tiny-100 push-center">
       <div id="createEvent" class="ink-carousel" data-pagination="#my-carousel-1-pagination" align="center">
@@ -196,7 +91,7 @@
                       <h5 for="description" align = "left">Choose Event Photo <small>(Optional)</small></h5>
                       <div class="profilepic all-55">
                         <figure class = "ink-image">
-                          <img src="res/event_general.jpeg" alt="event image">
+                          <img src="../images/users/event_general.jpeg" alt="event image">
                         </figure>
                         <button class="ink-button" type="button">Choose File</button>
                       </div>
@@ -217,7 +112,7 @@
                                 <div class="user all-50 small-100 tiny-100 push-center">
                                   <div id="stacker-container" class="column-group">
                                     <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                                      <img src="res/person1.jpg" width="50px" height="50px">
+                                      <img src="../images/users/person1.jpg" width="50px" height="50px">
                                     </div>
                                     <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                                       <a href="#"> Ken Howard </a>
@@ -238,7 +133,7 @@
                                 <div class="user all-50 small-100 tiny-100 push-center">
                                   <div id="stacker-container" class="column-group">
                                     <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                                      <img src="res/user.png" width="50px" height="50px">
+                                      <img src="../images/users/user.png" width="50px" height="50px">
                                     </div>
                                     <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                                       <a href="#"> Andrew Richard </a>
@@ -259,7 +154,7 @@
                                 <div class="user all-50 small-100 tiny-100 push-center">
                                   <div id="stacker-container" class="column-group">
                                     <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                                      <img src="res/person3.jpg" width="50px" height="50px">
+                                      <img src="../images/users/person3.jpg" width="50px" height="50px">
                                     </div>
                                     <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                                       <a href="#"> Joanne Lopez </a>
@@ -291,7 +186,7 @@
                       <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
                         <div id="stacker-container" class="column-group">
                           <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                            <img src="res/user.png" width="50px" height="50px">
+                            <img src="../images/users/user.png" width="50px" height="50px">
                           </div>
                           <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                             <a href="#"> Jake Brooks </a>
@@ -306,7 +201,7 @@
                       <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
                         <div id="stacker-container" class="column-group">
                           <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                            <img src="res/person4.jpg" width="50px" height="50px">
+                            <img src="../images/users/person4.jpg" width="50px" height="50px">
                           </div>
                           <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                             <a href="#"> Grace McCarthy </a>
@@ -321,7 +216,7 @@
                       <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
                         <div id="stacker-container" class="column-group">
                           <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                            <img src="res/person2.jpg" width="50px" height="50px">
+                            <img src="../images/users/person2.jpg" width="50px" height="50px">
                           </div>
                           <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                             <a href="#"> Lee Ryan </a>
@@ -336,7 +231,7 @@
                       <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
                         <div id="stacker-container" class="column-group">
                           <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                            <img src="res/user.png" width="50px" height="50px">
+                            <img src="../images/users/user.png" width="50px" height="50px">
                           </div>
                           <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                             <a href="#"> Leo Hacket </a>
@@ -361,15 +256,5 @@
           </form>
       </div>
     </div>
-    <footer class="clearfix">
-            <div align="center" class="ink-grid">
-                <ul class="unstyled inline half-vertical-space">
-                    <li class="active"><a href="aboutus.html">About</a></li>
-                    <li><a href="aboutus.html#contacts">Contacts</a></li>
-                </ul>
-                <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
-            </div>
-    </footer>
-</body>
 
-</html>
+<?php include_once($BASE_DIR .'templates/common/footer.tpl'); ?>

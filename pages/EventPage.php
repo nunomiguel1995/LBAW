@@ -1,121 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="utf-8">
-         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-         <title>Eventerpreneur</title>
-         <meta name="description" content="">
-         <meta name="HandheldFriendly" content="True">
-         <meta name="MobileOptimized" content="320">
-         <meta name="mobile-web-app-capable" content="yes">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-         <link rel="icon" href="res/calendar-icon.png">
-         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
-         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
-       <link rel="stylesheet" type="text/css" href="ink-3.1.10/css/ink-flex.min.css">
-       <link rel="stylesheet" type="text/css" href="ink-3.1.10/css/font-awesome.min.css">
-    </head>
-    <script>
-          var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-            src: 'res/company.jpg',
-            queries: [
-              {
-                  label: 'tiny',
-                  width: 320
-              },
-              {
-                  label: 'medium',
-                  width: 960
-              },
-              {
-                  label: 'large',
-                  width: 1200
-              },
-              {
-                  label: 'xlarge',
-                  width: 1400
-              }
-            ]
-          });
-        </script>
+<?php
+  include_once('../config/init.php');
+  include_once($BASE_DIR .'templates/common/header.tpl');
+?>
+
         <style type="text/css">
-          header h1 small:before  {
-                content: "|";
-                margin: 0 0.5em;
-                font-size: 1.6em;
-            }
-            body {
-                background: #ededed;
-            }
-            footer {
-                background: #ccc;
-            }
-            #tabContent{
-              background: white;
-              padding: 3%;
-              border-bottom-left-radius: 15px;
-              border-bottom-right-radius: 15px;
-              margin-bottom: 4%;
-            }
+           #tabContent{
+             background: white;
+             padding: 3%;
+             border-bottom-left-radius: 15px;
+             border-bottom-right-radius: 15px;
+             margin-bottom: 4%;
+           }
         </style>
-    <body>
-      <div id = "header">
-        <header class="vertical-space">
-                  <div style="margin-left:1%"> <h1>Eventerpreneur<small>Manage your business</small></h1> </div>
-                  <nav class="ink-navigation">
-                      <ul class="menu horizontal black">
-                          <li class="heading"><a href="homepage.html">Home</a></li>
-                          <li>
-                              <a href="#">Events</a>
-                              <ul class="submenu">
-                                  <li><a href="publicEvents.html">Public Events</a></li>
-                                  <li><a href="searchEvents.html">Search</a></li>
-                                  <li><a href="addEvent.html">Create</a></li>
-                              </ul>
-                          </li>
-                          <li><a href="#">My Account</a>
-                              <ul class = "submenu">
-                                <li><a href="UserPage.html">My Profile </a></li>
-                                <li><a href="MyEvents.html">My Events </a></li>
-                              </ul>
-                          </li>
-                          <div  class="push-right">
-                            <div class="ink-shade fade">
-                                <div id="myModal" class="ink-modal fade" data-trigger="#myModalTrigger2" data-width="55%" data-height="55%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
-                                    <div class="modal-header">
-                                        <button class="modal-close ink-dismiss"></button>
-                                    </div>
-                                    <div class="modal-body" id="modalContent">
-                                      <div id="login" align="center" >
-                                        <h2 > Log In </h2>
-                                        <form class="ink-form ink-formvalidator">
-                                            <div class="control-group required all-70">
-                                                <div class="control" style="margin:5%">
-                                                    <input id="username" name="username" type="text" data-rules="required|text[true,false]" placeholder="Username">
-                                                </div>
-                                                <div class="control" style="margin:5%">
-                                                    <input  id="password" name="password" type="password" data-rules="required|min_length[8]" placeholder="Password">
-                                                </div>
-                                            </div>
-                                            <button class="ink-button blue">Log in</button>
-                                        </form>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <li><a href="#" id="myModalTrigger2" class="ink-button black">Log In</a></li>
-                          </div>
-                      </ul>
-                  </nav>
-          </header>
-      </div>
 
         <div style="padding:5%px" class="ink-grid all-70 medium-100 small-100 tiny-100">
             <div class="column-group">
                 <div>
                     <h2> Weekly Design Meeting</h2>
                     <figure class="ink-image bottom-space">
-                        <img src="img/event%20page.png" class="imagequery">
+                        <img src="../images/events/event%20page.png" class="imagequery">
                     </figure>
 
                     <div class="ink-tabs top" data-prevent-url-change="true" >
@@ -167,7 +70,7 @@
                                     <hr class="all-90 push-center">
                                     <div class="post column-group all-90 push-center">
                                         <div class="column-group all-100">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-80" style="padding-left:1%;padding-top:1%"><a>John Doe</a><br><small>10/10/2016 10:32</small></h6>
                                         </div>
                                         <div class="all-100">
@@ -177,7 +80,7 @@
                                     <hr class="all-90 push-center">
                                     <div class="post column-group all-90 push-center">
                                         <div class="column-group all-100">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-80" style="padding-left:1%;padding-top:1%"><a>Lena Amett</a><br><small>08/10/2016 15:12</small></h6>
                                         </div>
                                         <div class="all-100">
@@ -185,13 +88,13 @@
                                         </div>
                                         <div class="file-div all-100">
                                             <div class="column-group all-100">
-                                            <img class="all-20" src="img/file_icon.png" style="height:30px;width:30px">
+                                            <img class="all-20" src="../images/assets/file_icon.png" style="height:30px;width:30px">
                                                 <h6 class="all-80" style="padding-top:1%;padding-left:1%"><a>file_name.xpto</a></h6>
                                             </div>
                                         </div>
                                         <div class="file-div all-100">
                                             <div class="column-group all-100">
-                                            <img class="all-20" src="img/file_icon.png" style="height:30px;width:30px">
+                                            <img class="all-20" src="../images/assets/file_icon.png" style="height:30px;width:30px">
                                                 <h6 class="all-80" style="padding-top:1%;padding-left:1%"><a>file_name.xpto</a></h6>
                                             </div>
                                         </div>
@@ -203,27 +106,27 @@
                                 <div class="ink-grid" >
                                     <div class="column-group horizontal-gutters">
                                         <div class="column-group all-50 small-100 tiny-100">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>John Doe</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="img/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Dwight Schrute</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Jim Halpert</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Pam Beesly</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Angela Martin</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="img/default-user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Meredith Palmer</a></h6>
                                         </div>
                                     </div>
@@ -234,17 +137,5 @@
                 </div>
             </div>
         </div>
-        <footer class="clearfix">
-                <div align="center" class="ink-grid">
-                    <ul class="unstyled inline half-vertical-space">
-                        <li class="active"><a href="aboutus.html">About</a></li>
-                        <li><a href="aboutus.html#contacts">Contacts</a></li>
-                    </ul>
-                    <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
-                </div>
-        </footer>
-    </body>
-    <script type="text/javascript" src="ink-3.1.10/js/ink-all.js"></script>
-    <script type="text/javascript" src="ink-3.1.10/js/autoload.js"></script>
-    <script type="text/javascript" src="ink-3.1.10/js/ink.tabs.js"></script>
-</html>
+
+<?php include_once($BASE_DIR .'templates/common/footer.tpl'); ?>
