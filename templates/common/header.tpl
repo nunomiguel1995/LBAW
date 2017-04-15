@@ -64,19 +64,19 @@
                 <div style="margin-left:1%"> <h1>Eventerpreneur<small>Manage your business</small></h1> </div>
                 <nav class="ink-navigation">
                     <ul class="menu horizontal black">
-                        <li class="heading"><a href="homepage.html">Home</a></li>
+                        <li class="heading"><a href="homepage.php">Home</a></li>
                         <li>
                             <a href="#">Events</a>
                             <ul class="submenu">
-                                <li><a href="publicEvents.html">Public Events</a></li>
-                                <li><a href="searchEvents.html">Search</a></li>
-                                <li><a href="addEvent.html">Create</a></li>
+                                <li><a href="publicEvents.php">Public Events</a></li>
+                                <li><a href="searchEvents.php">Search</a></li>
+                                <li><a href="AddEvent.php">Create</a></li>
                             </ul>
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
-                              <li><a href="UserPage.html">My Profile </a></li>
-                              <li><a href="MyEvents.html">My Events </a></li>
+                              <li><a href="UserPage.php">My Profile </a></li>
+                              <li><a href="MyEvents.php">My Events </a></li>
                             </ul>
                         </li>
                         <div  class="push-right">
