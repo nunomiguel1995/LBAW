@@ -15,7 +15,12 @@ function getPhotoName($idUser){
   $stmt->execute(array($idUser));
   $result = $stmt->fetch();
 
-  return $result['name'];  
+  return $result['name'];
 }
 
+function deleteUser($userId){
+  global $conn;
+  $stmt = $conn->prepare('DELETE FROM "appUser" WHERE "idUser" = ?');
+  $stmt->execute(array($userId));
+}
 ?>

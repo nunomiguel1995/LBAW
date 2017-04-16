@@ -2,7 +2,8 @@
   include_once('../../config/init.php');
   include_once($BASE_DIR .'templates/common/header.tpl');
 ?>
-
+<script type="text/javascript" src="../../javascript/event.js"></script>
+<script type="text/javascript" src="../../javascript/user.js"></script>
 <style type="text/css">
       #tabContent{
         background: white;

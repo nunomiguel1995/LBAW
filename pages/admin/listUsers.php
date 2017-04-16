@@ -21,8 +21,8 @@
             <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%">
               <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
             </span>
-            <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%">
-              <i class="fa fa-trash" aria-hidden="true" ></i>
+            <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
+              <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('<?=$value[idUser]?>')" ></i>
             </span>
           </div>
       </div>
