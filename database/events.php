@@ -2,7 +2,7 @@
 
 function getAllEvents() {
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
+    $stmt = $conn->prepare("SELECT *
                             FROM event");
     $stmt->execute();
     return $stmt->fetchAll();
