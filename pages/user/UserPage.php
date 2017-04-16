@@ -1,5 +1,5 @@
 <?php
-  include_once('../config/init.php');
+  include_once('../../config/init.php');
   include_once($BASE_DIR .'templates/common/header.tpl');
 ?>
 
@@ -16,7 +16,7 @@
             <div class="column-group horizontal-gutters">
                 <div class="all-40 small-100 tiny-100">
                     <figure class="ink-image push-center" style="max-width:350px">
-                        <img src="../images/users/joaosantos.jpg">
+                        <img src="../../images/users/joaosantos.jpg">
                         <figcaption class="over-bottom" style="padding-bottom:5px;padding-top:5px">
                             <h6 align="center" style="margin-bottom:0px">John Doe</h6>
                         </figcaption>

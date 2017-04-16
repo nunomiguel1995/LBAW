@@ -1,6 +1,6 @@
 <div  class="push-right">
 	<?php if (isset($_SESSION['username']) && ($_SESSION['username']!= NULL && $_SESSION['username']!= 'failed')) {?>
-		<form class="ink-form ink-formvalidator" action="../actions/user/logout.php" method="post">		
+		<form class="ink-form ink-formvalidator" action="../../actions/user/logout.php" method="post">
 			<button class="ink-button black" type="submit">Log Out</button>
 		</form>
 	<?php }else { $_SESSION['username'] = NULL;?>
@@ -12,7 +12,7 @@
 			<div class="modal-body" id="modalContent">
 				<div id="login" align="center">
 				<h2 > Log In </h1>
-				<form class="ink-form ink-formvalidator" action="../actions/user/login_action.php" method="post">
+				<form class="ink-form ink-formvalidator" action="../../actions/user/login_action.php" method="post">
 					<div class="control-group required all-70">
 						<div class="control" style="margin:5%">
 							<input id="username" name="username" type="text" data-rules="required|text[true,false]" placeholder="Username">
@@ -29,5 +29,5 @@
 	</div>
 	<li><a href="#" id="myModalTrigger2" class="ink-button black">Log In</a></li>
 	<?php } ?>
-		
+
 </div>

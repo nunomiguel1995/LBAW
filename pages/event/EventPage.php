@@ -1,5 +1,5 @@
 <?php
-  include_once('../config/init.php');
+  include_once('../../config/init.php');
   include_once($BASE_DIR .'templates/common/header.tpl');
 ?>
 
@@ -18,7 +18,7 @@
                 <div>
                     <h2> Weekly Design Meeting</h2>
                     <figure class="ink-image bottom-space">
-                        <img src="../images/events/event%20page.png" class="imagequery">
+                        <img src="../../images/events/event%20page.png" class="imagequery">
                     </figure>
 
                     <div class="ink-tabs top" data-prevent-url-change="true" >
@@ -70,7 +70,7 @@
                                     <hr class="all-90 push-center">
                                     <div class="post column-group all-90 push-center">
                                         <div class="column-group all-100">
-                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-80" style="padding-left:1%;padding-top:1%"><a>John Doe</a><br><small>10/10/2016 10:32</small></h6>
                                         </div>
                                         <div class="all-100">
@@ -80,7 +80,7 @@
                                     <hr class="all-90 push-center">
                                     <div class="post column-group all-90 push-center">
                                         <div class="column-group all-100">
-                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-80" style="padding-left:1%;padding-top:1%"><a>Lena Amett</a><br><small>08/10/2016 15:12</small></h6>
                                         </div>
                                         <div class="all-100">
@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="file-div all-100">
                                             <div class="column-group all-100">
-                                            <img class="all-20" src="../images/assets/file_icon.png" style="height:30px;width:30px">
+                                            <img class="all-20" src="../../images/assets/file_icon.png" style="height:30px;width:30px">
                                                 <h6 class="all-80" style="padding-top:1%;padding-left:1%"><a>file_name.xpto</a></h6>
                                             </div>
                                         </div>
@@ -106,27 +106,27 @@
                                 <div class="ink-grid" >
                                     <div class="column-group horizontal-gutters">
                                         <div class="column-group all-50 small-100 tiny-100">
-                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>John Doe</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="img/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../img/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Dwight Schrute</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Jim Halpert</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Pam Beesly</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Angela Martin</a></h6>
                                         </div>
                                         <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../images/users/user.png" style="height:50px;width:50px">
+                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
                                             <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Meredith Palmer</a></h6>
                                         </div>
                                     </div>

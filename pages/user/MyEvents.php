@@ -1,5 +1,5 @@
 <?php
-  include_once('../config/init.php');
+  include_once('../../config/init.php');
   include_once($BASE_DIR .'templates/common/header.tpl');
 ?>
 		<style type="text/css">

@@ -9,7 +9,7 @@
        <meta name="MobileOptimized" content="320">
        <meta name="mobile-web-app-capable" content="yes">
        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-       <link rel="icon" href="../images/assets/calendar-icon.png">
+       <link rel="icon" href="../../images/assets/calendar-icon.png">
        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
 
@@ -59,24 +59,32 @@
   </head>
 
   <body>
+    <?php
+      $home = $BASE_URL.'pages/main/homepage.php';
+      $publicEvents = $BASE_URL.'pages/main/publicEvents.php';
+      $search = $BASE_URL.'pages/event/searchEvents.php';
+      $create = $BASE_URL.'pages/event/AddEvent.php';
+      $myprofile = $BASE_URL.'pages/user/UserPage.php';
+      $myevents = $BASE_URL.'pages/user/MyEvents.php';
+    ?>
     <div id = "header">
       <header class="vertical-space">
                 <div style="margin-left:1%"> <h1>Eventerpreneur<small>Manage your business</small></h1> </div>
                 <nav class="ink-navigation">
                     <ul class="menu horizontal black">
-                        <li class="heading"><a href="homepage.php">Home</a></li>
+                        <li class="heading"><a href=<?= $home ?> >Home</a></li>
                         <li>
                             <a href="#">Events</a>
                             <ul class="submenu">
-                                <li><a href="publicEvents.php">Public Events</a></li>
-                                <li><a href="searchEvents.php">Search</a></li>
-                                <li><a href="AddEvent.php">Create</a></li>
+                                <li><a href=<?= $publicEvents ?> >Public Events</a></li>
+                                <li><a href= <?= $search ?> >Search</a></li>
+                                <li><a href= <?= $create ?> >Create</a></li>
                             </ul>
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
-                              <li><a href="UserPage.php">My Profile </a></li>
-                              <li><a href="MyEvents.php">My Events </a></li>
+                              <li><a href= <?= $myprofile ?> >My Profile </a></li>
+                              <li><a href=<?= $myevents ?> >My Events </a></li>
                             </ul>
                         </li>
                         <?php include_once($BASE_DIR .'pages/user/login.php'); ?>

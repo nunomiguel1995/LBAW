@@ -1,5 +1,5 @@
 <?php
-  include_once('../config/init.php');
+  include_once('../../config/init.php');
   include_once($BASE_DIR .'templates/common/header.tpl');
 ?>
   <style type="text/css">
@@ -15,7 +15,7 @@
 
   <div id="top-image">
     <figure class="ink-image bottom-space all-75 small-100 tiny-100 push-center">
-      <img src="../images/events/public_events.jpg" class="imagequery">
+      <img src="../../images/events/public_events.jpg" class="imagequery">
       <figcaption class="over-bottom">
         Events for all the community
       </figcaption>
