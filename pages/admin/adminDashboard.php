@@ -1,5 +1,5 @@
 <?php
-  include_once('../config/init.php');
+  include_once('../../config/init.php');
   include_once($BASE_DIR .'templates/common/header.tpl');
 ?>
 
@@ -34,13 +34,11 @@
 
 <div class="all-80 small-100 tiny-100 push-center">
     <div class="ink-tabs top" data-prevent-url-change="true">
-        <!-- If you're using 'bottom' positioning, put this div AFTER the content. -->
         <ul class="tabs-nav" style="margin-bottom:0%">
             <li><a class="tabs-tab" href="#manageUsers">Manage Users</a></li>
             <li><a class="tabs-tab" href="#manageEvents">Manage Events</a></li>
             <li><a class="tabs-tab" href="#notifications">Notifications</a></li>
         </ul>
-        <!-- Now just place your content -->
         <div id="tabContent">
           <div id="manageUsers" class="tabs-content" style="margin-top:0%" >
             <div class="ink-grid gutters" id="usersearchform">
@@ -91,47 +89,7 @@
               </div>
           </div>
 
-          <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
-            <div id="stacker-container" class="column-group">
-              <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                <img src="../images/users/user.png" width="50px" height="50px">
-              </div>
-              <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                <a href="#"> Fernando Lopes </a>
-              </div>
-                <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
-                  <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
-                  </span>
-                  <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%">
-                    <i class="fa fa-trash" aria-hidden="true" ></i>
-                  </span>
-                </div>
-            </div>
-          </div>
-
-
-          <div class="user xlarge-70 large-70 medium-100 tiny-100  push-center">
-            <div id="stacker-container" class="column-group">
-              <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                <img src="../images/users/joaosantos.jpg" width="50px" height="50px">
-              </div>
-              <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                <a href="#"> João Santos </a>
-              </div>
-                <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
-                  <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
-                  </span>
-                  <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%">
-                    <i class="fa fa-trash" aria-hidden="true" ></i>
-                  </span>
-                </div>
-            </div>
-          </div>
-
-        </div>
-
+          <?php include_once('listUsers.php') ?>
 
           <div id="manageEvents" class="tabs-content" style="margin-top:0%">
             <div class="ink-grid gutters">
