@@ -177,6 +177,10 @@ insert into doc ("idDoc", name, "idPost", "idUser", "idEvent") values (6, 'tempu
 insert into doc ("idDoc",  name, "idPost", "idUser", "idEvent") values (7, 'eros_viverra_eget.avi', null, 14, 4);
 insert into doc ("idDoc", name, "idPost", "idUser", "idEvent") values (8, 'pede.mpeg', null, 15, 3);
 insert into doc ("idDoc", name, "idPost", "idUser", "idEvent") values (9,  'vel_est.xls', null, 19, 1);
+insert into doc ("idDoc", name, "idPost", "idUser", "idEvent") values (10,  'person3.jpg', null, 1, null);
+insert into doc ("idDoc", name, "idPost", "idUser", "idEvent") values (11,  'joaosantos.jpg', null, 4, null);
+insert into doc ("idDoc", name, "idPost", "idUser", "idEvent") values (12,  'person1.jpg', null, 10, null);
+insert into doc ("idDoc", name, "idPost", "idUser", "idEvent") values (13,  'person4.jpg', null, 8, null);
 
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 7, true, '2017/11/17');
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 17, false, '2017/11/01');

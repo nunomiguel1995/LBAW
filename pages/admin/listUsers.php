@@ -7,7 +7,12 @@
     <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
       <div id="stacker-container" class="column-group">
         <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-          <img src="../../images/users/user.png" width="50px" height="50px">
+          <?php $photo = getPhotoName($value["idUser"]); ?>
+          <?php if(is_null($photo) ){ ?>
+              <img src="../../images/users/user.png" width="50px" height="50px">
+          <?php }else{ $path = "../../images/users/".$photo ?>
+              <img src= <?php echo $path; ?> width="50px" height="50px">
+          <?php }?>
         </div>
         <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
           <a href="#"> <?php echo $value[name] ?> </a>

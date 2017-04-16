@@ -88,8 +88,8 @@
                 </a>
               </div>
           </div>
-
-          <?php include_once('listUsers.php') ?>
+          <?php include_once('listUsers.php') ?>  
+        </div>
 
           <div id="manageEvents" class="tabs-content" style="margin-top:0%">
             <div class="ink-grid gutters">
