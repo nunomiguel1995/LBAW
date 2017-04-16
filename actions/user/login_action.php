@@ -6,16 +6,15 @@
 	}
 	 $userName= htmlspecialchars($_POST['username']);
 	 $password= htmlspecialchars($_POST['password']);
-	if(verifyLogin($userName,$password)){
+
+	 if(isAdminLogIn($userName, $password)){
+	 	$_SESSION['username'] = $userName;
+	 	header('Location: ' . $BASE_URL.'pages/admin/adminDashboard.php');
+	}else if(verifyLogin($userName,$password)){
 		$_SESSION['username'] = $userName;
-	}
-	else{
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	}else{
 		$_SESSION['username'] = "failed";
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
-	
-	
-	header('Location: ' . $_SERVER['HTTP_REFERER']);
-
-
-
 ?>

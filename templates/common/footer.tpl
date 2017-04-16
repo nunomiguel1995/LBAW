@@ -1,6 +1,6 @@
 <?php
- $aboutus = $BASE_URL.'aboutus.php';
- $contacts = $BASE_URL.'aboutus.php#contacts';
+ $aboutus = $BASE_URL.'pages/main/aboutus.php';
+ $contacts = $BASE_URL.'pages/main/aboutus.php#contacts';
 ?>
 
     <footer class="clearfix">

@@ -72,21 +72,23 @@
                 <div style="margin-left:1%"> <h1>Eventerpreneur<small>Manage your business</small></h1> </div>
                 <nav class="ink-navigation">
                     <ul class="menu horizontal black">
+                      <?php if( $_SESSION['username'] != "admin"){ ?>
                         <li class="heading"><a href=<?= $home ?> >Home</a></li>
                         <li>
                             <a href="#">Events</a>
                             <ul class="submenu">
                                 <li><a href=<?= $publicEvents ?> >Public Events</a></li>
                                 <li><a href= <?= $search ?> >Search</a></li>
-                                <li><a href= <?= $create ?> >Create</a></li>
+                                <li><a href= <?php if((isset($_SESSION['username']) && ($_SESSION['username']!= NULL && $_SESSION['username']!= 'failed'))) echo $create; else echo "#";?> >Create</a></li>
                             </ul>
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
-                              <li><a href= <?= $myprofile ?> >My Profile </a></li>
-                              <li><a href=<?= $myevents ?> >My Events </a></li>
+                              <li><a href= <?php if((isset($_SESSION['username']) && ($_SESSION['username']!= NULL && $_SESSION['username']!= 'failed'))) echo $myprofile; else echo "#"; ?> >My Profile </a></li>
+                              <li><a href=<?php if((isset($_SESSION['username']) && ($_SESSION['username']!= NULL && $_SESSION['username']!= 'failed'))) echo $myevents; else echo "#";?> >My Events </a></li>
                             </ul>
                         </li>
+                      <?php } ?>
                         <?php include_once($BASE_DIR .'pages/user/login.php'); ?>
                     </ul>
                 </nav>
