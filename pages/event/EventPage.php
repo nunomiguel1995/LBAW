@@ -1,6 +1,13 @@
 <?php
-  include_once('../../config/init.php');
-  include_once($BASE_DIR .'templates/common/header.tpl');
+    include_once('../../config/init.php');
+    include_once($BASE_DIR .'templates/common/header.tpl');
+    include_once($BASE_DIR .'database/events.php');
+
+    $event = getEvent($_GET['id'])[0];
+    $organizer = getEventOrganizer($_GET['id'])[0];
+    $location = getEventLocation($_GET['id'])[0];
+    $posts = getEventPosts($_GET['id']);
+    $invited = getEventInvitations($_GET['id']);
 ?>
 
         <style type="text/css">
@@ -16,7 +23,9 @@
         <div style="padding:5%px" class="ink-grid all-70 medium-100 small-100 tiny-100">
             <div class="column-group">
                 <div>
-                    <h2> Weekly Design Meeting</h2>
+                    <?php 
+                        echo '<h2>'.$event["name"].'</h2>';
+                    ?>
                     <figure class="ink-image bottom-space">
                         <img src="../../images/events/event%20page.png" class="imagequery">
                     </figure>
@@ -33,26 +42,27 @@
                                     <div class="column-group horizontal-gutters">
                                         <div class="all-50 small-100 tiny-100">
                                             <h3>Organizer</h3>
-                                            <a href="#"><p href="#">John Doe</p></a>
-                                            <h3>Topics</h3>
-                                            <ul class="unstyled">
-                                                <p class="ink-toggle" data-target="#myAlert">first topic</p>
-                                                <div id="myAlert" class="ink-alert block hide-all">
-                                                    <h4>This is a details section</h4>
-                                                    <p>more info on the topic</p>
-                                                </div>
-                                                <p>second topic</p>
-                                                <p>last topic</p>
-                                            </ul>
-
+                                            <?php
+                                                echo '<a href="#"><p href="#">'.$organizer['name'].'</p></a>';  
+                                            ?>
+                                            <h3>Type of Event</h3>
+                                            <?php
+                                                echo '<p>'.$event["event_type"].'</p>';
+                                            ?>
                                         </div>
                                         <div class="all-50 small-100 tiny-100">
-                                            <h3>Event</h3>
-                                            <p>Weekly Meeting</p>
+                                            <h3>Description</h3>
+                                            <?php
+                                                echo '<p align="justify">'.$event["description"].'</p>';
+                                            ?>
                                             <h3>Location</h3>
-                                            <p>Meeting Room 4<sup>th</sup> Floor, Design Department</p>
+                                            <?php
+                                                echo '<p>'.$location["address"].', '.$event["location"].'</p>';
+                                            ?>
                                             <h3>Data and Time</h3>
-                                            <p> 2/31/2099 at 10:00 am</p>
+                                            <?php
+                                                echo '<p>'.$event["calendar_date"].' at '.$event["calendar_time"].'</p>';
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -60,75 +70,49 @@
                             <div id="posts" class="tabs-content">
                                 <div class="ink-grid">
                                     <div class="column-group">
-                                        <form class="ink-form all-90 push-center" >
+                                        <form class="ink-form all-90 push-center">
                                             <textarea class="all-100" type="text" name="name" id="name" rows="" placeholder="Write something about the event..." style="margin-bottom:1%"></textarea>
                                             <button class="ink-button blue push-right" >Submit</button>
                                             <button class="ink-button push-right" >Add File</button>
                                             <button class="ink-button push-right" >Create Poll</button>
                                         </form>
                                     </div>
-                                    <hr class="all-90 push-center">
-                                    <div class="post column-group all-90 push-center">
-                                        <div class="column-group all-100">
-                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-80" style="padding-left:1%;padding-top:1%"><a>John Doe</a><br><small>10/10/2016 10:32</small></h6>
-                                        </div>
-                                        <div class="all-100">
-                                            <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet consectetur quam. Cras sed neque ligula. Etiam condimentum velit id sollicitudin aliquet. Mauris egestas leo erat, vel rhoncus libero sollicitudin vitae. Cras leo urna, maximus ut convallis eu, rhoncus ac turpis. Vivamus nec bibendum nibh. Maecenas dictum molestie nulla, et vestibulum est eleifend aliquam. Curabitur et mauris vitae augue posuere commodo. Pellentesque ac imperdiet sapien. Donec ornare varius tempor. Duis vulputate quis velit vel aliquet. Vestibulum viverra nibh lectus, eget lacinia felis sollicitudin eget. Donec dignissim ultricies diam vitae ultricies. Morbi volutpat commodo ex.</p>
-                                        </div>
-                                    </div>
-                                    <hr class="all-90 push-center">
-                                    <div class="post column-group all-90 push-center">
-                                        <div class="column-group all-100">
-                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-80" style="padding-left:1%;padding-top:1%"><a>Lena Amett</a><br><small>08/10/2016 15:12</small></h6>
-                                        </div>
-                                        <div class="all-100">
-                                            <p align="justify">Nunc tempor convallis bibendum. Nulla eleifend, diam sit amet lobortis interdum, justo massa faucibus lectus, et facilisis nisi ligula sed orci. Cras et tempor odio, ut ultrices urna. Integer id vulputate justo, in pulvinar dolor. Pellentesque nec tellus a odio iaculis egestas. Ut ac scelerisque velit, in iaculis nisi.</p>
-                                        </div>
-                                        <div class="file-div all-100">
-                                            <div class="column-group all-100">
-                                            <img class="all-20" src="../images/assets/file_icon.png" style="height:30px;width:30px">
-                                                <h6 class="all-80" style="padding-top:1%;padding-left:1%"><a>file_name.xpto</a></h6>
-                                            </div>
-                                        </div>
-                                        <div class="file-div all-100">
-                                            <div class="column-group all-100">
-                                            <img class="all-20" src="../../images/assets/file_icon.png" style="height:30px;width:30px">
-                                                <h6 class="all-80" style="padding-top:1%;padding-left:1%"><a>file_name.xpto</a></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                     <hr class="all-90 push-center">
+                                    <?php
+                                        foreach($posts as $key => $post){                                            
+                                            echo '<hr class="all-90 push-center">';
+                                            echo '<div class="post column-group all-90 push-center">';
+                                            echo '<div class="column-group all-100">';
+                                            echo '<img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">';    
+                                            
+                                            echo '<h6 class="all-80" style="padding-left:1%;padding-top:1%"><a>'.$post["name"].'</a><br><small>'.$post["calendar_date"].' '.$post["calendar_time"].'</small></h6>';
+                                            echo '</div>';
+                                            echo '<div class="all-100">';
+                                            
+                                            echo '<p align="justify">'.$post["post_text"].'</p>';
+                                            
+                                            echo '</div>';
+                                            echo '</div>';
+                                        }
+                                    ?>
                                 </div>
                             </div>
                             <div id="invited" class="tabs-content">
                                 <div class="ink-grid" >
                                     <div class="column-group horizontal-gutters">
-                                        <div class="column-group all-50 small-100 tiny-100">
-                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>John Doe</a></h6>
-                                        </div>
-                                        <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../../img/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Dwight Schrute</a></h6>
-                                        </div>
-                                        <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Jim Halpert</a></h6>
-                                        </div>
-                                        <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Pam Beesly</a></h6>
-                                        </div>
-                                        <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Angela Martin</a></h6>
-                                        </div>
-                                        <div class="column-group all-50 small-100 tiny-100" style="padding-bottom:2%">
-                                            <img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">
-                                            <h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>Meredith Palmer</a></h6>
-                                        </div>
+                                        <?php
+                                            if(empty($invited)){
+                                                echo '<div class="column-group all-50 small-100 tiny-100">';
+                                                echo '<p> There are no invited users </p>';
+                                                echo '</div>';
+                                            }else{
+                                                foreach($invited as $key => $inv){
+                                                    echo '<div class="column-group all-50 small-100 tiny-100">';
+                                                    echo '<img class="all-20" src="../../images/users/user.png" style="height:50px;width:50px">';
+                                                    echo '<h6 class="all-65" style="padding-left:2%;padding-top:5%"><a>'.$inv["name"].'</a></h6>';
+                                                    echo '</div>';
+                                                }
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                             </div>

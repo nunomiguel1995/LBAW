@@ -2,6 +2,8 @@
     include_once('../../config/init.php');
     include_once($BASE_DIR .'templates/common/header.tpl');
     include_once($BASE_DIR .'database/events.php');
+
+    $events = getAllEvents();
 ?>
 
 	<style type="text/css">
@@ -65,13 +67,12 @@
         <?php
             echo '<table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">';
             echo '<tbody>';
-
-            $events = [];
         
             foreach($events as $key => $event){
                 echo '<tr>';
                 echo '<td>';
-                echo '<a href="#">' . $event['name'] . '</a>';
+
+                echo '<a href="EventPage.php?id='.$event['idEvent'].'">' . $event['name'] . '</a>';
                 echo '<p class="fw-300">' . $event['calendar_date'] . '-' . $event['calendar_time'] . '</p>';
                 echo $event['description'];
                 echo '</td>';
