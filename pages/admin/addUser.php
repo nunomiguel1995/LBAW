@@ -9,11 +9,11 @@
       <div class="formulario all-80 small-100 tiny-100 push-center">
       <div class="column-group push-center">
         <div class="xlarge-70 large-70 medium-100 tiny-100">
-        	<form class="ink-form ink-formvalidator" method="post" action="#">
+        	<form class="ink-form ink-formvalidator" method="post" action="../../database/submit_user.php">
               <h5> Personal Information</h5>
                <div class="profilepic all-30">
                  <figure class = "ink-image">
-                   <img src="../images/users/user.png" alt="user image">
+                   <img src="../../images/users/user.png" alt="user image">
                  </figure>
                  <button class="ink-button" type="button" style="margin:2%">Choose File</button>
                </div>
