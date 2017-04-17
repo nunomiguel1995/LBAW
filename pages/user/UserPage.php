@@ -18,14 +18,14 @@
                     <figure class="ink-image push-center" style="max-width:350px">
                         <img src="../../images/users/joaosantos.jpg">
                         <figcaption class="over-bottom" style="padding-bottom:5px;padding-top:5px">
-                            <h6 align="center" style="margin-bottom:0px">John Doe</h6>
+                            <h6 align="center" style="margin-bottom:0px">Wayne Gilbert</h6>
                         </figcaption>
                     </figure>
                     <br>
                     <div id="column" class="push-center" style="max-width:350px">
                         <h4 align="center">Info</h4>
                         <h5 style="margin-bottom:2px"><small>Email</small></h5>
-                        <p>johndoe@eventerpreneur.com</p>
+                        <p>waynegil@eventerpreneur.com</p>
                         <h5 style="margin-bottom:2px"><small>Position</small></h5>
                         <p>Leader Designer</p>
                         <h5 style="margin-bottom:2px"><small>Department</small></h5>

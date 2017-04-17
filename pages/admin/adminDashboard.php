@@ -38,7 +38,6 @@
         <ul class="tabs-nav" style="margin-bottom:0%">
             <li><a class="tabs-tab" href="#manageUsers">Manage Users</a></li>
             <li><a class="tabs-tab" href="#manageEvents">Manage Events</a></li>
-            <li><a class="tabs-tab" href="#notifications">Notifications</a></li>
         </ul>
         <div id="tabContent">
           <div id="manageUsers" class="tabs-content" style="margin-top:0%" >
@@ -151,45 +150,6 @@
         			</table>
         		</div>
             </div>
-
-          <div id="notifications" class="tabs-content" style="margin-top:0%">
-            <div class="notifications xlarge-70 large-70 medium-100 tiny-100 push-center">
-              <div id="stacker-container" class="column-group">
-                <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                  <img src="../images/users/user.png" width="50px" height="50px">
-                </div>
-                <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                  <p> <a href="#"> Fernando Lopes </a> wants to add a new profile picture.</p>
-                  <div class="xlarge-20 large-20 medium-20 tiny-100 push-middle" align="right">
-                    <span class="ink-tooltip" data-tip-text="Accept" data-tip-color="grey" style="padding:4%">
-                      <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                    <span class="ink-tooltip" data-tip-text="Delete" data-tip-color="grey" style="padding:4%">
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="notifications xlarge-70 large-70 medium-100 tiny-100 push-center">
-              <div id="stacker-container" class="column-group">
-                <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                  <img src="../images/users/user.png" width="50px" height="50px">
-                </div>
-                <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                  <p> <a href="#"> John Doe </a> wants to add an alternative e-mail address.</p>
-                  <div class="xlarge-20 large-20 medium-20 tiny-100 push-middle" align="right">
-                    <span class="ink-tooltip" data-tip-text="Accept" data-tip-color="grey" style="padding:4%">
-                      <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
-                    <span class="ink-tooltip" data-tip-text="Delete" data-tip-color="grey" style="padding:4%">
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
       </div>
     </div>
   </div>
