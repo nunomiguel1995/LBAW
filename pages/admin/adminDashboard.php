@@ -83,7 +83,7 @@
               </div>
                 </form>
               <div align="center" style="margin-top:3%">
-                <a href="addUser.html">
+                <a href="addUser.php">
                   <button class="ink-button green"> <div class="fw-300"> <i class="fa fa-plus" aria-hidden="true"></i>  Add new User</div></button>
                 </a>
               </div>
