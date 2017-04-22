@@ -60,38 +60,41 @@
   </head>
 
   <body>
-    <?php
-      $home = $BASE_URL.'pages/main/homepage.php';
-      $publicEvents = $BASE_URL.'pages/main/publicEvents.php';
-      $search = $BASE_URL.'pages/event/searchEvents.php';
-      $create = $BASE_URL.'pages/event/AddEvent.php';
-      $myprofile = $BASE_URL.'pages/user/UserPage.php';
-      $myevents = $BASE_URL.'pages/user/MyEvents.php';
-    ?>
     <div id = "header">
       <header class="vertical-space">
                 <div style="margin-left:1%"> <h1>Eventerpreneur<small>Manage your business</small></h1> </div>
                 <nav class="ink-navigation">
                     <ul class="menu horizontal black">
-                      <?php if( $_SESSION['username'] != "admin"){ ?>
-                        <li class="heading"><a href=<?= $home ?> >Home</a></li>
+                      {if $USERNAME != 'admin'}
+                        <li class="heading">
+                          <a href= "{$BASE_URL}"> Home </a>
+                        </li>
                         <li>
                             <a href="#">Events</a>
                             <ul class="submenu">
-                                <li><a href=<?= $publicEvents ?> >Public Events</a></li>
-                                <li><a href= <?= $search ?> >Search</a></li>
-                                <li><a href= <?php if((isset($_SESSION['username']) && ($_SESSION['username']!= NULL && $_SESSION['username']!= 'failed'))) echo $create; else echo "#";?> >Create</a></li>
+                                <li><a href="{$BASE_URL}pages/main/publicEvents.php">Public Events</a></li>
+                                <li><a href= "{$BASE_URL}pages/event/searchEvents.php">Search</a></li>
+                                <li><a href= {if $USERNAME} "{$BASE_URL}pages/event/addEvent.php" {else} "#" {/if} >Create</a></li>
                             </ul>
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
-                              <li><a href= <?php if((isset($_SESSION['username']) && ($_SESSION['username']!= NULL && $_SESSION['username']!= 'failed'))) echo $myprofile; else echo "#"; ?> >My Profile </a></li>
-                              <li><a href=<?php if((isset($_SESSION['username']) && ($_SESSION['username']!= NULL && $_SESSION['username']!= 'failed'))) echo $myevents; else echo "#";?> >My Events </a></li>
+                              <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/userPage.php" {else} "#" {/if} >My Profile </a></li>
+                              <li><a href=  {if $USERNAME} "{$BASE_URL}pages/user/MyEvents.php" {else} "#" {/if} >My Events </a></li>
                             </ul>
                         </li>
-                      <?php } ?>
-                        <?php include_once($BASE_DIR .'pages/user/login.php'); ?>
+                        {/if}
+                        <div  class="push-right">
+                          {if $USERNAME}
+                            {include file='common/logOut.tpl'}
+                          {else}
+                            {include file='common/logIn.tpl'}
+                          {/if}
+                        </div>
+
                     </ul>
                 </nav>
+
+
         </header>
     </div>

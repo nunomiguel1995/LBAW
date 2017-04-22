@@ -14,7 +14,6 @@
 		$_SESSION['username'] = $userName;
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}else{
-		$_SESSION['username'] = "failed";
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 ?>
