@@ -20,6 +20,7 @@
         <script type="text/javascript" src="../ink-3.1.10/js/ink-all.js"></script>
         <script type="text/javascript" src="../ink-3.1.10/js/autoload.js"></script>
         <script type="text/javascript" src="../ink-3.1.10/js/ink.tabs.js"></script>
+        <script src="{$BASE_URL}javascript/main.js"></script>
         <script>
           var imagequery = new Ink.UI.ImageQuery('.imagequery', {
             src: 'res/company.jpg',
