@@ -57,18 +57,20 @@
 </div>
 <br>
     <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">
-        <tbody>
-
-        {foreach $events as $e}
-            <tr>
-                <td>
-                    <a href="EventPage.php?id={$e.idEvent}"> {$e.name} </a>
-                    <p class="fw-300">{$e.calendar_date} - {$e.calendar_time}</p>
-                    {$e.description}
-                </td>
-            </tr>
-        {/foreach}
-
+        <tbody>        
+            {foreach $events as $e}
+                {if !$USERNAME}
+                    {if $e.isPublic}
+                        <tr>
+                            <td>
+                                <a href="EventPage.php?id={$e.idEvent}"> {$e.name} </a>
+                                <p class="fw-300">{$e.calendar_date} - {$e.calendar_time}</p>
+                                {$e.description}
+                            </td>
+                        </tr>
+                    {/if}
+                {/if}
+            {/foreach}
         </tbody>
     </table>
 </div>
