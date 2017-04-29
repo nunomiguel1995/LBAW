@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-23 15:05:03
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-29 16:39:19
          compiled from "/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/searchevents.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:428045958fcb27b989f92-79183464%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9d8f185bcfe6d555dbbdfee7cf0588aba0cce54b' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/searchevents.tpl',
-      1 => 1492956298,
+      1 => 1493480357,
       2 => 'file',
     ),
   ),
@@ -19,8 +19,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_58fcb27bb44af4_67517206',
   'variables' => 
   array (
+    'USERNAME' => 0,
     'events' => 0,
     'e' => 0,
+    'public' => 0,
+    'p' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -82,28 +85,56 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
 </div>
 <br>
-    <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">
-        <tbody>
-
-        <?php  $_smarty_tpl->tpl_vars['e'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['e']->_loop = false;
+<table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
+    <tbody>
+        
+        <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?>
+            <?php  $_smarty_tpl->tpl_vars['e'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['e']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['events']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['e']->key => $_smarty_tpl->tpl_vars['e']->value) {
 $_smarty_tpl->tpl_vars['e']->_loop = true;
 ?>
-            <tr>
-                <td>
-                    <a href="EventPage.php?id=<?php echo $_smarty_tpl->tpl_vars['e']->value['idEvent'];?>
+                <tr>
+                    <td>
+                        <a href="EventPage.php?id=<?php echo $_smarty_tpl->tpl_vars['e']->value['idEvent'];?>
 "> <?php echo $_smarty_tpl->tpl_vars['e']->value['name'];?>
  </a>
-                    <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_date'];?>
+                        <?php if ($_smarty_tpl->tpl_vars['e']->value['isPublic']) {?>
+                            <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_date'];?>
+ - <?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_time'];?>
+ - Public Event</p>
+                        <?php } else { ?>
+                            <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_date'];?>
  - <?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_time'];?>
 </p>
-                    <?php echo $_smarty_tpl->tpl_vars['e']->value['description'];?>
+                        <?php }?>
+                        <?php echo $_smarty_tpl->tpl_vars['e']->value['description'];?>
 
-                </td>
-            </tr>
-        <?php } ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
+            <?php  $_smarty_tpl->tpl_vars['p'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['p']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['public']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['p']->key => $_smarty_tpl->tpl_vars['p']->value) {
+$_smarty_tpl->tpl_vars['p']->_loop = true;
+?>
+                <tr>
+                    <td>
+                        <a href="EventPage.php?id=<?php echo $_smarty_tpl->tpl_vars['p']->value['idEvent'];?>
+"> <?php echo $_smarty_tpl->tpl_vars['p']->value['name'];?>
+ </a>
+                        <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['p']->value['calendar_date'];?>
+ - <?php echo $_smarty_tpl->tpl_vars['p']->value['calendar_time'];?>
+ - Public Event</p>
+                        <?php echo $_smarty_tpl->tpl_vars['p']->value['description'];?>
 
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php }?>
+    
+    </tbody>
+</table>
+    
 </div><?php }} ?>

@@ -56,19 +56,35 @@
     </div>
 </div>
 <br>
-    <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">
-        <tbody>
-
-        {foreach $events as $e}
-            <tr>
-                <td>
-                    <a href="EventPage.php?id={$e.idEvent}"> {$e.name} </a>
-                    <p class="fw-300">{$e.calendar_date} - {$e.calendar_time}</p>
-                    {$e.description}
-                </td>
-            </tr>
-        {/foreach}
-
-        </tbody>
-    </table>
+    <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
+    <tbody>
+        
+        {if $USERNAME}
+            {foreach $events as $e}
+                <tr>
+                    <td>
+                        <a href="EventPage.php?id={$e.idEvent}"> {$e.name} </a>
+                        {if $e.isPublic}
+                            <p class="fw-300">{$e.calendar_date} - {$e.calendar_time} - Public Event</p>
+                        {else}
+                            <p class="fw-300">{$e.calendar_date} - {$e.calendar_time}</p>
+                        {/if}
+                        {$e.description}
+                    </td>
+                </tr>
+            {/foreach}
+        {else}
+            {foreach $public as $p}
+                <tr>
+                    <td>
+                        <a href="EventPage.php?id={$p.idEvent}"> {$p.name} </a>
+                        <p class="fw-300">{$p.calendar_date} - {$p.calendar_time} - Public Event</p>
+                        {$p.description}
+                    </td>
+                </tr>
+            {/foreach}
+        {/if}
+    
+    </tbody>
+</table>
 </div>

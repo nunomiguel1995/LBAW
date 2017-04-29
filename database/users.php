@@ -23,4 +23,13 @@ function deleteUser($userId){
   $stmt = $conn->prepare('DELETE FROM "appUser" WHERE "idUser" = ?');
   $stmt->execute(array($userId));
 }
+
+function getUserByUsername($username){
+    global $conn;
+    $stmt = $conn->prepare('SELECT "idUser"
+                            FROM "appUser" 
+                            WHERE username= ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll();
+}
 ?>

@@ -4,9 +4,12 @@
     $smarty->display('common/header.tpl');
 
 	include_once('../../database/events.php');
-	$events = getAllEvents();
-	
+    $events = getAllUserEvents();
+    $public = getPublicEvents();
+
 	$smarty->assign('events', $events);
+    $smarty->assign('public', $public);
+
 	$smarty->display('event/searchevents.tpl');
 
 	$smarty->display('common/footer.tpl');
