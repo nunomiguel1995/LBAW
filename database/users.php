@@ -8,6 +8,15 @@ function getAllUsers() {
     return $stmt->fetchAll();
 }
 
+function getUser($id){
+  global $conn;
+  global $conn;
+  $stmt = $conn->prepare('SELECT *
+                          FROM "appUser" WHERE "idUser" = ?');
+  $stmt->execute(array($id));
+  return $stmt->fetchAll();
+}
+
 function getPhotoName($idUser){
   global $conn;
   $stmt = $conn->prepare('SELECT name
@@ -27,9 +36,20 @@ function deleteUser($userId){
 function getUserByUsername($username){
     global $conn;
     $stmt = $conn->prepare('SELECT "idUser"
-                            FROM "appUser" 
+                            FROM "appUser"
                             WHERE username= ?');
     $stmt->execute(array($username));
-    return $stmt->fetchAll();
+    $result = $stmt->fetch();
+
+    return $result['idUser'];
+}
+
+function getCompanyInfo($idInfo){
+  global $conn;
+  $stmt = $conn->prepare('SELECT *
+                          FROM "companyInfo"
+                          WHERE "idInfo"= ?');
+  $stmt->execute(array($idInfo));
+  return $stmt->fetchAll();
 }
 ?>
