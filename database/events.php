@@ -26,7 +26,7 @@
                                          WHERE "idEvent" = (SELECT "idEvent" FROM invitation
                                                             WHERE "idUser" = ?)
                                         OR "isPublic" = true');
-        $stmt->execute(array($id_user[0]["idUser"]));
+        $stmt->execute(array($id_user));
 
         return $stmt->fetchAll();
     }
@@ -34,8 +34,8 @@
     function getEvent($id) {
         global $conn;
 
-        $stmt = $conn->prepare('SELECT * 
-                                FROM event 
+        $stmt = $conn->prepare('SELECT *
+                                FROM event
                                 WHERE "idEvent" = ?');
         $stmt->execute(array($id));
         return $stmt->fetchAll();
@@ -78,7 +78,7 @@
 
         $stmt->execute(array($id));
         return $stmt->fetchAll();
-    } 
+    }
 
     function getEventInvitations($id) {
         global $conn;
@@ -115,9 +115,8 @@
                                 OR name ILIKE \'%\' || ? || \'%\'
                                 OR description ILIKE \'%\' || ? || \'%\'');
 
-        $stmt->execute(array($text,$text,$text));    
+        $stmt->execute(array($text,$text,$text));
         return $stmt->fetchAll();
     }
 
 ?>
-

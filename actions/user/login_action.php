@@ -1,6 +1,7 @@
 <?php
 	include_once('../../config/init.php');
 	include_once($BASE_DIR .'database/verifyLogIn.php');
+	include_once($BASE_DIR.'database/users.php');
 	if (session_status() == PHP_SESSION_NONE) {
     session_start();
 	}
@@ -12,8 +13,11 @@
 	 	header('Location: ' . $BASE_URL.'pages/admin/adminDashboard.php');
 	}else if(verifyLogin($userName,$password)){
 		$_SESSION['username'] = $userName;
+		$userid = getUserByUsername($userName);
+		$smarty->assign('userid',$userid);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}else{
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
+
 ?>
