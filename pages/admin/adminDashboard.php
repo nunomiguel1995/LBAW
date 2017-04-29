@@ -26,5 +26,11 @@
   $smarty->assign('events',$events);
   $smarty->display('admin/list_events.tpl');
 
+  include_once($BASE_DIR.'database/notifications.php');
+
+  $notifications = getAllNotifications();
+  $smarty->assign('notifications',$notifications);
+  $smarty->display('admin/list_notifications.tpl');
+
   $smarty->display('common/footer.tpl');
 ?>

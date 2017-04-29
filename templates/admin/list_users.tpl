@@ -1,5 +1,7 @@
 <script type="text/javascript" src="../../javascript/event.js"></script>
 <script type="text/javascript" src="../../javascript/user.js"></script>
+<script type="text/javascript" src="../../javascript/notification.js"></script>
+
 <style type="text/css">
       #tabContent{
         background: white;
@@ -36,6 +38,7 @@
             <ul class="tabs-nav" style="margin-bottom:0%">
                 <li><a class="tabs-tab" href="#manageUsers">Manage Users</a></li>
                 <li><a class="tabs-tab" href="#manageEvents">Manage Events</a></li>
+                <li><a class="tabs-tab" href="#notifications">Notifications</a></li>
             </ul>
             <div id="tabContent">
               <div id="manageUsers" class="tabs-content" style="margin-top:0%" >

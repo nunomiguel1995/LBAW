@@ -203,7 +203,7 @@ insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1,
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 35, true, '2017/11/28');
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 18, true, '2017/08/11');
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 27, true, '2018/03/21');
-insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 11, false, '2017/04/19');
+insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 11, false, '2017/05/19');
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 21, true, '2017/12/19');
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 2, true, '2017/09/12');
 insert into invitation ("idEvent", "idUser", accepted, calendar_date) values (1, 9, false, '2017/06/27');
@@ -297,3 +297,9 @@ insert into vote ("idUser", "idPollOption") values (12, 25);
 insert into vote ("idUser", "idPollOption") values (10, 19);
 insert into vote ("idUser", "idPollOption") values (5, 30);
 insert into vote ("idUser", "idPollOption") values (18, 24);
+
+insert into notification("idUser",photo,email,name) values(2,true,false,false); 
+insert into notification("idUser",photo,email,name) values(3,true,false,false); 
+insert into notification("idUser",photo,email,name) values(1,true,false,false); 
+insert into notification("idUser",photo,email,name) values(2,true,false,false); 
+

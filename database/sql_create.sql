@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS "pollOption" CASCADE;
 DROP TABLE IF EXISTS post CASCADE;
 DROP TABLE IF EXISTS "postComment" CASCADE;
 DROP TABLE IF EXISTS vote CASCADE;
+DROP TABLE IF EXISTS notification CASCADE;
 
 DROP TYPE IF EXISTS "userType" CASCADE;
 DROP TYPE IF EXISTS "eventType" CASCADE;
@@ -171,6 +172,14 @@ CREATE TABLE vote (
     "idUser" integer NOT NULL,
     "idPollOption" integer NOT NULL,
 	PRIMARY KEY("idUser", "idPollOption")
+);
+
+CREATE TABLE notification(
+	"idNotification" serial PRIMARY KEY NOT NULL,
+	"idUser" integer NOT NULL REFERENCES "appUser" ON DELETE CASCADE,
+	photo boolean DEFAULT false,
+	email boolean DEFAULT false,
+	name boolean DEFAULT false
 );
 
 --INDEXES

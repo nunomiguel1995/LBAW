@@ -79,7 +79,7 @@
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
-                              <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/userPage.php" {else} "#" {/if} >My Profile </a></li>
+                              <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/UserPage.php" {else} "#" {/if} >My Profile </a></li>
                               <li><a href=  {if $USERNAME} "{$BASE_URL}pages/user/MyEvents.php" {else} "#" {/if} >My Events </a></li>
                             </ul>
                         </li>
