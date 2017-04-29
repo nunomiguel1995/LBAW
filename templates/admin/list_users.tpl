@@ -98,7 +98,7 @@
                       <img src= "{$user.photo}" width="50px" height="50px">
                     </div>
                     <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                      <a href="#"> {$user.name} </a>
+                      <a href="{$BASE_URL}pages/user/UserPage.php?id={$user.idUser}"> {$user.name} </a>
                     </div>
                       <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
                         <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%">

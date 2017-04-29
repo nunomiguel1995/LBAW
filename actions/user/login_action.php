@@ -12,9 +12,9 @@
 	 	$_SESSION['username'] = $userName;
 	 	header('Location: ' . $BASE_URL.'pages/admin/adminDashboard.php');
 	}else if(verifyLogin($userName,$password)){
-		$_SESSION['username'] = $userName;
 		$userid = getUserByUsername($userName);
-		$smarty->assign('userid',$userid);
+		$_SESSION['username'] = $userName;
+		$_SESSION['iduser']= $userid;
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}else{
 		header('Location: ' . $_SERVER['HTTP_REFERER']);

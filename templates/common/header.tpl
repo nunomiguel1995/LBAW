@@ -79,8 +79,7 @@
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
-                              {$userid|@var_dump}
-                              <li><a href= {if $USERNAME}  "{$BASE_URL}pages/user/UserPage.php?id={$userid}" {else} "#" {/if} >My Profile </a></li>
+                              <li><a href= {if $USERNAME}  "{$BASE_URL}pages/user/UserPage.php?id={$IDUSER}" {else} "#" {/if} >My Profile </a></li>
                               <li><a href=  {if $USERNAME} "{$BASE_URL}pages/user/MyEvents.php" {else} "#" {/if} >My Events </a></li>
                             </ul>
                         </li>

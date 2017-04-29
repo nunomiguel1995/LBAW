@@ -1,5 +1,3 @@
-{include file= $BASE_DIR .'templates/common/header.tpl'}
-
     <style type="text/css">
         #column{
           background: white;
@@ -13,20 +11,22 @@
             <div class="column-group horizontal-gutters">
                 <div class="all-40 small-100 tiny-100">
                     <figure class="ink-image push-center" style="max-width:350px">
-                        <img src="../../images/users/joaosantos.jpg">
+                        <img src="{$photo}">
                         <figcaption class="over-bottom" style="padding-bottom:5px;padding-top:5px">
-                            <h6 align="center" style="margin-bottom:0px">Wayne Gilbert</h6>
+                            <h6 align="center" style="margin-bottom:0px">{$user.name}</h6>
                         </figcaption>
                     </figure>
                     <br>
                     <div id="column" class="push-center" style="max-width:350px">
                         <h4 align="center">Info</h4>
+                        <h5 style="margin-bottom:2px"><small>Username</small></h5>
+                        <p>{$user.username}</p>
                         <h5 style="margin-bottom:2px"><small>Email</small></h5>
-                        <p>waynegil@eventerpreneur.com</p>
+                        <p>{$user.email}</p>
                         <h5 style="margin-bottom:2px"><small>Position</small></h5>
-                        <p>Leader Designer</p>
+                        <p>{$companyInfo.position}</p>
                         <h5 style="margin-bottom:2px"><small>Department</small></h5>
-                        <p>Design</p>
+                        <p>{$companyInfo.department}</p>
                     </div>
                 </div>
                 <div class="all-60 small-100 tiny-100 push-left" style="max-width:500px">
@@ -48,5 +48,3 @@
                 </div>
             </div>
         </div>
-
-{include file= $BASE_DIR .'templates/common/footer.tpl'}

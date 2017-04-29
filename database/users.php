@@ -14,7 +14,7 @@ function getUser($id){
   $stmt = $conn->prepare('SELECT *
                           FROM "appUser" WHERE "idUser" = ?');
   $stmt->execute(array($id));
-  return $stmt->fetchAll();
+  return $stmt->fetch();
 }
 
 function getPhotoName($idUser){
@@ -50,6 +50,6 @@ function getCompanyInfo($idInfo){
                           FROM "companyInfo"
                           WHERE "idInfo"= ?');
   $stmt->execute(array($idInfo));
-  return $stmt->fetchAll();
+  return $stmt->fetch();
 }
 ?>
