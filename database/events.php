@@ -108,14 +108,17 @@
 
     function getEvents($text){
         global $conn;
+        $id_user = getUserByUsername($_SESSION['username']);
 
         $stmt = $conn->prepare('SELECT *
                                 FROM event
-                                WHERE to_tsvector(\'english\', name) @@ to_tsquery(\'english\', ?)
+                                WHERE "idEvent" = (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
+                                OR "isPublic" = true
+                                AND (to_tsvector(\'english\', name) @@ to_tsquery(\'english\', ?)
                                 OR name ILIKE \'%\' || ? || \'%\'
-                                OR description ILIKE \'%\' || ? || \'%\'');
+                                OR description ILIKE \'%\' || ? || \'%\')');
 
-        $stmt->execute(array($text,$text,$text));
+        $stmt->execute(array($id_user,$text,$text,$text));
         return $stmt->fetchAll();
     }
 

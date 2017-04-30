@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-29 16:58:40
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-29 17:14:40
          compiled from "/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/list_events.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:201514144158fcb5ea84c112-04039859%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '54e95d0b4042a1eff6cc5cfdef09f87ab77c32c5' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/list_events.tpl',
-      1 => 1493481514,
+      1 => 1493482121,
       2 => 'file',
     ),
   ),
