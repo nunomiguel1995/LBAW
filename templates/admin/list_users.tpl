@@ -101,9 +101,11 @@
                       <a href="{$BASE_URL}pages/user/UserPage.php?id={$user.idUser}"> {$user.name} </a>
                     </div>
                       <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
-                        <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%">
-                          <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
+                        <a href="{$BASE_URL}pages/user/editProfile.php?id={$user.idUser}" style="text-decoration: none; color:black">
+                        <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%" >
+                          <i class="fa fa-pencil-square-o" aria-hidden="true" > </i>
                         </span>
+                        </a>
                         <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
                           <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('{$user.idUser}')" ></i>
                         </span>

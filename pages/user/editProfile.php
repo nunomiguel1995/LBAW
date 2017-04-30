@@ -19,9 +19,10 @@
   $smarty->assign('user',$user);
   $smarty->assign('companyInfo', $info);
   $smarty->assign('photo',$path);
-  $smarty->assign('upcomingEvents',$upcomingEvents);
   $smarty->assign('profileid',$id);
-  $smarty->display('user/userPage.tpl');
+  $smarty->display('user/editUser.tpl');
 
   $smarty->display('common/footer.tpl');
+
+
  ?>

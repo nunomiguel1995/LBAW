@@ -3,7 +3,7 @@
         <div class="notifications xlarge-70 large-70 medium-100 tiny-100 push-center">
           <div id="stacker-container" class="column-group">
             <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-              <img src="../../images/users/user.png" width="50px" height="50px">
+              <img src="{$notification.photo}" width="50px" height="50px">
             </div>
             <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
               <p> <a href="#"> {$notification.username} </a>
@@ -16,9 +16,11 @@
                 <span class="ink-tooltip" data-tip-text="Accept" data-tip-color="grey" style="padding:4%">
                   <i class="fa fa-check" aria-hidden="true" onclick="onClickAcceptEvent('{$notification.idNotification}')"></i>
                 </span>
-                <span class="ink-tooltip" data-tip-text="Review profile" data-tip-color="grey" style="padding:4%">
-                  <i class="fa fa-pencil" aria-hidden="true" ></i>
-                </span>
+                <a href="{$BASE_URL}pages/user/editProfile.php?id={$notification.idUser}" style="text-decoration: none; color:black">
+                  <span class="ink-tooltip" data-tip-text="Review profile" data-tip-color="grey" style="padding:4%">
+                    <i class="fa fa-pencil" aria-hidden="true" ></i>
+                  </span>
+                </a>
               </div>
             </div>
           </div>

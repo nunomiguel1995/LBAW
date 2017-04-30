@@ -29,6 +29,16 @@
   include_once($BASE_DIR.'database/notifications.php');
 
   $notifications = getAllNotifications();
+  foreach ($notifications as $key => $notification) {
+    unset($photo);
+    $photo = getPhotoName($notification["idUser"]);
+    if(is_null($photo) ){
+        $path ="../../images/users/user.png";
+    }else{
+        $path = "../../images/users/".$photo;
+    }
+    $notifications[$key]['photo'] = $path;
+  }
   $smarty->assign('notifications',$notifications);
   $smarty->display('admin/list_notifications.tpl');
 

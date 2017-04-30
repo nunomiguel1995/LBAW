@@ -122,4 +122,16 @@
         return $stmt->fetchAll();
     }
 
+    function getUserUpcomingEvents($idUser){
+      global $conn;
+      $stmt = $conn->prepare('SELECT *
+                              FROM event
+                              WHERE  "idEvent" = (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
+                              OR "idCreator" = ?
+                              AND calendar_date >= CURRENT_DATE
+                              ORDER BY calendar_date');
+      $stmt->execute(array($idUser,$idUser));
+      return $stmt->fetchAll();
+    }
+
 ?>
