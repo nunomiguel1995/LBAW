@@ -7,8 +7,10 @@
     $events = getAllUserEvents();
     $public = getPublicEvents();
 
-	$smarty->assign('events', $events);
-    $smarty->assign('public', $public);
+    $event_list = array_merge($events, $public);
+
+	$smarty->assign('events', $event_list);
+	$smarty->assign('public', $public);
 
 	$smarty->display('event/searchevents.tpl');
 
