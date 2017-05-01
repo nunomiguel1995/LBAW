@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-29 17:14:40
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-01 14:43:17
          compiled from "/opt/lbaw/lbaw1635/public_html/LBAW/templates/common/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:63814631458fcb27958ea68-54254485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1146935848dd4c93650c3fde25b36cbaf0e66177' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/LBAW/templates/common/header.tpl',
-      1 => 1493481720,
+      1 => 1493561421,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'BASE_URL' => 0,
     'USERNAME' => 0,
-    'userid' => 0,
+    'IDUSER' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -111,10 +111,8 @@ pages/event/addEvent.php" <?php } else { ?> "#" <?php }?> >Create</a></li>
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
-                              <?php echo var_dump($_smarty_tpl->tpl_vars['userid']->value);?>
-
                               <li><a href= <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?>  "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-pages/user/UserPage.php?id=<?php echo $_smarty_tpl->tpl_vars['userid']->value;?>
+pages/user/UserPage.php?id=<?php echo $_smarty_tpl->tpl_vars['IDUSER']->value;?>
 " <?php } else { ?> "#" <?php }?> >My Profile </a></li>
                               <li><a href=  <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 pages/user/MyEvents.php" <?php } else { ?> "#" <?php }?> >My Events </a></li>

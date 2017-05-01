@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-29 18:09:33
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-01 17:18:02
          compiled from "/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/searchevents.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:428045958fcb27b989f92-79183464%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9d8f185bcfe6d555dbbdfee7cf0588aba0cce54b' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/searchevents.tpl',
-      1 => 1493485722,
+      1 => 1493653150,
       2 => 'file',
     ),
   ),
@@ -34,7 +34,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </style>
 
 <div class="ink-grid gutters">
-<form class="ink-form" action="listEvent.php" method="GET">
+<form class="ink-form" action="listEvent.php" method="POST">
     <div class="control-group all-50 small-100 tiny-100 push-center">
         <div class="control append-button" role="search">
             <span><input type="text" name="search_text" id="name5" placeholder="Search for an event"></span>
@@ -61,15 +61,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <fieldset>
                         <legend>Availability</legend>
                         <ul class="control unstyled">
-                            <li><input type="checkbox" id="cb6" name="public" value="Meeting"><label for="cb">Public </label></li>
-                            <li><input type="checkbox" id="cb7" name="private" value="Workshop"><label for="cb">Private </label></li>
+                            <li><input type="checkbox" name="availability[]" value="public"><label for="cb">Public </label></li>
+                            <li><input type="checkbox" name="availability[]" value="private"><label for="cb">Private </label></li>
                         </ul>
                     </fieldset>
                 </div>
                 <div class="control-group all-33 small-100 tiny-100">
                     <fieldset>
                         <legend for="filter">Order by</legend>
-                        <select name="filter" id="filter">
+                        <select name="filter">
+                            <option disabled selected value> -- select an option -- </option>
                             <option value="date">Date</option>
                             <option value="alphabetical">Alphabetical</option>
                         </select>

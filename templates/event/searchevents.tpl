@@ -5,7 +5,7 @@
 </style>
 
 <div class="ink-grid gutters">
-<form class="ink-form" action="listEvent.php" method="GET">
+<form class="ink-form" action="listEvent.php" method="POST">
     <div class="control-group all-50 small-100 tiny-100 push-center">
         <div class="control append-button" role="search">
             <span><input type="text" name="search_text" id="name5" placeholder="Search for an event"></span>
@@ -32,15 +32,16 @@
                     <fieldset>
                         <legend>Availability</legend>
                         <ul class="control unstyled">
-                            <li><input type="checkbox" id="cb6" name="public" value="Meeting"><label for="cb">Public </label></li>
-                            <li><input type="checkbox" id="cb7" name="private" value="Workshop"><label for="cb">Private </label></li>
+                            <li><input type="checkbox" name="availability[]" value="public"><label for="cb">Public </label></li>
+                            <li><input type="checkbox" name="availability[]" value="private"><label for="cb">Private </label></li>
                         </ul>
                     </fieldset>
                 </div>
                 <div class="control-group all-33 small-100 tiny-100">
                     <fieldset>
                         <legend for="filter">Order by</legend>
-                        <select name="filter" id="filter">
+                        <select name="filter">
+                            <option disabled selected value> -- select an option -- </option>
                             <option value="date">Date</option>
                             <option value="alphabetical">Alphabetical</option>
                         </select>

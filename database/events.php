@@ -23,7 +23,7 @@
         $id_user = getUserByUsername($_SESSION['username']);
 
         $stmt = $conn->prepare('SELECT * FROM event
-                                         WHERE "idEvent" = (SELECT "idEvent" FROM invitation
+                                         WHERE "idEvent" IN  (SELECT "idEvent" FROM invitation
                                                             WHERE "idUser" = ?)
                                         OR "isPublic" = true');
         $stmt->execute(array($id_user));
@@ -112,8 +112,7 @@
 
         $stmt = $conn->prepare('SELECT *
                                 FROM event
-                                WHERE "idEvent" = (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
-                                OR "isPublic" = true
+                                WHERE "idEvent" IN (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
                                 AND (to_tsvector(\'english\', name) @@ to_tsquery(\'english\', ?)
                                 OR name ILIKE \'%\' || ? || \'%\'
                                 OR description ILIKE \'%\' || ? || \'%\')');
@@ -126,7 +125,7 @@
       global $conn;
       $stmt = $conn->prepare('SELECT *
                               FROM event
-                              WHERE  "idEvent" = (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
+                              WHERE  "idEvent" IN (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
                               OR "idCreator" = ?
                               AND calendar_date >= CURRENT_DATE
                               ORDER BY calendar_date');
