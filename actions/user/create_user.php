@@ -7,7 +7,7 @@
 	$position = $_POST['position'];
 	$rb = $_POST['rb'];
 
-	include_once('../config/init.php');
+	include_once('../../config/init.php');
 	global $conn;
 
     $stmt = $conn->prepare('SELECT "idInfo" FROM "companyInfo" WHERE department = :dep AND position = :pos');
@@ -67,5 +67,5 @@
 		 }
 	}
 
-	header('Location: ../pages/admin/adminDashboard.php');
+	header('Location: ../../pages/admin/adminDashboard.php');
 ?>

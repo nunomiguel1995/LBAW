@@ -2,7 +2,7 @@
       <div class="formulario all-80 small-100 tiny-100 push-center">
       <div class="column-group push-center">
         <div class="xlarge-70 large-70 medium-100 tiny-100">
-        	<form class="ink-form ink-formvalidator" method="post" action="../../database/submit_user.php" enctype="multipart/form-data">
+        	<form class="ink-form ink-formvalidator" method="post" action="../../actions/user/create_user.php" enctype="multipart/form-data">
             <h5> Personal Information</h5>
              <div class="profilepic all-30">
                <figure class = "ink-image">

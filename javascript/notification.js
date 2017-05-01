@@ -3,6 +3,6 @@ window.addEventListener("load", function(){
 
 function onClickAcceptEvent(id){
 	console.log("ID: " + id);
-		var linkref = "../../database/acceptNotification.php?id=" + id;
+		var linkref = "../../actions/admin/acceptNotification.php?id=" + id;
 		window.location.href = linkref;
 }
