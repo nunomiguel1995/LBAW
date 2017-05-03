@@ -17,33 +17,8 @@
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
-        <script type="text/javascript" src="../ink-3.1.10/js/ink-all.js"></script>
-        <script type="text/javascript" src="../ink-3.1.10/js/autoload.js"></script>
-        <script type="text/javascript" src="../ink-3.1.10/js/ink.tabs.js"></script>
-        <script src="{$BASE_URL}javascript/main.js"></script>
-        <script>
-          var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-            src: 'res/company.jpg',
-            queries: [
-              {
-                  label: 'tiny',
-                  width: 320
-              },
-              {
-                  label: 'medium',
-                  width: 960
-              },
-              {
-                  label: 'large',
-                  width: 1200
-              },
-              {
-                  label: 'xlarge',
-                  width: 1400
-              }
-            ]
-          });
-        </script>
+
+
         <style type="text/css">
           header h1 small:before  {
                 content: "|";
@@ -57,6 +32,7 @@
                 background: #ccc;
             }
         </style>
+
   </head>
 
   <body>

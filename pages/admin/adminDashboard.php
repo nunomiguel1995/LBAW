@@ -37,7 +37,7 @@
     }else{
         $path = "../../images/users/".$photo;
     }
-    $notifications[$key]['photo'] = $path;
+    $notifications[$key]['path'] = $path;
   }
   $smarty->assign('notifications',$notifications);
   $smarty->display('admin/list_notifications.tpl');
