@@ -74,7 +74,8 @@
                                   FROM post
                                   LEFT OUTER JOIN "appUser"
                                   ON ("idCreator" = "idUser")
-                                  WHERE "idEvent" = ?');
+                                  WHERE "idEvent" = ?
+								  ORDER BY calendar_date DESC, calendar_time ASC');
 
         $stmt->execute(array($id));
         return $stmt->fetchAll();
@@ -132,5 +133,16 @@
       $stmt->execute(array($idUser,$idUser));
       return $stmt->fetchAll();
     }
+	
+	function getPostComments($idPost){
+		global $conn;
+		$stmt = $conn->prepare('SELECT comment_text, name, "idCreator"
+								FROM "postComment"
+								INNER JOIN "appUser"
+								ON "postComment"."idCreator" = "appUser"."idUser"
+								WHERE "idPost" = ?');
+		$stmt->execute(array($idPost));
+		return $stmt->fetchAll();
+	}
 
 ?>
