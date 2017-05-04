@@ -69,11 +69,6 @@ if(isset($_FILES['image'])){
         $stmt7->execute(array($id));
       }
 
-   }else{
-      var_dump($_FILES);
-      var_dump($file_ext);
-      var_dump($errors);
-      print_r($errors);
    }
 }
 

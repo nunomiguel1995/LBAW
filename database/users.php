@@ -52,4 +52,33 @@ function getCompanyInfo($idInfo){
   $stmt->execute(array($idInfo));
   return $stmt->fetch();
 }
+
+function getContactListID($idUser){
+  global $conn;
+  $stmt = $conn->prepare('SELECT "idList"
+                          FROM "contactList"
+                          WHERE "idOwner"= ?');
+  $stmt->execute(array($idUser));
+  $result = $stmt->fetch();
+  return $result["idList"];
+}
+
+function getAllContactListUsers($idList){
+  global $conn;
+  $stmt = $conn->prepare('SELECT *
+                          FROM "contactListUser"
+                          WHERE "idContactList"= ?');
+  $stmt->execute(array($idList));
+  return $stmt->fetchAll();
+}
+
+function getRemainUsers($idList){
+  global $conn;
+  $stmt = $conn->prepare('SELECT "appUser"."idUser" as "idUser", name
+                          FROM "appUser"
+                          LEFT JOIN "contactListUser" ON ("idContactList" = ? AND "contactListUser"."idUser" = "appUser"."idUser")
+                          WHERE "idContactList" is NULL');
+  $stmt->execute(array($idList));
+  return $stmt->fetchAll();
+}
 ?>

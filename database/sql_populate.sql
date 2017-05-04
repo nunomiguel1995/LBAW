@@ -298,8 +298,7 @@ insert into vote ("idUser", "idPollOption") values (10, 19);
 insert into vote ("idUser", "idPollOption") values (5, 30);
 insert into vote ("idUser", "idPollOption") values (18, 24);
 
-insert into notification("idUser",photo,email,name) values(2,true,false,false); 
-insert into notification("idUser",photo,email,name) values(3,true,false,false); 
-insert into notification("idUser",photo,email,name) values(1,true,false,false); 
-insert into notification("idUser",photo,email,name) values(2,true,false,false); 
-
+insert into notification("idUser",photo,email,name) values(2,true,false,false);
+insert into notification("idUser",photo,email,name) values(3,true,false,false);
+insert into notification("idUser",photo,email,name) values(1,true,false,false);
+insert into notification("idUser",photo,email,name) values(2,true,false,false);

@@ -176,7 +176,7 @@ CREATE TABLE vote (
 
 CREATE TABLE notification(
 	"idNotification" serial PRIMARY KEY NOT NULL,
-	"idUser" integer NOT NULL REFERENCES "appUser" ON DELETE CASCADE,
+	"idUser" integer NOT NULL REFERENCES "appUser",
 	photo boolean DEFAULT false,
 	email boolean DEFAULT false,
 	name boolean DEFAULT false
@@ -209,12 +209,30 @@ CREATE INDEX "userVoteIndex" ON vote USING btree ("idUser");
 CREATE INDEX "usersMessagesIndex" ON message USING btree ("idSender", "idReceiver");
 CREATE INDEX "postCreatorIndex" ON post USING btree ("idCreator");
 
-CREATE INDEX "Event_name_idx" ON event USING gin (to_tsvector('english', name)); 
-CREATE INDEX "Event_location_idx" ON event USING gin (to_tsvector('english', location)); 
+CREATE INDEX "Event_name_idx" ON event USING gin (to_tsvector('english', name));
+CREATE INDEX "Event_location_idx" ON event USING gin (to_tsvector('english', location));
 
-CREATE INDEX "Full_name_idx" ON "appUser" USING gin (to_tsvector('english', name)); 
-CREATE INDEX "Username_idx" ON "appUser" USING gin (to_tsvector('english', username)); 
-CREATE INDEX "Email_idx" ON "appUser" USING gin (to_tsvector('english', email)); 
+CREATE INDEX "Full_name_idx" ON "appUser" USING gin (to_tsvector('english', name));
+CREATE INDEX "Username_idx" ON "appUser" USING gin (to_tsvector('english', username));
+CREATE INDEX "Email_idx" ON "appUser" USING gin (to_tsvector('english', email));
 
 CREATE INDEX "Message_text_idx" ON message USING gin (to_tsvector('english', message_text));
-CREATE INDEX "Post_text_idx" ON post USING gin (to_tsvector('english', post_text)); 
+CREATE INDEX "Post_text_idx" ON post USING gin (to_tsvector('english', post_text));
+
+
+--TRIGGER 
+CREATE TRIGGER create_contact_list AFTER INSERT ON "appUser"
+	BEGIN
+		INSERT INTO "contactList" ("idOwner") VALUES (currval(pg_get_serial_sequence("appUser","idUser")));
+	END;
+
+CREATE OR REPLACE FUNCTION process_contact_list() RETURNS TRIGGER AS $contact_list$
+    BEGIN
+		INSERT INTO "contactList" ("idOwner") VALUES (currval('"appUser_idUser_seq"'::regclass)) ;
+		RETURN NEW;
+    END;
+$contact_list$ LANGUAGE plpgsql;
+
+CREATE TRIGGER contact_list
+AFTER INSERT OR UPDATE OR DELETE ON "appUser"
+    FOR EACH ROW EXECUTE PROCEDURE process_contact_list();

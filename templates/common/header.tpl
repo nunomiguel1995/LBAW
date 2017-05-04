@@ -50,13 +50,15 @@
                             <ul class="submenu">
                                 <li><a href="{$BASE_URL}pages/main/publicEvents.php">Public Events</a></li>
                                 <li><a href= "{$BASE_URL}pages/event/searchEvents.php">Search</a></li>
-                                <li><a href= {if $USERNAME} "{$BASE_URL}pages/event/addEvent.php" {else} "#" {/if} >Create</a></li>
+                                <li><a href= {if $USERNAME} "{$BASE_URL}pages/event/AddEvent.php" {else} "#" {/if} >Create</a></li>
                             </ul>
                         </li>
                         <li><a href="#">My Account</a>
                             <ul class = "submenu">
                               <li><a href= {if $USERNAME}  "{$BASE_URL}pages/user/UserPage.php?id={$IDUSER}" {else} "#" {/if} >My Profile </a></li>
-                              <li><a href=  {if $USERNAME} "{$BASE_URL}pages/user/MyEvents.php" {else} "#" {/if} >My Events </a></li>
+                              <li><a href=  {if $USERNAME} "{$BASE_URL}pages/user/MyEvents.php?id={$IDUSER}" {else} "#" {/if} >My Events </a></li>
+                              <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/Messages.php" {else} "#" {/if}> Messages </a></li>
+                              <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/ContactList.php" {else} "#" {/if}> Contact List </a><li>
                             </ul>
                         </li>
                         {/if}
