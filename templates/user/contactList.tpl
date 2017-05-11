@@ -1,6 +1,12 @@
 {include file='common/header.tpl'}
 <script type="text/javascript" src="../../javascript/contactList.js"></script>
 
+<script type="text/javascript">
+  $(function clickAddButton() {
+      $('#myModalTrigger2').click();
+  });
+</script>
+
 <div class="push-center all-80">
 <form action="#" class="ink-form">
   <div class="control-group all-50 small-100 tiny-100 push-center">
@@ -26,7 +32,7 @@
               </div>
             </div>
           </form>
-          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">
+          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
             <tbody>
                 {foreach $users as $user}
                   <tr>
@@ -39,7 +45,9 @@
                           <a href="#">{$user.name}</a>
                           <div class="xlarge-20 large-20 medium-20 tiny-100 push-right">
                               <span class="ink-tooltip" data-tip-text="Add Contact" data-tip-color="grey" style="padding:4%">
-                                <i class="fa fa-plus-square-o" aria-hidden="true" onclick="addUser({$listID},{$user.idUser})"></i>
+                                <i class="fa fa-plus-square-o" aria-hidden="true" onclick="addUser({$listID},{$user.idUser}); jQuery(function(){
+      jQuery('#myModalTrigger2').click();
+    });"></i>
                               </span>
                           </div>
                         </div>
@@ -61,7 +69,7 @@
   {if ($contacts|@count) == 0}
     <div align="center">   <p> You have no contacts yet </p> </div>
   {/if}
-  <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">
+  <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
     <tbody>
         {foreach $contacts as $contact}
           <tr>
