@@ -109,7 +109,7 @@
 
     function getEvents($text){
         global $conn;
-        $id_user = getUserByUsername($_SESSION['username']);
+        $id_user = $_SESSION['iduser'];
 
         $stmt = $conn->prepare('SELECT *
                                 FROM event
@@ -119,7 +119,9 @@
                                 OR description ILIKE \'%\' || ? || \'%\')');
 
         $stmt->execute(array($id_user,$text,$text,$text));
-        return $stmt->fetchAll();
+        $results = $stmt->fetchAll();
+            
+        return $results;
     }
 
     function getUserUpcomingEvents($idUser){
@@ -136,7 +138,7 @@
     
     function getEventByType($type){
         global $conn;
-        $id_user = getUserByUsername($_SESSION['username']);
+        $id_user = $_SESSION['iduser'];
     
         $stmt = $conn->prepare('SELECT *
                                 FROM event
@@ -209,22 +211,21 @@
 
     function getEventsFilters($type, $availability){
         global $conn;
-        $id_user = getUserByUsername($_SESSION['username']);
-
+        $id_user = $_SESSION['iduser'];    
         
-        if(is_null($availability)){
-            $availability = array('true','false');
-        }
         if(is_null($type)){
             $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
+        }
+        if(is_null($availability)){
+            $availability = array('true','false');
         }
         
         $typeHolders = "'".implode("','", array_values($type))."'";
         $avalHolders = "'".implode("','", array_values($availability))."'";
-        
+
         $queryWithoutSession = "SELECT * FROM event WHERE event_type IN ($typeHolders) AND \"isPublic\"=true";
-        $queryWithSession = "SELECT * FROM event WHERE (\"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?)) OR \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
-        
+        $queryWithSession = "SELECT * FROM event WHERE ((\"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?)) OR \"isPublic\" IN ($avalHolders)) AND event_type IN ($typeHolders) ";
+
         if(is_null($id_user)){
             $stmt = $conn->prepare($queryWithoutSession);
             $stmt->execute();
