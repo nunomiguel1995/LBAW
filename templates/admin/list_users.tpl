@@ -2,6 +2,14 @@
 <script type="text/javascript" src="../../javascript/user.js"></script>
 <script type="text/javascript" src="../../javascript/notification.js"></script>
 
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
+
+<!-- load Ink's javascript files from the cdn -->
+ <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
+ <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
+ <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
+
 <style type="text/css">
       #tabContent{
         background: white;
@@ -30,8 +38,6 @@
         margin-bottom: 2%;
       }
     </style>
-
-
 
     <div class="all-80 small-100 tiny-100 push-center">
         <div class="ink-tabs top" data-prevent-url-change="true">
@@ -90,31 +96,25 @@
                   </div>
               </div>
               {foreach $users as $user}
-
-              <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
-                <div id="stacker-container" class="column-group">
-                  <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                    <img src= "{$user.photo}" width="50px" height="50px">
-                  </div>
-                  <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                    <a href="{$BASE_URL}pages/user/UserPage.php?id={$user.idUser}"> {$user.name} </a>
-                  </div>
-                    <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
-                      <a href="{$BASE_URL}pages/user/editProfile.php?id={$user.idUser}" style="text-decoration: none; color:black">
-                      <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%" >
-                        <i class="fa fa-pencil-square-o" aria-hidden="true" > </i>
-                      </span>
-                      </a>
-                      <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
-                        <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('{$user.idUser}')" ></i>
-                      </span>
+                <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
+                  <div id="stacker-container" class="column-group">
+                    <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
+                      <img src= "{$user.photo}" width="50px" height="50px">
                     </div>
+                    <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
+                      <a href="{$BASE_URL}pages/user/UserPage.php?id={$user.idUser}"> {$user.name} </a>
+                    </div>
+                      <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
+                        <a href="{$BASE_URL}pages/user/editProfile.php?id={$user.idUser}" style="text-decoration: none; color:black">
+                        <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%" >
+                          <i class="fa fa-pencil-square-o" aria-hidden="true" > </i>
+                        </span>
+                        </a>
+                        <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
+                          <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('{$user.idUser}')" ></i>
+                        </span>
+                      </div>
+                  </div>
                 </div>
-              </div>
-
-              {/foreach}
-              <nav class="ink-navigation" id="myPagination1" data-size="5">
-                  <ul class="pagination black"></ul>
-              </nav>
-
+            {/foreach}
             </div>

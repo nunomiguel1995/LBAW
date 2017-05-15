@@ -93,6 +93,7 @@
               <input type="submit" name="sub" value="Submit" class="ink-button success blue" />
             </div>
         	</form>
+          <p id="warnings"></p>
         </div>
       </div>
     </div>
