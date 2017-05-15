@@ -74,7 +74,8 @@
                                   FROM post
                                   LEFT OUTER JOIN "appUser"
                                   ON ("idCreator" = "idUser")
-                                  WHERE "idEvent" = ?');
+                                  WHERE "idEvent" = ?
+								  ORDER BY calendar_date DESC, calendar_time ASC');
 
         $stmt->execute(array($id));
         return $stmt->fetchAll();
@@ -148,6 +149,63 @@
 
         return $results;
     }
+	
+	function getPostComments($idPost){
+		global $conn;
+		$stmt = $conn->prepare('SELECT comment_text, name, "idCreator"
+								FROM "postComment"
+								INNER JOIN "appUser"
+								ON "postComment"."idCreator" = "appUser"."idUser"
+								WHERE "idPost" = ?');
+		$stmt->execute(array($idPost));
+		return $stmt->fetchAll();
+	}
+	
+	function getPostPoll($idPost){
+		global $conn;
+		$stmt = $conn->prepare('SELECT "idPoll", name
+								FROM poll 
+								INNER JOIN post
+								ON poll."idPost" = post."idPost"
+								WHERE post."idPost" = ?');
+		$stmt->execute(array($idPost));
+		return $stmt->fetchAll();
+	}
+	
+	function getPollOptions($idPoll){
+		global $conn;
+		$stmt = $conn->prepare('SELECT "idOption", "pollOption".name, votes
+								FROM poll 
+								INNER JOIN "pollOption"
+								ON poll."idPoll" = "pollOption"."idPoll"
+								WHERE poll."idPoll" = ?');
+		$stmt->execute(array($idPoll));
+		return $stmt->fetchAll();
+	}
+	
+	function isvoted($idPoll, $idUser, $idOption){
+		global $conn;
+		$stmt = $conn->prepare('SELECT *
+								FROM vote
+								INNER JOIN "pollOption"
+								ON "idOption" = "idPollOption"
+								INNER JOIN poll
+								ON "pollOption"."idPoll" = poll."idPoll"
+								WHERE "idUser" = ? 
+								AND poll."idPoll" = ?
+								AND "idOption" = ?');
+		$stmt->execute(array($idUser, $idPoll, $idOption));
+		return $stmt->fetchAll();
+	}
+	
+	function numberOfVotes($idOption){
+		global $conn;
+		$stmt = $conn->prepare('SELECT count("idUser")
+								FROM vote
+								WHERE "idPollOption" = ?');
+		$stmt->execute(array($idOption));
+		return $stmt->fetchAll();
+	}
 
     function getEventsFilters($type, $availability){
         global $conn;
