@@ -224,14 +224,20 @@
         $avalHolders = "'".implode("','", array_values($availability))."'";
 
         $queryWithoutSession = "SELECT * FROM event WHERE event_type IN ($typeHolders) AND \"isPublic\"=true";
-        $queryWithSession = "SELECT * FROM event WHERE ((\"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?)) OR \"isPublic\" IN ($avalHolders)) AND event_type IN ($typeHolders) ";
-
-        if(is_null($id_user)){
-            $stmt = $conn->prepare($queryWithoutSession);
+        $queryWithSession = "SELECT * FROM event WHERE (\"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?) OR \"isPublic\") IN ($avalHolders)) AND event_type IN ($typeHolders)";
+        $queryAdmin = "SELECT * FROM event WHERE \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
+        
+        if(strcmp($_SESSION['username'], "admin") === 0){
+            $stmt = $conn->prepare($queryAdmin);
             $stmt->execute();
         }else{
-            $stmt = $conn->prepare($queryWithSession);
-            $stmt->execute(array($id_user));
+            if(is_null($id_user)){
+                $stmt = $conn->prepare($queryWithoutSession);
+                $stmt->execute();
+            }else{
+                $stmt = $conn->prepare($queryWithSession);
+                $stmt->execute(array($id_user));
+            }
         }
         
         $result = $stmt->fetchAll();
