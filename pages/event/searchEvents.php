@@ -6,10 +6,8 @@
 	include_once('../../database/events.php');
     $events = getAllUserEvents();
     $public = getPublicEvents();
-
-    $event_list = array_merge($events, $public);
-
-	$smarty->assign('events', $event_list);
+    
+	$smarty->assign('events', $events);
 	$smarty->assign('public', $public);
 
 	$smarty->display('event/searchevents.tpl');

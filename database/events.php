@@ -132,5 +132,51 @@
       $stmt->execute(array($idUser,$idUser));
       return $stmt->fetchAll();
     }
+    
+    function getEventByType($type){
+        global $conn;
+        $id_user = getUserByUsername($_SESSION['username']);
+    
+        $stmt = $conn->prepare('SELECT *
+                                FROM event
+                                WHERE ("idEvent" IN (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
+                                OR "isPublic" = true)
+                                AND event_type = ?');
+        
+        $stmt->execute(array($id_user, $type));
+        $results = $stmt->fetchAll();
 
+        return $results;
+    }
+
+    function getEventsFilters($type, $availability){
+        global $conn;
+        $id_user = getUserByUsername($_SESSION['username']);
+
+        
+        if(is_null($availability)){
+            $availability = array('true','false');
+        }
+        if(is_null($type)){
+            $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
+        }
+        
+        $typeHolders = "'".implode("','", array_values($type))."'";
+        $avalHolders = "'".implode("','", array_values($availability))."'";
+        
+        $queryWithoutSession = "SELECT * FROM event WHERE event_type IN ($typeHolders) AND \"isPublic\"=true";
+        $queryWithSession = "SELECT * FROM event WHERE (\"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?)) OR \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
+        
+        if(is_null($id_user)){
+            $stmt = $conn->prepare($queryWithoutSession);
+            $stmt->execute();
+        }else{
+            $stmt = $conn->prepare($queryWithSession);
+            $stmt->execute(array($id_user));
+        }
+        
+        $result = $stmt->fetchAll();
+        
+        return $result;
+    }
 ?>
