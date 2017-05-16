@@ -7,7 +7,7 @@
 								FROM country
 								WHERE name = ?');
 		$stmt->execute(array($name));
-        return $stmt->fetch();	
+        return $stmt->fetchAll();	
 		
 	}
 	

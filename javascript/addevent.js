@@ -1,7 +1,4 @@
-
-
-
- function addToArray(nelement,nel2){
+function addToArray(nelement,nel2){
 	//String nel = nelement + "N";
     document.getElementById(nelement).hidden = true;
 	document.getElementById(nel2).hidden = false;
@@ -27,3 +24,31 @@
 	
 	  
 }
+
+$(document).ready(function () {
+  //your code here
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#eventphoto').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+
+$("#filechoice").change(function(){
+    readURL(this);
+});
+
+
+ 
+
+
+});

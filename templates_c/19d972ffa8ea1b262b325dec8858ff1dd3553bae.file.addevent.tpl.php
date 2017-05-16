@@ -1,4 +1,32 @@
-
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-16 21:29:42
+         compiled from "/opt/lbaw/lbaw1635/public_html/muss/templates/event/addevent.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1112142675591b387ca55506-84509777%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '19d972ffa8ea1b262b325dec8858ff1dd3553bae' => 
+    array (
+      0 => '/opt/lbaw/lbaw1635/public_html/muss/templates/event/addevent.tpl',
+      1 => 1494966576,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1112142675591b387ca55506-84509777',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_591b387cc61954_40898849',
+  'variables' => 
+  array (
+    'BASE_URL' => 0,
+    'type' => 0,
+    'allusers' => 0,
+    'user' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_591b387cc61954_40898849')) {function content_591b387cc61954_40898849($_smarty_tpl) {?>
 	
     <style type="text/css">
       #page{
@@ -19,7 +47,8 @@
     </style>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="{$BASE_URL}javascript/addevent.js"></script>
+	<script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+javascript/addevent.js"></script>
     <div class="all-80 small-100 tiny-100 push-center">
       <div id="createEvent" class="ink-carousel" data-pagination="#my-carousel-1-pagination" align="center">
         <h4> Create Event </h4>
@@ -74,15 +103,15 @@
                                     <div class="control-group required">
                                       <label for="type" align="left">Type</label><br>
                                         <ul class="control unstyled">
-										{if $type == "Supervisor" || $type == "Director"}
+										<?php if ($_smarty_tpl->tpl_vars['type']->value=="Supervisor"||$_smarty_tpl->tpl_vars['type']->value=="Director") {?>
                                             <li><input type="radio" id="rb1" name="rb" value="Meeting"><label for="rb1">Meeting</label></li>
                                             <li><input type="radio" id="rb2" name="rb" value="Workshop"><label for="rb2">Workshop</label></li>
                                             <li><input type="radio" id="rb3" name="rb" value="SocialGathering"><label for="rb3">Social Gathering</label></li>
-											{if $type == "Director"}
+											<?php if ($_smarty_tpl->tpl_vars['type']->value=="Director") {?>
                                             <li><input type="radio" id="rb4" name="rb" value="Lecture/Conference"><label for="rb4">Lecture/Conference</label></li>
                                             <li><input type="radio" id="rb5" name="rb" value="KickOff"><label for="rb5">Kick-off Meeting</label></li>
-											{/if}
-										{/if}
+											<?php }?>
+										<?php }?>
                                         </ul>
                                     </div>
                                 </fieldset>
@@ -129,21 +158,34 @@
                                   <h2 id="modal-title">Invite People</h2>
                               </div>
                               <div class="modal-body" id="modalContent">
-							  {foreach $allusers as $user}
-                                <div class="user all-50 small-100 tiny-100 push-center" id="{$user.username}" >
+							  <?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['allusers']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
+$_smarty_tpl->tpl_vars['user']->_loop = true;
+?>
+                                <div class="user all-50 small-100 tiny-100 push-center" id="<?php echo $_smarty_tpl->tpl_vars['user']->value['username'];?>
+" >
                                   <div id="stacker-container" class="column-group">
                                     <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                                      <img src="{$user.photo}" width="50px" height="50px">
+                                      <img src="<?php echo $_smarty_tpl->tpl_vars['user']->value['photo'];?>
+" width="50px" height="50px">
                                     </div>
                                     <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                                      <a id= "link" href="#"> {$user.name} </a>
+                                      <a id= "link" href="#"> <?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+ </a>
                                     </div>
                                       <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
                                         
                                             <fieldset>
                                                 <div class="control-group">
                                                     <ul class="control unstyled">
-                                                        <li><input type="checkbox" id="cb[]" name="{$user.username}" value="{$user.name}" onclick="addToArray('{$user.username}','{$user.name}')"></li>
+                                                        <li><input type="checkbox" id="cb[]" name="<?php echo $_smarty_tpl->tpl_vars['user']->value['username'];?>
+" value="<?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+" onclick="addToArray('<?php echo $_smarty_tpl->tpl_vars['user']->value['username'];?>
+','<?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+')"></li>
+															<?php echo $_smarty_tpl->tpl_vars['user']->value['username'];?>
+
                                                     </ul>
                                                 </div>
                                             </fieldset>
@@ -151,7 +193,7 @@
                                       </div>
                                   </div>
                                 </div>
-								{/foreach}
+								<?php } ?>
                               </div>
                               <div class="modal-footer">
                                   <div class="push-center">
@@ -163,23 +205,34 @@
                       <div style="margin-bottom:2%">
                         <a href="#" id="myModalTrigger" class="ink-button green"><i class="fa fa-plus" aria-hidden="true" ></i>  Invite</a><br>
                       </div>
-					  {foreach $allusers as $user}
-                      <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center" id="{$user.name}" hidden>
+					  <?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['allusers']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
+$_smarty_tpl->tpl_vars['user']->_loop = true;
+?>
+                      <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center" id="<?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+" hidden>
                         <div id="stacker-container" class="column-group">
                           <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                            <img src="{$user.photo}" width="50px" height="50px">
+                            <img src="<?php echo $_smarty_tpl->tpl_vars['user']->value['photo'];?>
+" width="50px" height="50px">
                           </div>
                           <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                            <a href="#"> {$user.name} </a>
+                            <a href="#"> <?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+ </a>
                           </div>
                           <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right" >
                             <span class="ink-tooltip" data-tip-text="Delete" data-tip-color="grey" style="padding:4%" >
-                                <i class="fa fa-times" aria-hidden="true" name="{$user.name}" value="{$user.name}" onclick="addToArray('{$user.name}','{$user.username}')"></i>
+                                <i class="fa fa-times" aria-hidden="true" name="<?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+" value="<?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+" onclick="addToArray('<?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+','<?php echo $_smarty_tpl->tpl_vars['user']->value['username'];?>
+')"></i>
                             </span>
                           </div>
                         </div>
 					   </div>
-					  {/foreach}
+					  <?php } ?>
 					  </div>
                     </div>
 					<div align="center" style="margin:2%">
@@ -196,3 +249,4 @@
       </div>
     </div>
 
+<?php }} ?>

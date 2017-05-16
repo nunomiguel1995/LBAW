@@ -252,7 +252,7 @@
 								FROM event
 								WHERE name = ?');
 		$stmt->execute(array($name));
-        return $stmt->fetch();						
+        return $stmt->fetchAll();						
 				
 	}
 
@@ -270,5 +270,5 @@
 								VALUES (?,?,?,?,?,?,true,?,?)');
 			$stmt->execute(array($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $idCreator, $event_type));
 		
-		}
+	}}
 ?>

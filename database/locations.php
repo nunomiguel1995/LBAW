@@ -7,7 +7,7 @@
 								FROM location
 								WHERE address = ?');
 		$stmt->execute(array($address));
-        return $stmt->fetch();	
+        return $stmt->fetchAll();	
 		
 	}
 	
