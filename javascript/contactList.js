@@ -14,7 +14,3 @@ function addUser(idList,idUser){
   var linkref = "../../actions/user/addContactList.php?idList=" + idList+"&idUser="+idUser;
   window.location.href = linkref;
 }
-
-$(function() {
-    $('#myModalTrigger2').click();
-});

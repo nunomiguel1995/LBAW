@@ -92,6 +92,7 @@ CREATE TABLE message (
     "idMessage" serial NOT NULL PRIMARY KEY,
     calendar_date date NOT NULL,
     message_text text NOT NULL,
+    subject text NOT NULL,
     "idSender" integer NOT NULL REFERENCES "appUser" ON DELETE CASCADE,
     "idReceiver" integer NOT NULL REFERENCES "appUser" ON DELETE CASCADE
 );
@@ -220,7 +221,7 @@ CREATE INDEX "Message_text_idx" ON message USING gin (to_tsvector('english', mes
 CREATE INDEX "Post_text_idx" ON post USING gin (to_tsvector('english', post_text));
 
 
---TRIGGER 
+--TRIGGER
 CREATE TRIGGER create_contact_list AFTER INSERT ON "appUser"
 	BEGIN
 		INSERT INTO "contactList" ("idOwner") VALUES (currval(pg_get_serial_sequence("appUser","idUser")));

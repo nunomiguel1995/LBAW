@@ -81,4 +81,5 @@ function getRemainUsers($idList){
   $stmt->execute(array($idList));
   return $stmt->fetchAll();
 }
+
 ?>

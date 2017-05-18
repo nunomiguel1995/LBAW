@@ -35,6 +35,7 @@
   $smarty->assign('users',$users);
   $smarty->assign('listID',$idList);
   $smarty->assign('contacts',$contactUsers);
+  $smarty->assign('userID',$id);
   $smarty->display('user/contactList.tpl');
 
  ?>
