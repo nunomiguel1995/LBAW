@@ -28,6 +28,7 @@
               </div>
             </div>
           </form>
+          
           <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
             <tbody>
                 {foreach $users as $user}

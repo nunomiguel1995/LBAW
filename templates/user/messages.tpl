@@ -21,6 +21,9 @@
               </div>
             </div>
           </form>
+          {if ($contacts|@count) == 0}
+            <div align="center">   <p> You have no contacts yet </p> </div>
+          {else}
           <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
             <tbody>
                 {foreach $contacts as $contact}
@@ -46,6 +49,7 @@
                 {/foreach}
               </tbody>
             </table>
+            {/if}
         </div>
     </div>
 </div>
