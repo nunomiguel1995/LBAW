@@ -20,11 +20,11 @@
                     <fieldset>
                         <legend>Type of event</legend>
                         <ul class="control unstyled align-center inline">
-                            <li><input type="checkbox" id="cb1" name="meeting" value="Meeting"><label for="cb">Meeting </label></li>
-                            <li><input type="checkbox" id="cb2" name="workshop" value="Workshop"><label for="cb">Workshop </label></li>
-                            <li><input type="checkbox" id="cb3" name="conference" value="Conference"><label for="cb">Conference </label></li>
-                            <li><input type="checkbox" id="cb4" name="social" value="Social Gathering"><label for="cb">Social Gathering </label></li>
-                            <li><input type="checkbox" id="cb5" name="lecture" value="Lecture"><label for="cb">Lecture </label></li>
+                            <li><input type="checkbox" id="cb1" name="eventType[]" value="Meeting"><label for="cb">Meeting </label></li>
+                            <li><input type="checkbox" id="cb2" name="eventType[]" value="Workshop"><label for="cb">Workshop </label></li>
+                            <li><input type="checkbox" id="cb3" name="eventType[]" value="Lecture/Conference"><label for="cb">Lecture/Conference </label></li>
+                            <li><input type="checkbox" id="cb4" name="eventType[]" value="SocialGathering"><label for="cb">Social Gathering </label></li>
+                            <li><input type="checkbox" id="cb5" name="eventType[]" value="KickOff"><label for="cb">Kickoff </label></li>
                         </ul>
                     </fieldset>
                 </div>
@@ -32,8 +32,8 @@
                     <fieldset>
                         <legend>Availability</legend>
                         <ul class="control unstyled">
-                            <li><input type="checkbox" name="availability[]" value="public"><label for="cb">Public </label></li>
-                            <li><input type="checkbox" name="availability[]" value="private"><label for="cb">Private </label></li>
+                            <li><input type="checkbox" name="availability[]" value="true"><label for="cb">Public </label></li>
+                            <li><input type="checkbox" name="availability[]" value="false"><label for="cb">Private </label></li>
                         </ul>
                     </fieldset>
                 </div>

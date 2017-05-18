@@ -82,4 +82,15 @@ function getRemainUsers($idList){
   return $stmt->fetchAll();
 }
 
+function getUserType($username){
+	global $conn;
+	$stmt = $conn->prepare('SELECT "user_type"
+							FROM "appUser"
+							WHERE "username"= ?');
+	$stmt->execute(array($username));
+	$result = $stmt->fetch();
+	
+	return $result['user_type'];
+	
+}
 ?>
