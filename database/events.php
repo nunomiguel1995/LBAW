@@ -110,15 +110,25 @@
     function getEvents($text){
         global $conn;
         $id_user = $_SESSION['iduser'];
+           
+        //only public events
+        if(is_null($id_user)){
+            $stmt = $conn->prepare('SELECT "idEvent", name, calendar_date, calendar_time, description, "isPublic", ts_rank_cd(to_tsvector(\'english\', name), query) AS rank
+                                FROM event, to_tsquery(\'english\',?) AS query
+                                WHERE "isPublic" = true
+                                ORDER BY rank DESC');
+            $stmt->execute(array($text));
 
-        $stmt = $conn->prepare('SELECT *
-                                FROM event
-                                WHERE "idEvent" IN (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
-                                AND (to_tsvector(\'english\', name) @@ to_tsquery(\'english\', ?)
-                                OR name ILIKE \'%\' || ? || \'%\'
-                                OR description ILIKE \'%\' || ? || \'%\')');
+        //public events AND user events
+        }else{
+            $stmt = $conn->prepare('SELECT event."idEvent", name, calendar_date, calendar_time, description, "isPublic", ts_rank_cd(to_tsvector(\'english\', name), query) AS rank
+                                FROM event, to_tsquery(\'english\',?) AS query
+                                WHERE event."idEvent" IN (SELECT invitation."idEvent" FROM invitation WHERE "idUser" = ?)
+                                OR "isPublic" = true
+                                ORDER BY rank DESC');
+            $stmt->execute(array($text,$id_user));
+        }
 
-        $stmt->execute(array($id_user,$text,$text,$text));
         $results = $stmt->fetchAll();
             
         return $results;

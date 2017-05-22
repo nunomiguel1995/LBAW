@@ -95,26 +95,36 @@
                     </a>
                   </div>
               </div>
-              {foreach $users as $user}
-                <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
-                  <div id="stacker-container" class="column-group">
-                    <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                      <img src= "{$user.photo}" width="50px" height="50px">
-                    </div>
-                    <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                      <a href="{$BASE_URL}pages/user/UserPage.php?id={$user.idUser}"> {$user.name} </a>
-                    </div>
-                      <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
-                        <a href="{$BASE_URL}pages/user/editProfile.php?id={$user.idUser}" style="text-decoration: none; color:black">
-                        <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%" >
-                          <i class="fa fa-pencil-square-o" aria-hidden="true" > </i>
-                        </span>
-                        </a>
-                        <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
-                          <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('{$user.idUser}')" ></i>
-                        </span>
-                      </div>
-                  </div>
+                  <div class="xlarge-50 large-70 medium-100 tiny-100 push-center">
+                      <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="15" data-pagination="#myTablePagination">
+                        <tbody>
+                            {foreach $users as $user}
+                                <tr>
+                                    <td>
+                                        <div class="xlarge-90 large-90 medium-100 tiny-100 push-center">
+                                            <div id="stacker-container" class="column-group">
+                                                <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column push-left">
+                                                    <img src= "{$user.photo}" width="50px" height="50px">
+                                                </div>
+                                                <div class="xlarge-80 large-80 medium-50 tiny-100 stacker-column push-center">
+                                                    <a href="{$BASE_URL}pages/user/UserPage.php?id={$user.idUser}"> {$user.name} </a>
+                                                </div>
+                                                <div class="xlarge-10 large-10 medium-20 tiny-100 stacker-column push-right" align="right">
+                                                    <a href="{$BASE_URL}pages/user/editProfile.php?id={$user.idUser}" style="text-decoration: none; color:black">
+                                                        <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%" >
+                                                          <i class="fa fa-pencil-square-o" aria-hidden="true" > </i>
+                                                        </span>
+                                                    </a>
+                                                    <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
+                                                        <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('{$user.idUser}')" ></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
                 </div>
-            {/foreach}
             </div>

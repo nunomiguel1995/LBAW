@@ -4,15 +4,15 @@
     $smarty->display('common/header.tpl');
     include_once($BASE_DIR .'database/events.php');
 
-    $user_events = getEvents($_POST["search_text"]);
-    $public = getPublicEvents();
     $event_list = [];
 
     $types = $_POST["eventType"];
     $avail = $_POST["availability"];
 
     if(count($_POST) == 1){
-        $event_list = array_merge($user_events, $public);
+        $event_list = getEvents($_POST["search_text"]);
+        
+        var_dump($event_list);
     }else{
         $event_list = getEventsFilters($types, $avail);
         
@@ -30,6 +30,7 @@
             });
         }
     }
+
 
     $smarty->assign('public', $public);
     $smarty->assign('events', $event_list);
