@@ -20,8 +20,24 @@ $stmt->bindParam(':eve', $event_id);
 $stmt->execute();
 $last_id = $conn->lastInsertId();
 
+$target_dir = $BASE_DIR. "files/posts/";
+$file_name = basename($_FILES['input_file']['name']);
+
+if(basename($file_name != "")){
+	$file_type = pathinfo($file_name,PATHINFO_EXTENSION);
+	$target_file = $target_dir . $last_id . "." . $file_type;
+	move_uploaded_file($_FILES["input_file"]["tmp_name"], $target_file);
+	
+	$stmt2 = $conn->prepare('INSERT INTO "doc"(name, "idPost")
+							VALUES(:name, :id_post)');
+	$stmt2->bindParam(':name', $file_name);
+	$stmt2->bindParam(':id_post', $last_id);
+	$stmt2->execute();
+}
+
 
 $link = 'Location: ../../pages/event/EventPage.php?id=' . $event_id . '&post=' . $last_id;
 header($link);
+
 
 ?>
