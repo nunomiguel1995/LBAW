@@ -10,6 +10,7 @@
     $location = getEventLocation($_GET['id'])[0];
     $posts = getEventPosts($_GET['id']);
     $invited = getEventInvitations($_GET['id']);
+	$non_invited = getNonInvitedUsers($_GET['id']);
 	
 	foreach ($posts as $key => $post) {
 		$comments = getPostComments($post['idPost']);
@@ -30,7 +31,7 @@
 		if(is_null($photo) ){
 			$path ="../../images/users/user.png";
 		}else{
-			$path = "../../images/users/".$photo;
+			$path = "../../images/users/" . $photo;
 		}
 		
 		$posts[$key]['photo'] = $path;
@@ -54,6 +55,24 @@
 				$posts[$key]['poll'] = $poll;
 			}
 		}
+		
+		$doc = getPostDoc($post['idPost']);
+		
+		$file_type = pathinfo($doc[0]['name'], PATHINFO_EXTENSION);
+		
+		if(sizeof($doc) != 0){
+			$posts[$key]['doc_name'] = $post['idPost'] . "." . $file_type;
+			$posts[$key]['actual_doc_name'] = $doc[0]['name'];
+			if($file_type == "png" || $file_type == "jpg" || $file_type == "jpeg"){
+				$posts[$key]['is_image'] = "true";
+			}else{
+				$posts[$key]['is_image'] = "false";
+			}
+		}else{
+			$posts[$key]['doc_name'] = "";
+		}
+		
+		
 	}
 	
 	foreach ($invited as $invited_key => $inv) {
@@ -67,12 +86,23 @@
 		$invited[$invited_key]['photo'] = $invited_photo_path;
 	}
 	
+	foreach ($non_invited as $non_invited_key => $non_inv) {
+		unset($non_invited_photo_path);
+		$non_invited_photo = getPhotoName($non_inv['idUser']);
+		if(is_null($non_invited_photo) ){
+			$non_invited_photo_path ="../../images/users/user.png";
+		}else{
+			$non_invited_photo_path = "../../images/users/".$non_invited_photo;
+		}
+		$non_invited[$non_invited_key]['photo'] = $non_invited_photo_path;
+	}
 	
     $smarty->assign('event',$event);
     $smarty->assign('organizer',$organizer);
     $smarty->assign('location',$location);
     $smarty->assign('posts',$posts);
     $smarty->assign('invited',$invited);
+    $smarty->assign('non_invited',$non_invited);
 	$smarty->assign('event_id',$_GET['id']);
     $smarty->display('event/eventpage.tpl');
 

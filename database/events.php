@@ -119,6 +119,7 @@
                                 ORDER BY rank DESC');
             $stmt->execute(array($text));
 
+
         //public events AND user events
         }else{
             $stmt = $conn->prepare('SELECT event."idEvent", name, calendar_date, calendar_time, description, "isPublic", ts_rank_cd(to_tsvector(\'english\', name), query) AS rank
@@ -132,6 +133,7 @@
         $results = $stmt->fetchAll();
             
         return $results;
+
     }
 
     function getUserUpcomingEvents($idUser){
@@ -144,22 +146,6 @@
                               ORDER BY calendar_date');
       $stmt->execute(array($idUser,$idUser));
       return $stmt->fetchAll();
-    }
-    
-    function getEventByType($type){
-        global $conn;
-        $id_user = $_SESSION['iduser'];
-    
-        $stmt = $conn->prepare('SELECT *
-                                FROM event
-                                WHERE ("idEvent" IN (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
-                                OR "isPublic" = true)
-                                AND event_type = ?');
-        
-        $stmt->execute(array($id_user, $type));
-        $results = $stmt->fetchAll();
-
-        return $results;
     }
 	
 	function getPostComments($idPost){
@@ -218,67 +204,30 @@
 		$stmt->execute(array($idOption));
 		return $stmt->fetchAll();
 	}
-
-    function getEventsFilters($type, $availability){
-        global $conn;
-        $id_user = $_SESSION['iduser'];    
-        
-        if(is_null($type)){
-            $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
-        }
-        if(is_null($availability)){
-            $availability = array('true','false');
-        }
-        
-        $typeHolders = "'".implode("','", array_values($type))."'";
-        $avalHolders = "'".implode("','", array_values($availability))."'";
-
-        $queryWithoutSession = "SELECT * FROM event WHERE event_type IN ($typeHolders) AND \"isPublic\"=true";
-        $queryWithSession = "SELECT * FROM event WHERE (\"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?) OR \"isPublic\") IN ($avalHolders)) AND event_type IN ($typeHolders)";
-        $queryAdmin = "SELECT * FROM event WHERE \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
-        
-        if(strcmp($_SESSION['username'], "admin") === 0){
-            $stmt = $conn->prepare($queryAdmin);
-            $stmt->execute();
-        }else{
-            if(is_null($id_user)){
-                $stmt = $conn->prepare($queryWithoutSession);
-                $stmt->execute();
-            }else{
-                $stmt = $conn->prepare($queryWithSession);
-                $stmt->execute(array($id_user));
-            }
-        }
-        
-        $result = $stmt->fetchAll();
-        
-        return $result;
-    }
 	
-	
-	function getEventByName($name){
+	function getPostDoc($idPost){
 		global $conn;
-		 $stmt = $conn->prepare('SELECT "idEvent"
-								FROM event
-								WHERE name = ?');
-		$stmt->execute(array($name));
-        return $stmt->fetchAll();						
-				
+		$stmt = $conn->prepare('SELECT name, "idDoc"
+								FROM doc
+								INNER JOIN post
+								ON post."idPost" = doc."idPost"
+								WHERE post."idPost" = ?');
+		$stmt->execute(array($idPost));
+		return $stmt->fetchAll();
 	}
-
-	function addEvent($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $isPublic, $idCreator, $event_type){
+	
+	function getNonInvitedUsers($idEvent){
 		global $conn;
-		if($isPublic){
-			$stmt = $conn->prepare('INSERT INTO event
-								(name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator", "event_type")
-								VALUES (?,?,?,?,?,?,true,?,?)');
-			$stmt->execute(array($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $idCreator, $event_type));
-		}
-		else{
-			$stmt = $conn->prepare('INSERT INTO event
-								(name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator", "event_type")
-								VALUES (?,?,?,?,?,?,true,?,?)');
-			$stmt->execute(array($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $idCreator, $event_type));
-		
-	}}
+		$stmt = $conn->prepare('SELECT "appUser"."idUser", "appUser".name
+								FROM "appUser"
+								LEFT JOIN "invitation"
+								ON ("appUser"."idUser" = invitation."idUser" 
+								AND invitation."idEvent" = ?)
+								WHERE invitation.accepted is NULL');
+		$stmt->execute(array($idEvent));
+		return $stmt->fetchAll();
+	}
+	
+	
+	;
 ?>
