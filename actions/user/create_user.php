@@ -3,6 +3,8 @@
 	$username = $_POST['username'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
+	$options = ['cost' => 12];
+	$hpass = password_hash($password,PASSWORD_DEFAULT,$options);
 	$department = $_POST['department'];
 	$position = $_POST['position'];
 	$rb = $_POST['rb'];
@@ -34,7 +36,7 @@
 	$stmt4->bindParam(':fnm', $fullname);
 	$stmt4->bindParam(':ema', $email);
 	$stmt4->bindParam(':usr', $username);
-	$stmt4->bindParam(':pss', $password);
+	$stmt4->bindParam(':pss', $hpass);
 	$stmt4->bindParam(':inf', $comp_info_true[0]['idInfo']);
 	$stmt4->bindParam(':typ', $rb);
 	$stmt4->execute();

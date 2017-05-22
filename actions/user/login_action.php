@@ -10,14 +10,16 @@
 
 	 if(isAdminLogIn($userName, $password)){
 	 	$_SESSION['username'] = $userName;
+		echo "ok";
 	 	header('Location: ' . $BASE_URL.'pages/admin/adminDashboard.php');
 	}else if(verifyLogin($userName,$password)){
 		$userid = getUserByUsername($userName);
 		$_SESSION['username'] = $userName;
 		$_SESSION['iduser']= $userid;
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		echo "ok";
+		//header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}else{
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		//header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 
 ?>
