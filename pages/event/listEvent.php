@@ -11,8 +11,6 @@
 
     if(count($_POST) == 1){
         $event_list = getEvents($_POST["search_text"]);
-        
-        var_dump($event_list);
     }else{
         $event_list = getEventsFilters($types, $avail);
         
