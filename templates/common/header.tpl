@@ -62,7 +62,7 @@
                             </ul>
                         </li>
                         {/if}
-                        <div  class="push-right">
+                        <div  class="push-right" id="logDiv">
                           {if $USERNAME}
                             {include file='common/logOut.tpl'}
                           {else}
