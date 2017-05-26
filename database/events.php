@@ -275,4 +275,30 @@
         
         return $result;
     }
+	
+	function getEventByName($name){
+		global $conn;
+		 $stmt = $conn->prepare('SELECT "idEvent"
+								FROM event
+								WHERE name = ?');
+		$stmt->execute(array($name));
+        return $stmt->fetchAll();						
+				
+	}
+
+	function addEvent($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $isPublic, $idCreator, $event_type){
+		global $conn;
+		if($isPublic){
+			$stmt = $conn->prepare('INSERT INTO event
+								(name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator", "event_type")
+								VALUES (?,?,?,?,?,?,true,?,?)');
+			$stmt->execute(array($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $idCreator, $event_type));
+		}
+		else{
+			$stmt = $conn->prepare('INSERT INTO event
+								(name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator", "event_type")
+								VALUES (?,?,?,?,?,?,true,?,?)');
+			$stmt->execute(array($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $idCreator, $event_type));
+		
+	}}
 ?>
