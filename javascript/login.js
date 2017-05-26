@@ -13,7 +13,7 @@ $(document).ready(function() {
           else if(response == "ok"){
 			   $('#logDiv').load(document.URL +  ' #logDiv');
 		  }else{
-			  alert(response);
+			  alert("Wrong credentials!");
 			  
 		  }
          

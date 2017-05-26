@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-05-22 08:45:53
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-26 16:21:49
          compiled from "/opt/lbaw/lbaw1635/public_html/muss/templates/admin/list_users.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20988480965922973142ef03-23910386%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '238dbfc042961e6bde7bb8f853dfb258b25796e7' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/muss/templates/admin/list_users.tpl',
-      1 => 1494862094,
+      1 => 1495446500,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_592297315d2f48_15000319',
   'variables' => 
   array (
     'users' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'BASE_URL' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_592297315d2f48_15000319',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_592297315d2f48_15000319')) {function content_592297315d2f48_15000319($_smarty_tpl) {?><script type="text/javascript" src="../../javascript/event.js"></script>
 <script type="text/javascript" src="../../javascript/user.js"></script>
@@ -122,38 +122,48 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     </a>
                   </div>
               </div>
-              <?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
+                  <div class="xlarge-50 large-70 medium-100 tiny-100 push-center">
+                      <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="15" data-pagination="#myTablePagination">
+                        <tbody>
+                            <?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['users']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
 $_smarty_tpl->tpl_vars['user']->_loop = true;
 ?>
-                <div class="user xlarge-70 large-70 medium-100 tiny-100 push-center">
-                  <div id="stacker-container" class="column-group">
-                    <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column">
-                      <img src= "<?php echo $_smarty_tpl->tpl_vars['user']->value['photo'];?>
+                                <tr>
+                                    <td>
+                                        <div class="xlarge-90 large-90 medium-100 tiny-100 push-center">
+                                            <div id="stacker-container" class="column-group">
+                                                <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column push-left">
+                                                    <img src= "<?php echo $_smarty_tpl->tpl_vars['user']->value['photo'];?>
 " width="50px" height="50px">
-                    </div>
-                    <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
-                      <a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+                                                </div>
+                                                <div class="xlarge-80 large-80 medium-50 tiny-100 stacker-column push-center">
+                                                    <a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 pages/user/UserPage.php?id=<?php echo $_smarty_tpl->tpl_vars['user']->value['idUser'];?>
 "> <?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
  </a>
-                    </div>
-                      <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
-                        <a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+                                                </div>
+                                                <div class="xlarge-10 large-10 medium-20 tiny-100 stacker-column push-right" align="right">
+                                                    <a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 pages/user/editProfile.php?id=<?php echo $_smarty_tpl->tpl_vars['user']->value['idUser'];?>
 " style="text-decoration: none; color:black">
-                        <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%" >
-                          <i class="fa fa-pencil-square-o" aria-hidden="true" > </i>
-                        </span>
-                        </a>
-                        <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
-                          <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('<?php echo $_smarty_tpl->tpl_vars['user']->value['idUser'];?>
+                                                        <span class="ink-tooltip" data-tip-text="Edit User" data-tip-color="grey" style="padding:4%" >
+                                                          <i class="fa fa-pencil-square-o" aria-hidden="true" > </i>
+                                                        </span>
+                                                    </a>
+                                                    <span class="ink-tooltip" data-tip-text="Delete User" data-tip-color="grey" style="padding:4%" >
+                                                        <i class="fa fa-trash" aria-hidden="true" onclick="onClickDelete('<?php echo $_smarty_tpl->tpl_vars['user']->value['idUser'];?>
 ')" ></i>
-                        </span>
-                      </div>
-                  </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
-            <?php } ?>
             </div>
 <?php }} ?>
