@@ -110,24 +110,37 @@
     function getEvents($text){
         global $conn;
         $id_user = $_SESSION['iduser'];
-           
+ 
         //only public events
         if(is_null($id_user)){
-            $stmt = $conn->prepare('SELECT "idEvent", name, calendar_date, calendar_time, description, "isPublic", ts_rank_cd(to_tsvector(\'english\', name), query) AS rank
-                                FROM event, to_tsquery(\'english\',?) AS query
-                                WHERE "isPublic" = true
-                                ORDER BY rank DESC');
-            $stmt->execute(array($text));
-
-
-        //public events AND user events
-        }else{
-            $stmt = $conn->prepare('SELECT event."idEvent", name, calendar_date, calendar_time, description, "isPublic", ts_rank_cd(to_tsvector(\'english\', name), query) AS rank
-                                FROM event, to_tsquery(\'english\',?) AS query
-                                WHERE event."idEvent" IN (SELECT invitation."idEvent" FROM invitation WHERE "idUser" = ?)
-                                OR "isPublic" = true
-                                ORDER BY rank DESC');
-            $stmt->execute(array($text,$id_user));
+            $stmt = $conn->prepare('SELECT 
+                                        *, 
+                                        ts_rank_cd(to_tsvector(name), query) AS rank
+                                    FROM 
+                                        event, 
+                                        to_tsquery(?) AS query
+                                    WHERE 
+                                        "isPublic" = true
+                                    AND 
+                                        name ILIKE \'%\' || ? || \'%\'
+                                    ORDER BY 
+                                        rank DESC');
+            $stmt->execute(array($text,$text));
+        }else{//public events AND user events
+            $stmt = $conn->prepare('SELECT 
+                                        *, 
+                                        ts_rank_cd(to_tsvector(name), query) AS rank
+                                    FROM 
+                                        event, 
+                                        to_tsquery(?) AS query
+                                    WHERE 
+                                        "idEvent" IN (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
+                                    OR 
+                                        "isPublic" = true
+                                    AND 
+                                        name ILIKE \'%\' || ? || \'%\'
+                                    ORDER BY rank DESC');
+            $stmt->execute(array($text,$id_user,$text));
         }
 
         $results = $stmt->fetchAll();
@@ -228,6 +241,64 @@
 		return $stmt->fetchAll();
 	}
 	
+	function getEventsFilters($type, $availability){
+        global $conn;
+        $id_user = $_SESSION['iduser'];    
+        
+        if(is_null($type)){
+            $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
+        }
+        if(is_null($availability)){
+            $availability = array('true','false');
+        }
+        
+        $typeHolders = "'".implode("','", array_values($type))."'";
+        $avalHolders = "'".implode("','", array_values($availability))."'";
+        $queryWithoutSession = "SELECT * FROM event WHERE event_type IN ($typeHolders) AND \"isPublic\"=true";
+        $queryWithSession = "SELECT * FROM event WHERE \"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?) OR \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
+        $queryAdmin = "SELECT * FROM event WHERE \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
+        
+        if(strcmp($_SESSION['username'], "admin") === 0){
+            $stmt = $conn->prepare($queryAdmin);
+            $stmt->execute();
+        }else{
+            if(is_null($id_user)){
+                $stmt = $conn->prepare($queryWithoutSession);
+                $stmt->execute();
+            }else{
+                $stmt = $conn->prepare($queryWithSession);
+                $stmt->execute(array($id_user));
+            }
+        }
+        
+        $result = $stmt->fetchAll();
+        
+        return $result;
+    }
 	
-	;
+	function getEventByName($name){
+		global $conn;
+		 $stmt = $conn->prepare('SELECT "idEvent"
+								FROM event
+								WHERE name = ?');
+		$stmt->execute(array($name));
+        return $stmt->fetchAll();						
+				
+	}
+
+	function addEvent($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $isPublic, $idCreator, $event_type){
+		global $conn;
+		if($isPublic){
+			$stmt = $conn->prepare('INSERT INTO event
+								(name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator", "event_type")
+								VALUES (?,?,?,?,?,?,true,?,?)');
+			$stmt->execute(array($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $idCreator, $event_type));
+		}
+		else{
+			$stmt = $conn->prepare('INSERT INTO event
+								(name, calendar_date, calendar_time, location, "idLocation", description, "isPublic", "idCreator", "event_type")
+								VALUES (?,?,?,?,?,?,true,?,?)');
+			$stmt->execute(array($name, $calendar_date, $calendar_time, $location, $idLocation, $description, $idCreator, $event_type));
+		
+	}}
 ?>

@@ -30,7 +30,7 @@
                           <h5 align="left" style="margin-top:2%">Basic Information</h5>
                           <div class="control-group required">
                             <label for="eventname" align = "left">Enter a name for the event:</label>
-                            <div class="control">
+                            <div class="control" >
                                 <input id="eventname" name="eventname" type="text" data-rules="required|text[true,false]" placeholder="Event Name">
                             </div>
                           </div>
@@ -185,6 +185,7 @@
 					<div align="center" style="margin:2%">
 						<input type="submit" name="sub" value="Create Event" class="ink-button success blue"/>
 					</div>
+					
                   </div>
                   
                 </li>
@@ -192,7 +193,9 @@
             <nav id="my-carousel-1-pagination" class="ink-navigation">
                 <ul class="pagination grey"> </ul>
             </nav>
+			
           </form>
+		  <div align="center" >{include file='../help/addEventHelp.tpl'}</div>
       </div>
     </div>
 
