@@ -240,7 +240,7 @@
         global $conn;
         
         $id = $_SESSION['iduser'];
-        
+
         if(is_null($type)){
             $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
         }
@@ -252,29 +252,49 @@
         
         if(strcmp($text, '') != 0){    
             $text = $text . ":*";
-            $query = "SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
-                  FROM event, to_tsquery(:name) AS query
-                  JOIN invitation ON (\"idUser\" = :id)
-                  WHERE \"isPublic\" IN ($avalHolders)
-                  AND event_type IN ($typeHolders)
-                  ORDER BY rank DESC";
+            
+            $query = 'SELECT coalesce(i."idEvent",p."idEvent") AS "idEvent",
+                             coalesce(i.name,p.name) AS name,
+                             coalesce(i.calendar_date,p.calendar_date) AS calendar_date,
+                             coalesce(i.calendar_time,p.calendar_time) AS calendar_time,
+                             coalesce(i.location,p.location) AS location,
+                             coalesce(i.description,p.description) AS description,
+                             coalesce(i."isPublic",p."isPublic") AS "isPublic",
+                             coalesce(i."idCreator",p."idCreator") AS "idCreator",
+                             coalesce(i.event_type,p.event_type) AS event_type,
+                             ts_rank(to_tsvector(name), query, 1) AS rank
+                      FROM to_tsquery(:name) AS query
+                      (SELECT event.* FROM event INNER JOIN invitation ON (invitation."idEvent" = event."idEvent" AND invitation."idUser" = :id)) i
+                      FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
+                      WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
+                      AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))
+                      ORDER BY rank DESC';
             
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         }else{
-            $query = "SELECT *
-                      FROM event
-                      JOIN invitation ON (\"idUser\" = :id)
-                      WHERE \"isPublic\" IN ($avalHolders)
-                      AND event_type IN ($typeHolders)";
+            $query = 'SELECT coalesce(i."idEvent",p."idEvent") AS "idEvent",
+                             coalesce(i.name,p.name) AS name,
+                             coalesce(i.calendar_date,p.calendar_date) AS calendar_date,
+                             coalesce(i.calendar_time,p.calendar_time) AS calendar_time,
+                             coalesce(i.location,p.location) AS location,
+                             coalesce(i.description,p.description) AS description,
+                             coalesce(i."isPublic",p."isPublic") AS "isPublic",
+                             coalesce(i."idCreator",p."idCreator") AS "idCreator",
+                             coalesce(i.event_type,p.event_type) AS event_type
+                      FROM (SELECT event.* FROM event INNER JOIN invitation ON (invitation."idEvent" = event."idEvent" AND invitation."idUser" = :id)) i
+                      FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
+                      WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
+                      AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))';
             
             $stmt = $conn->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         }
         
         $stmt->execute();
         $results = $stmt->fetchAll();
-        
+                
         return $results;
     }
 

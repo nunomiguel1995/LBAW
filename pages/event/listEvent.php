@@ -5,7 +5,8 @@
     include_once($BASE_DIR .'database/events.php');
 
     $event_list = [];
-
+    
+    unset($text);
     $text = $_POST["search_text_event"];
     $types = $_POST["eventType"];
     $avail = $_POST["availability"];

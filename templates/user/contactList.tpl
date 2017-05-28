@@ -3,10 +3,11 @@
 
 
 <div class="push-center xlarge-80 large-80 medium-80 tiny-100">
-<form action="#" class="ink-form">
+
+<form action="ContactList.php" class="ink-form" method="POST">
   <div class="control-group all-50 small-100 tiny-100 push-center">
     <div class="control append-button" role="search">
-      <span><input type="text" id="searchuser" placeholder="Search in Contact List"></span>
+      <span><input type="text" name="search_user_clOut" id="search_user_clOut" placeholder="Search in Contact List"></span>
       <button class="ink-button"><i class="fa fa-search"></i> Search</button>
     </div>
   </div>
@@ -19,10 +20,11 @@
         </div>
 
         <div class="modal-body" id="modalContent">
-          <form action="#" class="ink-form">
+
+        <form action="ContactList.php" class="ink-form" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
               <div class="control append-button" role="search">
-                <span><input type="text" id="searchuser" placeholder="Search in Contact List"></span>
+                <span><input type="text" name="search_user_clIn" id="search_user_clIn" placeholder="Search in Contact List"></span>
                 <button class="ink-button"><i class="fa fa-search"></i> Search</button>
               </div>
             </div>
@@ -74,16 +76,16 @@
                   <div class="xlarge-90 large-90 medium-100 tiny-100 push-center">
                       <div id="stacker-container" class="column-group">
                           <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column push-left">
-                              <img src= "{$contact.user.path}" width="50px" height="50px">
+                              <img src= "../../images/users/{$contact.path}" width="50px" height="50px">
                           </div>
                           <div class="xlarge-60 large-60 medium-50 tiny-100 stacker-column push-center">
-                              <a href="{$BASE_URL}pages/user/UserPage.php?id={$contact.user.idUser}"> {$contact.user.name} </a>
+                              <a href="{$BASE_URL}pages/user/UserPage.php?id={$contact.idUser}"> {$contact.name} </a>
                           </div>
                           <div class="xlarge-10 large-10 medium-20 tiny-100 stacker-column push-left" align="right">
                             <div class="ink-dropdown" data-target="#my-menu-dropdown-{$contact.idUser}" data-dismiss-after="5">
                                 <span><i class="fa fa-bars" aria-hidden="true"></i></span>
                                 <ul id="my-menu-dropdown-{$contact.idUser}" class="dropdown-menu">
-                                    <li ><a href="{$BASE_URL}pages/user/newMessage.php?id={$contact.user.idUser}">Send Message</a></li>
+                                    <li ><a href="{$BASE_URL}pages/user/newMessage.php?id={$contact.idUser}">Send Message</a></li>
                                     <li ><a href="javascript:deleteContactListUser({$listID},{$contact.idUser});">Delete Contact</a></li>
                                 </ul>
                             </div>
