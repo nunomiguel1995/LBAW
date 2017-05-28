@@ -42,6 +42,7 @@
                 <nav class="ink-navigation">
                     <ul class="menu horizontal black">
                       {if $USERNAME != 'admin'}
+					  <div id="th">
                         <li class="heading">
                           <a href= "{$BASE_URL}"> Home </a>
                         </li>
@@ -77,6 +78,7 @@
                             {include file='common/logIn.tpl'}
                           {/if}
                         </div>
+						</div>
 
                     </ul>
                 </nav>

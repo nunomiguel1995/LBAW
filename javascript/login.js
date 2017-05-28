@@ -11,7 +11,9 @@ $(document).ready(function() {
 			  window.location.href = "../../pages/admin/adminDashboard.php";
 		  }
           else if(response == "ok"){
+			   $('#th').load(document.URL +  ' #th');
 			   $('#logDiv').load(document.URL +  ' #logDiv');
+			   
 		  }else{
 			  alert("Wrong credentials!");
 			  
