@@ -5,29 +5,24 @@
     include_once($BASE_DIR .'database/events.php');
 
     $event_list = [];
-    
+
     unset($text);
     $text = $_POST["search_text_event"];
     $types = $_POST["eventType"];
     $avail = $_POST["availability"];
 
-    var_dump($_SESSION);
-
     if(count($_POST) == 1){
-        if(is_null($_SESSION["iduser"])){    
-            echo 'nulo';
-
+        if(is_null($_SESSION["iduser"])){
             $event_list = getEventsNotLoggedUser($text, null);
         }else{
             $event_list = getEventsLoggedUser($text, null, null);
-        } 
+        }
     }else{
         if(is_null($_SESSION["iduser"])){
-            echo 'nulo';
             $event_list = getEventsNotLoggedUser($text, $types);
         }else{
             $event_list = getEventsLoggedUser($text, $types, $avail);
-        } 
+        }
     }
 
     if(strcmp($_POST["filter"],"date") === 0){
