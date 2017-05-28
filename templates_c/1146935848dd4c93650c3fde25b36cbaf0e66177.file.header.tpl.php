@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-05-01 14:43:17
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-22 11:28:56
          compiled from "/opt/lbaw/lbaw1635/public_html/LBAW/templates/common/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:63814631458fcb27958ea68-54254485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1146935848dd4c93650c3fde25b36cbaf0e66177' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/LBAW/templates/common/header.tpl',
-      1 => 1493561421,
+      1 => 1495446178,
       2 => 'file',
     ),
   ),
@@ -19,8 +19,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_58fcb279772266_59648260',
   'variables' => 
   array (
-    'BASE_URL' => 0,
     'USERNAME' => 0,
+    'BASE_URL' => 0,
     'IDUSER' => 0,
   ),
   'has_nocache_code' => false,
@@ -44,34 +44,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/holder.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/ink-all.min.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.10/js/autoload.js"></script>
-        <script type="text/javascript" src="../ink-3.1.10/js/ink-all.js"></script>
-        <script type="text/javascript" src="../ink-3.1.10/js/autoload.js"></script>
-        <script type="text/javascript" src="../ink-3.1.10/js/ink.tabs.js"></script>
-        <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-javascript/main.js"></script>
-        <script>
-          var imagequery = new Ink.UI.ImageQuery('.imagequery', {
-            src: 'res/company.jpg',
-            queries: [
-              {
-                  label: 'tiny',
-                  width: 320
-              },
-              {
-                  label: 'medium',
-                  width: 960
-              },
-              {
-                  label: 'large',
-                  width: 1200
-              },
-              {
-                  label: 'xlarge',
-                  width: 1400
-              }
-            ]
-          });
-        </script>
+
+
         <style type="text/css">
           header h1 small:before  {
                 content: "|";
@@ -85,6 +59,7 @@ javascript/main.js"></script>
                 background: #ccc;
             }
         </style>
+
   </head>
 
   <body>
@@ -115,11 +90,16 @@ pages/event/addEvent.php" <?php } else { ?> "#" <?php }?> >Create</a></li>
 pages/user/UserPage.php?id=<?php echo $_smarty_tpl->tpl_vars['IDUSER']->value;?>
 " <?php } else { ?> "#" <?php }?> >My Profile </a></li>
                               <li><a href=  <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-pages/user/MyEvents.php" <?php } else { ?> "#" <?php }?> >My Events </a></li>
+pages/user/MyEvents.php?id=<?php echo $_smarty_tpl->tpl_vars['IDUSER']->value;?>
+" <?php } else { ?> "#" <?php }?> >My Events </a></li>
+                              <li><a href= <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+pages/user/Messages.php" <?php } else { ?> "#" <?php }?>> Messages </a></li>
+                              <li><a href= <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+pages/user/ContactList.php" <?php } else { ?> "#" <?php }?>> Contact List </a><li>
                             </ul>
                         </li>
                         <?php }?>
-                        <div  class="push-right">
+                        <div  class="push-right" id="logDiv">
                           <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?>
                             <?php echo $_smarty_tpl->getSubTemplate ('common/logOut.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 

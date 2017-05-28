@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-05-01 17:18:02
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-22 11:28:57
          compiled from "/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/searchevents.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:428045958fcb27b989f92-79183464%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9d8f185bcfe6d555dbbdfee7cf0588aba0cce54b' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/searchevents.tpl',
-      1 => 1493653150,
+      1 => 1494855030,
       2 => 'file',
     ),
   ),
@@ -49,11 +49,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <fieldset>
                         <legend>Type of event</legend>
                         <ul class="control unstyled align-center inline">
-                            <li><input type="checkbox" id="cb1" name="meeting" value="Meeting"><label for="cb">Meeting </label></li>
-                            <li><input type="checkbox" id="cb2" name="workshop" value="Workshop"><label for="cb">Workshop </label></li>
-                            <li><input type="checkbox" id="cb3" name="conference" value="Conference"><label for="cb">Conference </label></li>
-                            <li><input type="checkbox" id="cb4" name="social" value="Social Gathering"><label for="cb">Social Gathering </label></li>
-                            <li><input type="checkbox" id="cb5" name="lecture" value="Lecture"><label for="cb">Lecture </label></li>
+                            <li><input type="checkbox" id="cb1" name="eventType[]" value="Meeting"><label for="cb">Meeting </label></li>
+                            <li><input type="checkbox" id="cb2" name="eventType[]" value="Workshop"><label for="cb">Workshop </label></li>
+                            <li><input type="checkbox" id="cb3" name="eventType[]" value="Lecture/Conference"><label for="cb">Lecture/Conference </label></li>
+                            <li><input type="checkbox" id="cb4" name="eventType[]" value="SocialGathering"><label for="cb">Social Gathering </label></li>
+                            <li><input type="checkbox" id="cb5" name="eventType[]" value="KickOff"><label for="cb">Kickoff </label></li>
                         </ul>
                     </fieldset>
                 </div>
@@ -61,8 +61,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <fieldset>
                         <legend>Availability</legend>
                         <ul class="control unstyled">
-                            <li><input type="checkbox" name="availability[]" value="public"><label for="cb">Public </label></li>
-                            <li><input type="checkbox" name="availability[]" value="private"><label for="cb">Private </label></li>
+                            <li><input type="checkbox" name="availability[]" value="true"><label for="cb">Public </label></li>
+                            <li><input type="checkbox" name="availability[]" value="false"><label for="cb">Private </label></li>
                         </ul>
                     </fieldset>
                 </div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-05-01 16:39:38
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-27 21:31:24
          compiled from "/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/list_events.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:201514144158fcb5ea84c112-04039859%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '54e95d0b4042a1eff6cc5cfdef09f87ab77c32c5' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/LBAW/templates/event/list_events.tpl',
-      1 => 1493653159,
+      1 => 1495917073,
       2 => 'file',
     ),
   ),
@@ -19,11 +19,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_58fcb5ea9e63d4_63922967',
   'variables' => 
   array (
-    'USERNAME' => 0,
     'events' => 0,
     'e' => 0,
-    'public' => 0,
-    'p' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -37,7 +34,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <form class="ink-form" action="listEvent.php" method="POST">
     <div class="control-group all-50 small-100 tiny-100 push-center">
         <div class="control append-button" role="search">
-            <span><input type="text" name="search_text" id="name5" placeholder="Search for an event"></span>
+            <span><input type="text" name="search_text_event" id="name5" placeholder="Search for an event"></span>
             <button class="ink-button"><i class="fa fa-search"></i> Search</button>
         </div>
     </div>
@@ -49,11 +46,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <fieldset>
                         <legend>Type of event</legend>
                         <ul class="control unstyled align-center inline">
-                            <li><input type="checkbox" id="cb1" name="meeting" value="Meeting"><label for="cb">Meeting </label></li>
-                            <li><input type="checkbox" id="cb2" name="workshop" value="Workshop"><label for="cb">Workshop </label></li>
-                            <li><input type="checkbox" id="cb3" name="conference" value="Conference"><label for="cb">Conference </label></li>
-                            <li><input type="checkbox" id="cb4" name="social" value="Social Gathering"><label for="cb">Social Gathering </label></li>
-                            <li><input type="checkbox" id="cb5" name="lecture" value="Lecture"><label for="cb">Lecture </label></li>
+                            <li><input type="checkbox" id="cb1" name="eventType[]" value="Meeting"><label for="cb">Meeting </label></li>
+                            <li><input type="checkbox" id="cb2" name="eventType[]" value="Workshop"><label for="cb">Workshop </label></li>
+                            <li><input type="checkbox" id="cb3" name="eventType[]" value="Lecture/Conference"><label for="cb">Lecture/Conference </label></li>
+                            <li><input type="checkbox" id="cb4" name="eventType[]" value="SocialGathering"><label for="cb">Social Gathering </label></li>
+                            <li><input type="checkbox" id="cb5" name="eventType[]" value="KickOff"><label for="cb">Kickoff </label></li>
                         </ul>
                     </fieldset>
                 </div>
@@ -61,8 +58,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <fieldset>
                         <legend>Availability</legend>
                         <ul class="control unstyled">
-                            <li><input type="checkbox" name="availability[]" value="public"><label for="cb">Public </label></li>
-                            <li><input type="checkbox" name="availability[]" value="private"><label for="cb">Private </label></li>
+                            <li><input type="checkbox" name="availability[]" value="true"><label for="cb">Public </label></li>
+                            <li><input type="checkbox" name="availability[]" value="false"><label for="cb">Private </label></li>
                         </ul>
                     </fieldset>
                 </div>
@@ -83,52 +80,30 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <br>
     <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
     <tbody>
-        <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?>
-            <?php  $_smarty_tpl->tpl_vars['e'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['e']->_loop = false;
+        <?php  $_smarty_tpl->tpl_vars['e'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['e']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['events']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['e']->key => $_smarty_tpl->tpl_vars['e']->value) {
 $_smarty_tpl->tpl_vars['e']->_loop = true;
 ?>
-                <tr>
-                    <td>
-                        <a href="EventPage.php?id=<?php echo $_smarty_tpl->tpl_vars['e']->value['idEvent'];?>
+            <tr>
+                <td>
+                    <a href="EventPage.php?id=<?php echo $_smarty_tpl->tpl_vars['e']->value['idEvent'];?>
 "> <?php echo $_smarty_tpl->tpl_vars['e']->value['name'];?>
  </a>
-                        <?php if ($_smarty_tpl->tpl_vars['e']->value['isPublic']) {?>
-                            <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_date'];?>
+                    <?php if ($_smarty_tpl->tpl_vars['e']->value['isPublic']) {?>
+                        <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_date'];?>
  - <?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_time'];?>
  - Public Event</p>
-                        <?php } else { ?>
-                            <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_date'];?>
+                    <?php } else { ?>
+                        <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_date'];?>
  - <?php echo $_smarty_tpl->tpl_vars['e']->value['calendar_time'];?>
 </p>
-                        <?php }?>
-                        <?php echo $_smarty_tpl->tpl_vars['e']->value['description'];?>
+                    <?php }?>
+                    <?php echo $_smarty_tpl->tpl_vars['e']->value['description'];?>
 
-                    </td>
-                </tr>
-            <?php } ?>
-        <?php } else { ?>
-            <?php  $_smarty_tpl->tpl_vars['p'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['p']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['public']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['p']->key => $_smarty_tpl->tpl_vars['p']->value) {
-$_smarty_tpl->tpl_vars['p']->_loop = true;
-?>
-                <tr>
-                    <td>
-                        <a href="EventPage.php?id=<?php echo $_smarty_tpl->tpl_vars['p']->value['idEvent'];?>
-"> <?php echo $_smarty_tpl->tpl_vars['p']->value['name'];?>
- </a>
-                        <p class="fw-300"><?php echo $_smarty_tpl->tpl_vars['p']->value['calendar_date'];?>
- - <?php echo $_smarty_tpl->tpl_vars['p']->value['calendar_time'];?>
- - Public Event</p>
-                        <?php echo $_smarty_tpl->tpl_vars['p']->value['description'];?>
-
-                    </td>
-                </tr>
-            <?php } ?>
-        <?php }?>
-    
+                </td>
+            </tr>
+        <?php } ?>
     </tbody>
 </table>
 </div><?php }} ?>

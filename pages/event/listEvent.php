@@ -6,29 +6,37 @@
 
     $event_list = [];
 
+    $text = $_POST["search_text_event"];
     $types = $_POST["eventType"];
     $avail = $_POST["availability"];
 
     if(count($_POST) == 1){
-        $event_list = getEvents($_POST["search_text"]);
+        if(is_null($_SESSION["iduser"])){
+            $event_list = getEventsNotLoggedUser($text, null);
+        }else{
+            $event_list = getEventsLoggedUser($text, null, null);
+        } 
     }else{
-        $event_list = getEventsFilters($types, $avail);
-        
-        if(strcmp($_POST["filter"],"date") === 0){
-            usort($event_list, function($a1, $a2) {
-               $v1 = strtotime($a1['calendar_date']);
-               $v2 = strtotime($a2['calendar_date']);
-               return $v1 - $v2;
-            });
-        }else if(strcmp($_POST["filter"],"alphabetical") === 0) {
-            usort($event_list, function($a1, $a2) {
-               $v1 = $a1['name'];
-               $v2 = $a2['name'];
-               return $v1 > $v2;
-            });
-        }
+        if(is_null($_SESSION["iduser"])){
+            $event_list = getEventsNotLoggedUser($text, $types);
+        }else{
+            $event_list = getEventsLoggedUser($text, $types, $avail);
+        } 
     }
 
+    if(strcmp($_POST["filter"],"date") === 0){
+        usort($event_list, function($a1, $a2) {
+           $v1 = strtotime($a1['calendar_date']);
+           $v2 = strtotime($a2['calendar_date']);
+           return $v1 - $v2;
+        });
+    }else if(strcmp($_POST["filter"],"alphabetical") === 0) {
+        usort($event_list, function($a1, $a2) {
+           $v1 = $a1['name'];
+           $v2 = $a2['name'];
+           return $v1 > $v2;
+        });
+    }
 
     $smarty->assign('public', $public);
     $smarty->assign('events', $event_list);

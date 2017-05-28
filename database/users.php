@@ -93,4 +93,41 @@ function getUserType($username){
 	return $result['user_type'];
 	
 }
+
+function getUsersByName($name){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
+                            FROM \"appUser\", to_tsquery(:name) AS query
+                            ORDER BY rank DESC");
+    $name = $name.":*";
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR, strlen($name));
+    $stmt->execute();
+    $results = $stmt->fetchAll();
+
+    return $results;
+}
+
+function getUserFilters($name, $department, $position, $typeUsers){
+    global $conn;
+    
+    if(is_null($typeUsers)){
+        $typeUsers = array('Collaborator', 'Supervisor', 'Director');   
+    }
+    $typeHolders = "'".implode("','", array_values($typeUsers))."'";
+    
+    $query = "SELECT DISTINCT \"idUser\", name, \"appUser\".\"idInfo\"
+                FROM \"appUser\"
+                JOIN \"companyInfo\" ON (\"appUser\".\"idInfo\" = \"companyInfo\".\"idInfo\")
+                WHERE name ILIKE '%' || ? || '%'
+                AND \"companyInfo\".department ILIKE '%' || ? || '%'
+                AND \"companyInfo\".position ILIKE '%' || ? || '%'
+                AND user_type IN ($typeHolders)";
+    $stmt = $conn->prepare($query); 
+    $stmt->execute(array($name, $department, $position));
+
+    $results = $stmt->fetchAll();
+
+    return $results;
+}
 ?>

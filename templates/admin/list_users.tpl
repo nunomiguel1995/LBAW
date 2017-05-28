@@ -49,10 +49,10 @@
             <div id="tabContent">
               <div id="manageUsers" class="tabs-content" style="margin-top:0%" >
                 <div class="ink-grid gutters" id="usersearchform">
-                  <form action="#" class="ink-form">
+                  <form action="adminDashboard.php" class="ink-form" method="POST">
                     <div class="control-group all-70 small-100 tiny-100 push-center">
                       <div class="control append-button" role="search">
-                        <span><input type="text" id="searchuser" placeholder="Search for an user"></span>
+                        <span><input type="text" name="search_text_user" id="searchuser" placeholder="Search for an user"></span>
                         <button class="ink-button"><i class="fa fa-search"></i> Search</button>
                       </div>
                     </div>
@@ -65,10 +65,10 @@
                             <div class="control-group">
                               <label for="companyinfo">Company Information</label>
                                <div class="control" style="margin:2%">
-                                   <input id="companyinfo" name="companyinfo" type="text" placeholder="Department">
+                                   <input id="companyinfo" name="department" type="text" placeholder="Department">
                                </div>
                                <div class="control" style="margin:2%">
-                                    <input id="companyinfo" name="companyinfo" type="text" placeholder="Position">
+                                    <input id="companyinfo" name="position" type="text" placeholder="Position">
                                 </div>
                              </div>
                            </div>
@@ -77,9 +77,9 @@
                                <label for="companyinfo">Type of user</label>
                                 <div class="control">
                                   <ul class="control unstyled">
-                                      <li><input type="checkbox" id="type1" name="type1" value="Collaborator"><label for="cb5">Collaborator</label></li>
-                                      <li><input type="checkbox" id="type2" name="type2" value="Supervisor"><label for="cb4">Supervisor</label></li>
-                                      <li><input type="checkbox" id="type3" name="type3" value="Director"><label for="cb3">Director</label></li>
+                                      <li><input type="checkbox" id="type1" name="userType[]" value="Collaborator"><label for="cb5">Collaborator</label></li>
+                                      <li><input type="checkbox" id="type2" name="userType[]" value="Supervisor"><label for="cb4">Supervisor</label></li>
+                                      <li><input type="checkbox" id="type3" name="userType[]" value="Director"><label for="cb3">Director</label></li>
                                   </ul>
                                 </div>
                               </div>
