@@ -1,7 +1,9 @@
 <?php
 $fullname = $_POST['fullname'];
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = $_POST['newpassword'];
+var_dump($password);
+$options = ['cost' => 12];
 $id = $_GET['id'];
 
 include_once('../../config/init.php');
@@ -33,8 +35,9 @@ if(strcmp($dbemail, $email) !== 0){
 }
 
 if($password != NULL){
+  $hpass = password_hash($password,PASSWORD_DEFAULT,$options);
   $stmt= $conn->prepare('UPDATE "appUser" SET password= ? WHERE "idUser" = ?');
-  $stmt->execute(array($password,$id));
+  $stmt->execute(array($hpass,$id));
 }
 
 if(isset($_FILES['image'])){

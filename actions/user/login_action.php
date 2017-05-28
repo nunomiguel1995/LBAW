@@ -10,8 +10,8 @@
 
 	 if(isAdminLogIn($userName, $password)){
 	 	$_SESSION['username'] = $userName;
-		echo "ok";
-	 	header('Location: ' . $BASE_URL.'pages/admin/adminDashboard.php');
+		echo "ok2";
+	 	//header('Location: ' . $BASE_URL.'pages/admin/adminDashboard.php');
 	}else if(verifyLogin($userName,$password)){
 		$userid = getUserByUsername($userName);
 		$_SESSION['username'] = $userName;

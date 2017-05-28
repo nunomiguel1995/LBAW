@@ -222,11 +222,6 @@ CREATE INDEX "Post_text_idx" ON post USING gin (to_tsvector('english', post_text
 
 
 --TRIGGER
-CREATE TRIGGER create_contact_list AFTER INSERT ON "appUser"
-	BEGIN
-		INSERT INTO "contactList" ("idOwner") VALUES (currval(pg_get_serial_sequence("appUser","idUser")));
-	END;
-
 CREATE OR REPLACE FUNCTION process_contact_list() RETURNS TRIGGER AS $contact_list$
     BEGIN
 		INSERT INTO "contactList" ("idOwner") VALUES (currval('"appUser_idUser_seq"'::regclass)) ;
@@ -235,5 +230,5 @@ CREATE OR REPLACE FUNCTION process_contact_list() RETURNS TRIGGER AS $contact_li
 $contact_list$ LANGUAGE plpgsql;
 
 CREATE TRIGGER contact_list
-AFTER INSERT OR UPDATE OR DELETE ON "appUser"
+AFTER INSERT ON "appUser"
     FOR EACH ROW EXECUTE PROCEDURE process_contact_list();
