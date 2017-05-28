@@ -11,14 +11,19 @@
     $types = $_POST["eventType"];
     $avail = $_POST["availability"];
 
+    var_dump($_SESSION);
+
     if(count($_POST) == 1){
-        if(is_null($_SESSION["iduser"])){
+        if(is_null($_SESSION["iduser"])){    
+            echo 'nulo';
+
             $event_list = getEventsNotLoggedUser($text, null);
         }else{
             $event_list = getEventsLoggedUser($text, null, null);
         } 
     }else{
         if(is_null($_SESSION["iduser"])){
+            echo 'nulo';
             $event_list = getEventsNotLoggedUser($text, $types);
         }else{
             $event_list = getEventsLoggedUser($text, $types, $avail);

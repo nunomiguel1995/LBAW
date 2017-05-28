@@ -300,7 +300,6 @@
 
     function getEventsNotLoggedUser($text, $type){
         global $conn;
-        
         if(is_null($type)){
             $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
         }
@@ -310,8 +309,8 @@
             $text = $text . ":*";
             $query = "SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
                   FROM event, to_tsquery(:name) AS query
-                  WHERE \"isPublic\" = true
-                  AND event_type IN ($typeHolders)
+                  WHERE event_type IN ($typeHolders)
+                  AND \"isPublic\" = true
                   ORDER BY rank DESC";
             
             $stmt = $conn->prepare($query);
@@ -319,8 +318,8 @@
         }else{
             $query = "SELECT *
                       FROM event
-                      WHERE \"isPublic\" = true
-                      AND event_type IN ($typeHolders)";
+                      WHERE event_type IN ($typeHolders)
+                      AND \"isPublic\" = true ";
             
             $stmt = $conn->prepare($query);
         }
