@@ -1,41 +1,39 @@
 <?php
-  include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/users.php');
+    include_once('../../config/init.php');
+    include_once($BASE_DIR .'database/users.php');
 
-  $id = $_SESSION['iduser'];
-  $idList = getContactListID($id);
+    $id = $_SESSION['iduser'];
+    $idList = getContactListID($id);
 
-  $contactUsers = getAllContactListUsers($idList);
-  foreach ($contactUsers as $key => $contact) {
-    unset($user);
-    unset($photo);
-    $photo = getPhotoName($contactUsers[$key]["idUser"]);
-    if(is_null($photo) ){
-        $path ="../../images/users/user.png";
+    $searchTextOut = $_POST["search_user_clOut"];
+    $searchTextIn = $_POST["search_user_clIn"];
+    if(strcmp($searchTextOut, '') === 0){
+        $contactUsers = getAllContactListUsers($idList);
     }else{
-        $path = "../../images/users/".$photo;
+        $contactUsers = getContactListUsersText($idList, $searchTextOut);
     }
-    $user = getUser($contactUsers[$key]["idUser"]);
-    $contactUsers[$key]['user'] = $user;
-    $contactUsers[$key]['user']['path']= $path;
-  }
 
-  $users = getRemainUsers($idList);
-  foreach ($users as $key => $user) {
-    unset($photo);
-    $photo = getPhotoName($user["idUser"]);
-    if(is_null($photo) ){
-        $path ="../../images/users/user.png";
-    }else{
-        $path = "../../images/users/".$photo;
+    if(strcmp($searchTextIn, '') === 0){
+        $users = getRemainUsers($idList);
+    }/*else{
+        $contactUsers = getContactListUsersText($idList, $searchTextOut);
+    }*/
+    
+    foreach ($users as $key => $user) {
+        unset($photo);
+        $photo = getPhotoName($user["idUser"]);
+        if(is_null($photo) ){
+            $path ="../../images/users/user.png";
+        }else{
+            $path = "../../images/users/".$photo;
+        }
+        $users[$key]['path'] = $path;
     }
-    $users[$key]['path'] = $path;
-  }
 
-  $smarty->assign('users',$users);
-  $smarty->assign('listID',$idList);
-  $smarty->assign('contacts',$contactUsers);
-  $smarty->assign('userID',$id);
-  $smarty->display('user/contactList.tpl');
+    $smarty->assign('users',$users);
+    $smarty->assign('listID',$idList);
+    $smarty->assign('contacts',$contactUsers);
+    $smarty->assign('userID',$id);
+    $smarty->display('user/contactList.tpl');
 
  ?>

@@ -42,6 +42,7 @@
                 <nav class="ink-navigation">
                     <ul class="menu horizontal black">
                       {if $USERNAME != 'admin'}
+					  <div id="th">
                         <li class="heading">
                           <a href= "{$BASE_URL}"> Home </a>
                         </li>
@@ -58,9 +59,17 @@
                               <li><a href= {if $USERNAME}  "{$BASE_URL}pages/user/UserPage.php?id={$IDUSER}" {else} "#" {/if} >My Profile </a></li>
                               <li><a href=  {if $USERNAME} "{$BASE_URL}pages/user/MyEvents.php" {else} "#" {/if} >My Events </a></li>
                               <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/Messages.php" {else} "#" {/if}> Messages </a></li>
-                              <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/ContactList.php" {else} "#" {/if}> Contact List </a><li>
+                              <li><a href= {if $USERNAME} "{$BASE_URL}pages/user/ContactList.php" {else} "#" {/if}> Contact List </a></li>
                             </ul>
                         </li>
+							
+						<li>
+						<a href="#">Help</a>
+							<ul class = "submenu">
+                              <li><a href="{$BASE_URL}pages/help/UserHelp.php"  >User Help </a></li>
+                              <li><a href="{$BASE_URL}pages/help/EventHelp.php"  >Event Help </a></li>
+							  </ul>
+						</li>
                         {/if}
                         <div  class="push-right" id="logDiv">
                           {if $USERNAME}
@@ -69,6 +78,7 @@
                             {include file='common/logIn.tpl'}
                           {/if}
                         </div>
+						</div>
 
                     </ul>
                 </nav>

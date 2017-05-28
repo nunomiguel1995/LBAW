@@ -28,7 +28,7 @@
     $sentMessages[$key]['photo'] = $path;
   }
 
-  $contactListID = getContactListID($id);
+  /*$contactListID = getContactListID($id);
   $contacts = getAllContactListUsers($contactListID);
   foreach ($contacts as $key => $contact) {
     unset($user);
@@ -42,7 +42,7 @@
     $user = getUser($contacts[$key]["idUser"]);
     $contacts[$key]['user'] = $user;
     $contacts[$key]['user']['path']= $path;
-  }
+  }*/
 
   $smarty->assign('inbox',$inbox);
   $smarty->assign('sentMessages',$sentMessages);

@@ -1,6 +1,8 @@
 <?php
 	include_once('../../config/init.php');
-	$smarty->display('help/helptest.tpl');
+	$smarty->display('common/header.tpl');
+	$smarty->display('help/helppage.tpl');
+	$smarty->display('common/footer.tpl');
 
 
 ?>

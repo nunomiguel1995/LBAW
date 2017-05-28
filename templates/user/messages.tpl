@@ -13,10 +13,11 @@
         </div>
 
         <div class="modal-body" id="modalContent">
-          <form action="#" class="ink-form">
+          <!--> Form das mensagens <!-->
+            <form action="ContactList.php" class="ink-form" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
               <div class="control append-button" role="search">
-                <span><input type="text" id="searchuser" placeholder="Search in Contact List"></span>
+                <span><input name="search_user_messages" type="text" id="searchuser" placeholder="Search in Contact List"></span>
                 <button class="ink-button"><i class="fa fa-search"></i> Search</button>
               </div>
             </div>

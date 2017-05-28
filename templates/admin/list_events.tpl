@@ -3,7 +3,7 @@
         <form class="ink-form" action="adminDashboard.php" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
                 <div class="control append-button" role="search">
-                    <span><input type="text" name="search_text" id="name5" placeholder="Search for an event"></span>
+                    <span><input type="text" name="search_text_event" id="name5" placeholder="Search for an event"></span>
                     <button class="ink-button"><i class="fa fa-search"></i> Search</button>
                 </div>
             </div>
@@ -47,21 +47,23 @@
             </div>
         </form>
         <br>
-        <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word">
-            <tbody>
-                {foreach $events as $event}
-                    <tr>
-                        <td >
-                            <span class="ink-tooltip push-right" data-tip-text="Delete" data-tip-color="grey">
-                                <i class="fa fa-times" aria-hidden="true" onclick="onClickDeleteEvent('{$event.idEvent}')"></i>
-                            </span><br>
-                            <a href="#">{$event.name}</a>
-                            <h6 class="fw-300">{$event.calendar_date} {$event.calendar_time}</h6>
-                            <p> {$event.description} </p>
-                        </td>
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
+        <div class="xlarge-80 large-70 medium-100 tiny-100 push-center">
+            <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="10" data-pagination="#myTablePagination">
+                <tbody>
+                    {foreach $events as $event}
+                        <tr>
+                            <td >
+                                <span class="ink-tooltip push-right" data-tip-text="Delete" data-tip-color="grey">
+                                    <i class="fa fa-times" aria-hidden="true" onclick="onClickDeleteEvent('{$event.idEvent}')"></i>
+                                </span><br>
+                                <a href="#">{$event.name}</a>
+                                <h6 class="fw-300">{$event.calendar_date} {$event.calendar_time}</h6>
+                                <p> {$event.description} </p>
+                            </td>
+                        </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

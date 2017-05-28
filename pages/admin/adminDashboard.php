@@ -4,7 +4,18 @@
 
     include_once($BASE_DIR .'database/users.php');
 
-    $users = getAllUsers();
+    $text = $_POST["search_text_user"];
+    $department = $_POST["department"];
+    $position = $_POST["position"];
+    $typeUsers = $_POST["userType"];
+
+    if(count($_POST) > 3){
+        $users = getUserFilters($text, $department, $position, $typeUsers);
+    }else if(strcmp($text,'') != 0){
+        $users = getUsersByName($text);
+    }else{
+        $users = getAllUsers();
+    }
 
     foreach ($users as $key => $user) {
         unset($photo);
@@ -22,29 +33,26 @@
 
     include_once($BASE_DIR .'database/events.php');
 
-    $event_list = getAllEvents();
-
+    $text = $_POST["search_text_event"];
     $types = $_POST["eventType"];
     $avail = $_POST["availability"];
+    $filter = $_POST["filter"];
+    $event_list = getEventsAdmin($text, $types, $avail);
 
-    if(count($_POST) != 1){
-        $event_list = getEventsFilters($types, $avail);
-        
-        if(strcmp($_POST["filter"],"date") === 0){
-            usort($event_list, function($a1, $a2) {
-               $v1 = strtotime($a1['calendar_date']);
-               $v2 = strtotime($a2['calendar_date']);
-               return $v1 - $v2;
-            });
-        }else if(strcmp($_POST["filter"],"alphabetical") === 0) {
-            usort($event_list, function($a1, $a2) {
-               $v1 = $a1['name'];
-               $v2 = $a2['name'];
-               return $v1 > $v2;
-            });
-        }
+    if(strcmp($_POST["filter"],"date") === 0){
+        usort($event_list, function($a1, $a2) {
+           $v1 = strtotime($a1['calendar_date']);
+           $v2 = strtotime($a2['calendar_date']);
+           return $v1 - $v2;
+        });
+    }else if(strcmp($_POST["filter"],"alphabetical") === 0) {
+        usort($event_list, function($a1, $a2) {
+           $v1 = $a1['name'];
+           $v2 = $a2['name'];
+           return $v1 > $v2;
+        });
     }
-
+    
     $smarty->assign('events', $event_list);
     $smarty->display('admin/list_events.tpl');
 

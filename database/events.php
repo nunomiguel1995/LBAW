@@ -107,48 +107,6 @@
         return $stmt->fetchAll();
     }
 
-    function getEvents($text){
-        global $conn;
-        $id_user = $_SESSION['iduser'];
-
-        //only public events
-        if(is_null($id_user)){
-            $stmt = $conn->prepare('SELECT
-                                        *,
-                                        ts_rank_cd(to_tsvector(name), query) AS rank
-                                    FROM
-                                        event,
-                                        to_tsquery(?) AS query
-                                    WHERE
-                                        "isPublic" = true
-                                    AND
-                                        name ILIKE \'%\' || ? || \'%\'
-                                    ORDER BY
-                                        rank DESC');
-            $stmt->execute(array($text,$text));
-        }else{//public events AND user events
-            $stmt = $conn->prepare('SELECT
-                                        *,
-                                        ts_rank_cd(to_tsvector(name), query) AS rank
-                                    FROM
-                                        event,
-                                        to_tsquery(?) AS query
-                                    WHERE
-                                        "idEvent" IN (SELECT "idEvent" FROM invitation WHERE "idUser" = ?)
-                                    OR
-                                        "isPublic" = true
-                                    AND
-                                        name ILIKE \'%\' || ? || \'%\'
-                                    ORDER BY rank DESC');
-            $stmt->execute(array($text,$id_user,$text));
-        }
-
-        $results = $stmt->fetchAll();
-
-        return $results;
-
-    }
-
     function getUserUpcomingEvents($idUser){
       global $conn;
       $stmt = $conn->prepare('SELECT *
@@ -240,10 +198,48 @@
 		$stmt->execute(array($idEvent));
 		return $stmt->fetchAll();
 	}
-
-	function getEventsFilters($type, $availability){
+	
+    function getEventsAdmin($text, $type, $availability){
         global $conn;
-        $id_user = $_SESSION['iduser'];
+        
+        if(is_null($type)){
+            $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
+        }
+        if(is_null($availability)){
+            $availability = array('true','false');
+        }
+        $typeHolders = "'".implode("','", array_values($type))."'";
+        $avalHolders = "'".implode("','", array_values($availability))."'";
+        
+        if(strcmp($text, '') != 0){
+            $text = $text . ":*";
+            $query = "SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
+                  FROM event, to_tsquery(:name) AS query
+                  WHERE \"isPublic\" IN ($avalHolders)
+                  AND event_type IN ($typeHolders)
+                  ORDER BY rank DESC";
+            
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
+        }else{
+            $query = "SELECT *
+                      FROM event
+                      WHERE \"isPublic\" IN ($avalHolders)
+                      AND event_type IN ($typeHolders)";
+            
+            $stmt = $conn->prepare($query);
+        }
+        
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        
+        return $results;
+    }
+
+    function getEventsLoggedUser($text, $type, $availability){
+        global $conn;
+        
+        $id = $_SESSION['iduser'];
 
         if(is_null($type)){
             $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
@@ -251,31 +247,121 @@
         if(is_null($availability)){
             $availability = array('true','false');
         }
-
         $typeHolders = "'".implode("','", array_values($type))."'";
         $avalHolders = "'".implode("','", array_values($availability))."'";
-        $queryWithoutSession = "SELECT * FROM event WHERE event_type IN ($typeHolders) AND \"isPublic\"=true";
-        $queryWithSession = "SELECT * FROM event WHERE \"idEvent\" IN (SELECT \"idEvent\" FROM invitation WHERE \"idUser\" = ?) OR \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
-        $queryAdmin = "SELECT * FROM event WHERE \"isPublic\" IN ($avalHolders) AND event_type IN ($typeHolders)";
-
-        if(strcmp($_SESSION['username'], "admin") === 0){
-            $stmt = $conn->prepare($queryAdmin);
-            $stmt->execute();
+        
+        if(strcmp($text, '') != 0){    
+            $text = $text . ":*";
+            
+            $query = 'SELECT coalesce(i."idEvent",p."idEvent") AS "idEvent",
+                             coalesce(i.name,p.name) AS name,
+                             coalesce(i.calendar_date,p.calendar_date) AS calendar_date,
+                             coalesce(i.calendar_time,p.calendar_time) AS calendar_time,
+                             coalesce(i.location,p.location) AS location,
+                             coalesce(i.description,p.description) AS description,
+                             coalesce(i."isPublic",p."isPublic") AS "isPublic",
+                             coalesce(i."idCreator",p."idCreator") AS "idCreator",
+                             coalesce(i.event_type,p.event_type) AS event_type,
+                             ts_rank(to_tsvector(coalesce(i.name,p.name)), query, 1) AS rank
+                      FROM to_tsquery(:name) AS query,
+                      (SELECT event.* FROM event INNER JOIN invitation ON (invitation."idEvent" = event."idEvent" AND invitation."idUser" = :id)) i
+                      FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
+                      WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
+                      AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))
+                      ORDER BY rank DESC';
+            
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         }else{
-            if(is_null($id_user)){
-                $stmt = $conn->prepare($queryWithoutSession);
-                $stmt->execute();
-            }else{
-                $stmt = $conn->prepare($queryWithSession);
-                $stmt->execute(array($id_user));
-            }
+            $query = 'SELECT coalesce(i."idEvent",p."idEvent") AS "idEvent",
+                             coalesce(i.name,p.name) AS name,
+                             coalesce(i.calendar_date,p.calendar_date) AS calendar_date,
+                             coalesce(i.calendar_time,p.calendar_time) AS calendar_time,
+                             coalesce(i.location,p.location) AS location,
+                             coalesce(i.description,p.description) AS description,
+                             coalesce(i."isPublic",p."isPublic") AS "isPublic",
+                             coalesce(i."idCreator",p."idCreator") AS "idCreator",
+                             coalesce(i.event_type,p.event_type) AS event_type
+                      FROM (SELECT event.* FROM event INNER JOIN invitation ON (invitation."idEvent" = event."idEvent" AND invitation."idUser" = :id)) i
+                      FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
+                      WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
+                      AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))';
+            
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         }
-
-        $result = $stmt->fetchAll();
-
-        return $result;
+        
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+                        
+        return $results;
     }
 
+    function getEventsNotLoggedUser($text, $type){
+        global $conn;
+        if(is_null($type)){
+            $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
+        }
+        $typeHolders = "'".implode("','", array_values($type))."'";
+        
+        if(strcmp($text, '') != 0){    
+            $text = $text . ":*";
+            $query = "SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
+                  FROM event, to_tsquery(:name) AS query
+                  WHERE event_type IN ($typeHolders)
+                  AND \"isPublic\" = true
+                  ORDER BY rank DESC";
+            
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
+        }else{
+            $query = "SELECT *
+                      FROM event
+                      WHERE event_type IN ($typeHolders)
+                      AND \"isPublic\" = true ";
+            
+            $stmt = $conn->prepare($query);
+        }
+        
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        
+        return $results;
+    }
+
+    function getEvents($text, $type, $avail){
+        global $conn;
+        $id_user = $_SESSION['iduser'];
+        $text = $text.":*";
+
+        //only public events
+        if(is_null($id_user)){
+           $query = 'SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
+                     FROM event, to_tsquery(:name) AS query
+                     WHERE "isPublic" = true
+                     ORDER BY rank DESC';
+            
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
+        }else{//public events AND user events
+            $query = 'SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
+                      FROM event, to_tsquery(:name) AS query
+                      JOIN invitation ON ("idUser" = :id)
+                      WHERE "isPublic" = true
+                      ORDER BY rank DESC';
+            
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
+            $stmt->bindParam(':id', $id_user, PDO::PARAM_INT);
+        }        
+
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+
+        return $results;
+    }
+	
 	function getEventByName($name){
 		global $conn;
 		 $stmt = $conn->prepare('SELECT "idEvent"
