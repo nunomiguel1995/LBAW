@@ -262,8 +262,8 @@
                              coalesce(i."isPublic",p."isPublic") AS "isPublic",
                              coalesce(i."idCreator",p."idCreator") AS "idCreator",
                              coalesce(i.event_type,p.event_type) AS event_type,
-                             ts_rank(to_tsvector(name), query, 1) AS rank
-                      FROM to_tsquery(:name) AS query
+                             ts_rank(to_tsvector(coalesce(i.name,p.name)), query, 1) AS rank
+                      FROM to_tsquery(:name) AS query,
                       (SELECT event.* FROM event INNER JOIN invitation ON (invitation."idEvent" = event."idEvent" AND invitation."idUser" = :id)) i
                       FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
                       WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
@@ -294,7 +294,7 @@
         
         $stmt->execute();
         $results = $stmt->fetchAll();
-                
+                        
         return $results;
     }
 
