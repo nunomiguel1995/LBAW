@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS post CASCADE;
 DROP TABLE IF EXISTS "postComment" CASCADE;
 DROP TABLE IF EXISTS vote CASCADE;
 DROP TABLE IF EXISTS notification CASCADE;
+DROP TABLE IF EXISTS "eventNotification" CASCADE;
 
 DROP TYPE IF EXISTS "userType" CASCADE;
 DROP TYPE IF EXISTS "eventType" CASCADE;
@@ -183,6 +184,13 @@ CREATE TABLE notification(
 	name boolean DEFAULT false
 );
 
+CREATE TABLE "eventNotification"(
+  "idNotification" serial PRIMARY KEY NOT NULL,
+  "idUser" integer NOT NULL REFERENCES "appUser",
+  "idEvent" integer NOT NULL REFERENCES event,
+  solve boolean DEFAULT false
+);
+
 --INDEXES
 CREATE UNIQUE INDEX "AppUser_pkey" ON "appUser" USING btree ("idUser");
 CREATE UNIQUE INDEX "appUser_username_email_key" ON "appUser" USING btree (username, email);
@@ -232,3 +240,15 @@ $contact_list$ LANGUAGE plpgsql;
 CREATE TRIGGER contact_list
 AFTER INSERT ON "appUser"
     FOR EACH ROW EXECUTE PROCEDURE process_contact_list();
+
+
+CREATE OR REPLACE FUNCTION process_event_notification() RETURNS TRIGGER AS $event_notification$
+    BEGIN
+		INSERT INTO "eventNotification" ("idUser","idEvent") VALUES (NEW."idUser", NEW."idEvent") ;
+		RETURN NEW;
+    END;
+$event_notification$ LANGUAGE plpgsql;
+
+CREATE TRIGGER event_notification
+AFTER INSERT ON "invitation"
+    FOR EACH ROW EXECUTE PROCEDURE process_event_notification();

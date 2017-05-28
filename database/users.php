@@ -89,8 +89,8 @@ function getUserType($username){
 							WHERE "username"= ?');
 	$stmt->execute(array($username));
 	$result = $stmt->fetch();
-	
+
 	return $result['user_type'];
-	
+
 }
 ?>
