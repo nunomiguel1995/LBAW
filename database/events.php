@@ -121,7 +121,7 @@
 
 	function getPostComments($idPost){
 		global $conn;
-		$stmt = $conn->prepare('SELECT comment_text, name, "idCreator"
+		$stmt = $conn->prepare('SELECT "idComment", comment_text, name, "idCreator"
 								FROM "postComment"
 								INNER JOIN "appUser"
 								ON "postComment"."idCreator" = "appUser"."idUser"

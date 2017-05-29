@@ -123,6 +123,10 @@
 				  </div>
 				  <div class="all-100" style="padding-left:0%; padding-right: 2%">
 					<p align="justify" style="margin-bottom: 5px">{$comment.comment_text}</p>
+					{if $comment.idCreator == $current_user}
+					<a style="text-decoration: none" href="../../actions/events/deleteComment.php?idComment={$comment.idComment}&idEvent={$event_id}">Delete Comment</a>
+					{/if}
+					
 				  </div>
 				</div>
 			{/foreach}
