@@ -22,7 +22,7 @@
 
         <div class="modal-body" id="modalContent">
 
-        <form action="ContactList.php" class="ink-form" method="POST">
+        <form id="allFinds" action="ContactList.php" class="ink-form" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
               <div class="control append-button" role="search">
                 <span><input type="text" name="search_user_clIn" id="search_user_clIn" placeholder="Search in Contact List"></span>
