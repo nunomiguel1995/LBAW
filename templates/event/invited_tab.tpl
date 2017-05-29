@@ -19,6 +19,17 @@
 							</span>
 						</div>
 						{/if}
+						{if $inv.accepted == "true"}
+						<div class="push-right" style="margin-top:3%;margin-left:3%">
+							<span>
+								<img src="../../images/assets/check_button.png" style="height:20px;width:20px">
+							</span>
+						</div>
+						
+						<div class="push-right" style="margin-top:3%;margin-left:2px">
+							<h6><small>Going</small></h6>
+						</div>
+						{/if}
 					</div>
 				</div>
 			</td>
