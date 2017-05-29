@@ -1,4 +1,5 @@
 {include file='common/header.tpl'}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="../../javascript/contactList.js"></script>
 
 
@@ -30,7 +31,7 @@
             </div>
           </form>
 
-          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
+          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination" id="addingUsers">
             <tbody>
                 {foreach $users as $user}
                   {if $user.idUser != $userID}
@@ -68,7 +69,7 @@
   {/if}
 
   <div class="xlarge-60 large-60 medium-100 tiny-100 push-center">
-    <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
+    <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination" id="deletingUsers">
       <tbody>
           {foreach $contacts as $contact}
           <tr>

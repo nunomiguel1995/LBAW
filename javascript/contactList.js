@@ -11,6 +11,18 @@ function deleteContactListUser(idList,idUser){
 }
 
 function addUser(idList,idUser){
-  var linkref = "../../actions/user/addContactList.php?idList=" + idList+"&idUser="+idUser;
-  window.location.href = linkref;
+  
+  
+  $.ajax({
+       type: "GET",
+       url: "../../actions/user/addContactList.php?idList=" + idList+"&idUser="+idUser,
+       data: $(this).serialize(),
+       success: function(response)
+       {
+		  $('#addingUsers').load(document.URL +  ' #addingUsers');
+		  $('#deletingUsers').load(document.URL + ' #deletingUsers');
+		  
+          
+       }
+   });
 }
