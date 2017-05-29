@@ -6,6 +6,10 @@
 				<a href="../user/UserPage.php?id={$organizer.idUser}"><p>{$organizer.name}</p></a>
 				<h3>Type of Event</h3>
 				<p>{$event.event_type}</p>
+				{if $event.idCreator == $current_user}
+				<br>
+				<a style="text-decoration: none" onclick="AlertIt('../../actions/events/deleteEvent.php?idEvent={$event.idEvent}')" > <h3 style="color:red">DELETE EVENT</h3></a>
+				{/if}
 			</div>
 			<div class="all-50 small-100 tiny-100">
 				<h3>Description</h3>

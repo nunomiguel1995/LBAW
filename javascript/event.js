@@ -108,6 +108,12 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+function AlertIt(link) {
+	var answer = confirm ("Please click on OK to continue.")
+	if (answer)
+	window.location=link;
+}
+
 
 
 window.onload = changeToPost();
