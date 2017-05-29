@@ -38,7 +38,7 @@
                     <td >
                       <div id="stacker-container" class="column-group push-center">
                         <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column" style="margin:2%">
-                          <img src="../../images/users/{$user.path}" width="50px" height="50px">
+                          <img src="{$user.path}" width="50px" height="50px">
                         </div>
                         <div class="xlarge-60 large-60 medium-60 tiny-100 stacker-column" style="margin-top:3%">
                           <a href="{$BASE_URL}pages/user/UserPage.php?id={$user.idUser}">{$user.name}</a>

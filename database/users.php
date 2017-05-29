@@ -103,11 +103,15 @@ function getContactListUsersText($idList, $name){
 
 function getRemainUsersText($idList, $text){
   global $conn;
-  $stmt = $conn->prepare('SELECT "appUser"."idUser" AS "idUser",
-                                 "appUser".name,
-                                 doc.name AS path,
-                                 ts_rank(to_tsvector("appUser".name), query, 1) AS rank
-                          FROM to_tsquery(:name) AS query, "appUser"
+
+  $text = $text . ":*";
+
+  $stmt = $conn->prepare('SELECT DISTINCT "appUser"."idUser",
+                                          "appUser".name,
+                                          doc.name AS path,
+                                          ts_rank(to_tsvector("appUser".name), query, 1) AS rank
+                          FROM to_tsquery(:name) AS query
+                          NATURAL JOIN "appUser"
                           LEFT JOIN "contactListUser" ON ("idContactList" = :id AND "contactListUser"."idUser" = "appUser"."idUser")
                           LEFT JOIN doc ON (doc."idUser" = "appUser"."idUser")
                           WHERE "idContactList" is NULL
