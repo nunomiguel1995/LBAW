@@ -1,3 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{$BASE_URL}javascript/newUser.js"></script>
+
 <div class="ink-grid" style="margin-bottom:5%">
       <div class="formulario all-80 small-100 tiny-100 push-center">
       <div class="column-group push-center">
@@ -6,9 +9,9 @@
             <h5> Personal Information</h5>
              <div class="profilepic all-30">
                <figure class = "ink-image">
-                 <img src="../../images/users/user.png" alt="user image">
+                 <img id="userphoto" src="../../images/users/user.png" alt="user image">
                </figure>
-               <input type="file" name="image"  />
+               <input type="file" id="filechoice" name="image" accept="image/*" />
             </div>
                 <div class="control-group required ">
                      <label for="fullname">Full Name</label>
