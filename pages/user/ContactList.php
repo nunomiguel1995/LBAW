@@ -15,19 +15,8 @@
 
     if(strcmp($searchTextIn, '') === 0){
         $users = getRemainUsers($idList);
-    }/*else{
-        $contactUsers = getContactListUsersText($idList, $searchTextOut);
-    }*/
-    
-    foreach ($users as $key => $user) {
-        unset($photo);
-        $photo = getPhotoName($user["idUser"]);
-        if(is_null($photo) ){
-            $path ="../../images/users/user.png";
-        }else{
-            $path = "../../images/users/".$photo;
-        }
-        $users[$key]['path'] = $path;
+    }else{
+      $users = getRemainUsersText($idList, $searchTextIn);
     }
 
     $smarty->assign('users',$users);
