@@ -9,3 +9,28 @@ function deleteMessage(idMessage){
 		window.location.href = linkref;
 	}
 }
+
+$(document).ready(function() {
+ $('#findingMessages').submit(function(e) {
+	e.preventDefault();
+    $.ajax({
+       type: "POST",
+       url: '../../pages/user/Messages.php',
+       data: $(this).serialize(),
+       success: function(result)
+       {
+		
+		 searchResult = $(result).find("#creatingMessages");
+		 
+			var searching = document.URL + ' #creatingMessages';
+			console.log(searching);
+		 $('#creatingMessages').html(searchResult);
+         
+          
+       }
+   });
+   
+ });
+});
+
+
