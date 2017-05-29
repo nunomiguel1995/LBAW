@@ -20,9 +20,13 @@ function addUser(idList,idUser){
        success: function(response)
        {
 		  $('#addingUsers').load(document.URL +  ' #addingUsers');
-		  $('#deletingUsers').load(document.URL + ' #deletingUsers');
+		 
 		  
           
        }
    });
+}
+
+function reloadPage(){
+	location.reload();
 }

@@ -17,7 +17,7 @@
 <div class="ink-shade fade push-center">
     <div id="myModal" class="ink-modal fade" data-trigger="#contactListTrigger" data-width="80%" data-height="80%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
       <div class="modal-header">
-            <button class="modal-close ink-dismiss"></button>
+            <button class="modal-close " onClick="reloadPage()"></button>
         </div>
 
         <div class="modal-body" id="modalContent">
