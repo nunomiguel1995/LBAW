@@ -113,7 +113,8 @@
                         <figure class = "ink-image">
                           <img id="eventphoto" src="{$BASE_URL}images/assets/event-generic.png" alt="event image">
                         </figure>
-                        <input type="file" id="filechoice" name="image" accept="image/*">
+                        <input type="file" id="filechoice" name="image" accept="image/*" style="display: none">
+						<button id="get_file" type="button" class="ink-button push-center" onclick="chooseFile()" style="margin-top:3%">Change Photo</button>
                       </div>
                     </div>
                   </div>

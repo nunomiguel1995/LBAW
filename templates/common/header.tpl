@@ -51,7 +51,7 @@
                             <ul class="submenu">
                                 <li><a href="{$BASE_URL}pages/main/publicEvents.php">Public Events</a></li>
                                 <li><a href= "{$BASE_URL}pages/event/searchEvents.php">Search</a></li>
-                                <li><a href= {if $USERNAME} "{$BASE_URL}pages/event/addEvent.php" {else} "#" {/if} >Create</a></li>
+                                <li><a href= {if $USERNAME} "{$BASE_URL}pages/event/AddEvent.php" {else} "#" {/if} >Create</a></li>
                             </ul>
                         </li>
                         <li><a href="#">My Account</a>

@@ -123,7 +123,7 @@
 	if(is_null($event_photo) ){
          $event_photo_path ="../../images/assets/event-generic.png";
      }else{
-         $event_photo_path = "../../images/events/".$photo;
+         $event_photo_path = "../../images/events/".$event_photo;
      }
 	
     $smarty->assign('event_photo_path',$event_photo_path);

@@ -25,6 +25,13 @@ function addToArray(nelement,nel2){
 	  
 }
 
+function chooseFile(){
+	document.getElementById('get_file').onclick = function() {
+		document.getElementById('filechoice').click();
+	};
+}
+
+
 $(document).ready(function () {
   //your code here
 
