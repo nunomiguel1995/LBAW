@@ -24,7 +24,7 @@
 	<div id="title" align="middle" style="margin-top:1%">
 		<h3> Public Events </h3>
 	</div>
-	
+
 	{foreach $events as $event}
 		<div id="pEvent" align= "left" class="all-75 small-100 tiny-100 push-center" >
 			<a href="{$BASE_URL}pages/event/EventPage.php?id={$event.idEvent}" class="large" > {$event.name} </a>

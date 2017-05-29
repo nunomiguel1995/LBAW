@@ -1,5 +1,7 @@
 <?php
     include_once('../../config/init.php');
+     $smarty->assign('title', 'Admin Dashboard');
+
     $smarty->display('common/header.tpl');
 
     include_once($BASE_DIR .'database/users.php');
@@ -52,7 +54,7 @@
            return $v1 > $v2;
         });
     }
-    
+
     $smarty->assign('events', $event_list);
     $smarty->display('admin/list_events.tpl');
 

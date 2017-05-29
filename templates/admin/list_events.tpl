@@ -1,6 +1,6 @@
 <div id="manageEvents" class="tabs-content" style="margin-top:0%">
     <div class="ink-grid gutters">
-        <form class="ink-form" action="adminDashboard.php" method="POST">
+        <form class="ink-form" action="adminDashboard.php#manageEvents" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
                 <div class="control append-button" role="search">
                     <span><input type="text" name="search_text_event" id="name5" placeholder="Search for an event"></span>

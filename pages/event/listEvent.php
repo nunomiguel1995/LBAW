@@ -1,5 +1,6 @@
 <?php
     include_once('../../config/init.php');
+    $smarty->assign('title', 'Search results');
 
     $smarty->display('common/header.tpl');
     include_once($BASE_DIR .'database/events.php');

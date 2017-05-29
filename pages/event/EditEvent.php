@@ -1,5 +1,6 @@
 <?php
 include_once('../../config/init.php');
+$smarty->assign('title', 'Edit Event');
 
 include_once($BASE_DIR .'database/events.php');
 include_once($BASE_DIR .'database/users.php');

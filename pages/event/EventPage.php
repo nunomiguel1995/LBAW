@@ -1,18 +1,22 @@
 <?php
     include_once('../../config/init.php');
-    $smarty->display('common/header.tpl');
+
 
     include_once($BASE_DIR .'database/events.php');
     include_once($BASE_DIR .'database/users.php');
-	
-		
+
     $event = getEvent($_GET['id'])[0];
     $organizer = getEventOrganizer($_GET['id'])[0];
     $location = getEventLocation($_GET['id'])[0];
     $posts = getEventPosts($_GET['id']);
     $invited = getEventInvitations($_GET['id']);
-	$non_invited = getNonInvitedUsers($_GET['id']);
-	
+    $non_invited = getNonInvitedUsers($_GET['id']);
+
+    $smarty->assign('title', $event['name']);
+
+    $smarty->display('common/header.tpl');
+
+
 	foreach ($posts as $key => $post) {
 		$comments = getPostComments($post['idPost']);
 		foreach ($comments as $comment_key => $comment) {
@@ -26,7 +30,7 @@
 			$comments[$comment_key]['photo'] = $comment_photo_path;
 		}
 		$posts[$key]['comments'] = $comments;
-		
+
 		unset($photo);
 		$photo = getPhotoName($post['idCreator']);
 		if(is_null($photo) ){
@@ -34,11 +38,11 @@
 		}else{
 			$path = "../../images/users/" . $photo;
 		}
-		
+
 		$posts[$key]['photo'] = $path;
 
 		$poll = getPostPoll($post['idPost']);
-		
+
 		if(!sizeof($poll) == 0){
 			$options = getPollOptions($poll[0]['idPoll']);
 			if(!sizeof($options) == 0){
@@ -56,11 +60,11 @@
 				$posts[$key]['poll'] = $poll;
 			}
 		}
-		
+
 		$doc = getPostDoc($post['idPost']);
-		
+
 		$file_type = pathinfo($doc[0]['name'], PATHINFO_EXTENSION);
-		
+
 		if(sizeof($doc) != 0){
 			$posts[$key]['doc_name'] = $post['idPost'] . "." . $file_type;
 			$posts[$key]['actual_doc_name'] = $doc[0]['name'];
@@ -72,10 +76,10 @@
 		}else{
 			$posts[$key]['doc_name'] = "";
 		}
-		
-		
+
+
 	}
-	
+
 	foreach ($invited as $invited_key => $inv) {
 		unset($invited_photo_path);
 		$invited_photo = getPhotoName($inv['idUser']);
@@ -86,7 +90,7 @@
 		}
 		$invited[$invited_key]['photo'] = $invited_photo_path;
 	}
-	
+
 	foreach ($non_invited as $non_invited_key => $non_inv) {
 		unset($non_invited_photo_path);
 		$non_invited_photo = getPhotoName($non_inv['idUser']);
@@ -97,9 +101,9 @@
 		}
 		$non_invited[$non_invited_key]['photo'] = $non_invited_photo_path;
 	}
-	
+
 	$current_user = $_SESSION['iduser'];
-	
+
 	$user_is_invited = "false";
 	if($current_user != null){
 		foreach($invited as $inv){
@@ -107,25 +111,25 @@
 				$user_is_invited = "true";
 		}
 	}
-	
+
 	if($organizer["idUser"] == $current_user)
 		$is_owner = "true";
 	else
 		$is_owner = "false";
-	
+
 	if($event["isPublic"])
 		$is_public = "true";
 	else
 		$is_public = "false";
-	
-	
+
+
 	$event_photo = getEventPhoto($_GET['id']);
 	if(is_null($event_photo) ){
          $event_photo_path ="../../images/assets/event-generic.png";
      }else{
          $event_photo_path = "../../images/events/".$event_photo;
      }
-	
+
     $smarty->assign('username',$_SESSION['username']);
     $smarty->assign('event_photo_path',$event_photo_path);
     $smarty->assign('event',$event);
@@ -142,7 +146,7 @@
     $smarty->display('event/eventpage.tpl');
 
     $smarty->display('common/footer.tpl');
-	
+
 	/*
 	echo "user_is_invited: " . $user_is_invited;
 	echo '<br>';

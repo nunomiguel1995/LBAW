@@ -12,6 +12,7 @@
   $invites = getInvitationsNotifications($id);
   $myEvents = getMyEventsAtDate($date);
 
+  $smarty->assign('title', 'My Events');
   $smarty->assign('myEvents', $myEvents);
   $smarty->assign('createdEvents',$createdEvents);
   $smarty->assign('invitedEvents',$invitedEvents);

@@ -37,6 +37,7 @@
       }
       $users[$key]['path']= $path;
     }
+    $smarty->assign('title', 'Contact List');
 
     $smarty->assign('users',$users);
     $smarty->assign('listID',$idList);

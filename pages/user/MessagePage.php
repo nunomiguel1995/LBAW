@@ -15,6 +15,8 @@
   }
   $user['photo'] = $path;
 
+  $smarty->assign('title', 'Message Page');
+
   $smarty->assign('user', $user);
   $smarty->assign('message',$message);
   $smarty->display('user/messagePage.tpl');

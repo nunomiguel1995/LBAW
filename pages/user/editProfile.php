@@ -2,6 +2,7 @@
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/users.php');
   include_once($BASE_DIR .'database/events.php');
+  $smarty->assign('title', 'Edit Profile');
 
   $smarty->display('common/header.tpl');
 

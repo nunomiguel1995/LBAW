@@ -22,9 +22,9 @@
 			cursor: pointer;
 		}
 		</style>
-		
+
 		{$config['time'] = '%H:%M'}
-		
+
 		{if $is_public == "false" && $user_is_invited == "false" && $username != "admin"}
 		<div align="center">
 			<h2> <i class="fa fa-ban" aria-hidden="true"></i> You have no Permissions </h2>
@@ -53,33 +53,33 @@
 							</div>
 						</div>
 					</div>
-                    
+
                     <figure class="ink-image bottom-space">
                         <img src="{$event_photo_path}" class="imagequery">
                     </figure>
 
                     <div id="tabs" class="ink-tabs top" data-prevent-url-change="true" >
                         <ul class="tabs-nav" style="margin-bottom:0px">
-							{if $is_public == "true" && $current_user == null }
+							{if $is_public == "true" && $current_user == null && $username != "admin"}
 								<li><a id="info_button" class="tabs-tab" href="#info">Information</a></li>
 							{/if}
-							
+
 							{if $is_public == "true" && $current_user != null}
 								<li><a id="info_button" class="tabs-tab" href="#info">Information</a></li>
 								<li><a id="posts_button" class="tabs-tab" href="#posts">Posts</a></li>
 								<li><a id="invited_button" class="tabs-tab" href="#invited">Invited</a></li>
 							{/if}
-							
+
 							{if $is_public == "false" && $user_is_invited == "true"}
 								<li><a id="info_button" class="tabs-tab" href="#info">Information</a></li>
 								<li><a id="posts_button" class="tabs-tab" href="#posts">Posts</a></li>
 								<li><a id="invited_button" class="tabs-tab" href="#invited">Invited</a></li>
 							{/if}
-							
+
 							{if $is_owner == "true"}
 								<li><a id="non_invited_button" class="tabs-tab" href="#invite">Invite</a></li>
 							{/if}
-							
+
 							{if $username == "admin"}
 								<li><a id="info_button" class="tabs-tab" href="#info">Information</a></li>
 							{/if}
@@ -94,28 +94,28 @@
 							{if $is_public == "true" && $current_user == null}
 								{include file='../event/info_tab.tpl'}
 							{/if}
-							
+
 							{if $is_public == "true" && $current_user != null}
 								{include file='../event/info_tab.tpl'}
 								{include file='../event/posts_tab.tpl'}
 								{include file='../event/invited_tab.tpl'}
 							{/if}
-							
+
 							{if $is_public == "false" && $user_is_invited  == "true"}
 								{include file='../event/info_tab.tpl'}
 								{include file='../event/posts_tab.tpl'}
 								{include file='../event/invited_tab.tpl'}
 							{/if}
-							
+
 							{if $is_owner == "true"}
 								{include file='../event/invite_tab.tpl'}
 							{/if}
-							
+
 							{if $username == "admin"}
 								{include file='../event/info_tab.tpl'}
 							{/if}
-							
-							
+
+
 							<!--
                             {include file='../event/info_tab.tpl'}
                             {include file='../event/posts_tab.tpl'}

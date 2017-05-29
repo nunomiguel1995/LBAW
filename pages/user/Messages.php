@@ -47,6 +47,7 @@
     $contacts[$key]['path']= $path;
   }
 
+  $smarty->assign('title', 'Messages');
   $smarty->assign('inbox',$inbox);
   $smarty->assign('sentMessages',$sentMessages);
   $smarty->assign('contacts',$contacts);

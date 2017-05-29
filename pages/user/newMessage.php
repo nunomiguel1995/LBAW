@@ -7,6 +7,7 @@
   $idReceiver = $_GET['id'];
 
   $user = getUser($idReceiver);
+  $smarty->assign('title', 'New Message');
   $smarty->assign('user',$user);
   $smarty->assign('idSender',$idSender);
   $smarty->assign('idReceiver',$idReceiver);
