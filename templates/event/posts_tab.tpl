@@ -81,8 +81,17 @@
 						</div>
 					</div>
 			  {/if}
-			  <div class="all-100" align="left" style="padding-left:1%" style="display: inline">
-				<a style="text-decoration: none" onClick="addCommentClick({$post.idPost})">Add a Comment</a>
+			  <div class="ink-grid all-100" style="padding-left:1%" style="display: inline">
+				<div class="column-group horizontal-gutters">
+					<div class="all-50 tiny-100" style="text-align:left">
+						<a style="text-decoration: none" onClick="addCommentClick({$post.idPost})" >Add a Comment</a>
+					</div>
+					{if $post.idCreator == $current_user}
+					<div class="all-50 tiny-100" style="text-align:right">
+						<a style="text-decoration: none" href="../../actions/events/deletePost.php?idPost={$post.idPost}&idEvent={$event_id}" >Delete Post</a>
+					</div>
+					{/if}
+				</div>
 			  </div>
 			  <div class="all-100" style="display: none; ">
 				<form method="post" action="../../actions/events/submitComment.php">
@@ -114,6 +123,10 @@
 				  </div>
 				  <div class="all-100" style="padding-left:0%; padding-right: 2%">
 					<p align="justify" style="margin-bottom: 5px">{$comment.comment_text}</p>
+					{if $comment.idCreator == $current_user}
+					<a style="text-decoration: none" href="../../actions/events/deleteComment.php?idComment={$comment.idComment}&idEvent={$event_id}">Delete Comment</a>
+					{/if}
+					
 				  </div>
 				</div>
 			{/foreach}

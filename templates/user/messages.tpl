@@ -6,6 +6,8 @@
     }
 </style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascript/messages.js"></script>
 <div class="ink-shade fade push-center">
     <div id="myModal" class="ink-modal fade" data-trigger="#newMessageTrigger" data-width="80%" data-height="80%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
       <div class="modal-header">
@@ -13,7 +15,7 @@
         </div>
 
         <div class="modal-body" id="modalContent">
-            <form action="Messages.php" class="ink-form" method="POST">
+            <form id="findingMessages" action="Messages.php" class="ink-form" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
               <div class="control append-button" role="search">
                 <span><input name="search_user_messages" type="text" id="searchuser" placeholder="Search in Contact List"></span>
@@ -24,7 +26,7 @@
           {if ($contacts|@count) == 0}
             <div align="center">   <p> You have no contacts yet </p> </div>
           {else}
-          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
+          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination" id="creatingMessages">
             <tbody>
                 {foreach $contacts as $contact}
                   <tr>
