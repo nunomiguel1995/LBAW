@@ -75,7 +75,7 @@ if(isset($_FILES['image'])){
 }
 
  if($_SESSION['username'] == 'admin'){
-    header('Location: ../../pages/admin/adminDashboard.php#notifications');
+    header('Location: ../../pages/admin/adminDashboard.php');
   }else{
     header('Location: ../../pages/user/UserPage.php?id='.$id);
   }

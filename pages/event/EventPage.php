@@ -130,6 +130,7 @@
          $event_photo_path = "../../images/events/".$event_photo;
      }
 
+
     $smarty->assign('username',$_SESSION['username']);
     $smarty->assign('event_photo_path',$event_photo_path);
     $smarty->assign('event',$event);
@@ -138,22 +139,13 @@
     $smarty->assign('posts',$posts);
     $smarty->assign('invited',$invited);
     $smarty->assign('non_invited',$non_invited);
-	$smarty->assign('event_id',$_GET['id']);
-	$smarty->assign('user_is_invited',$user_is_invited);
-	$smarty->assign('current_user',$current_user);
-	$smarty->assign('is_owner',$is_owner);
-	$smarty->assign('is_public',$is_public);
+	  $smarty->assign('event_id',$_GET['id']);
+	  $smarty->assign('user_is_invited',$user_is_invited);
+	  $smarty->assign('current_user',$current_user);
+	  $smarty->assign('is_owner',$is_owner);
+	  $smarty->assign('is_public',$is_public);
     $smarty->display('event/eventpage.tpl');
 
     $smarty->display('common/footer.tpl');
 
-	/*
-	echo "user_is_invited: " . $user_is_invited;
-	echo '<br>';
-	echo "current_user: " . $current_user;
-	echo '<br>';
-	echo "is_owner: " . $is_owner;
-	echo '<br>';
-	echo "is_public: " . $is_public;
-	*/
 ?>

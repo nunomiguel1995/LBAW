@@ -217,6 +217,7 @@
                   FROM event, to_tsquery(:name) AS query
                   WHERE \"isPublic\" IN ($avalHolders)
                   AND event_type IN ($typeHolders)
+                  AND event.calendar_date >= current_date
                   ORDER BY rank DESC";
 
             $stmt = $conn->prepare($query);
@@ -225,7 +226,8 @@
             $query = "SELECT *
                       FROM event
                       WHERE \"isPublic\" IN ($avalHolders)
-                      AND event_type IN ($typeHolders)";
+                      AND event_type IN ($typeHolders)
+                      AND event.calendar_date >= current_date";
 
             $stmt = $conn->prepare($query);
         }
@@ -268,6 +270,7 @@
                       FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
                       WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
                       AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))
+                      AND event.calendar_date >= current_date
                       ORDER BY rank DESC';
 
             $stmt = $conn->prepare($query);
@@ -286,7 +289,8 @@
                       FROM (SELECT event.* FROM event INNER JOIN invitation ON (invitation."idEvent" = event."idEvent" AND invitation."idUser" = :id)) i
                       FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
                       WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
-                      AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))';
+                      AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))
+                      AND event.calendar_date >= current_date';
 
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -311,6 +315,7 @@
                   FROM event, to_tsquery(:name) AS query
                   WHERE event_type IN ($typeHolders)
                   AND \"isPublic\" = true
+                  AND event.calendar_date >= current_date
                   ORDER BY rank DESC";
 
             $stmt = $conn->prepare($query);
@@ -319,7 +324,8 @@
             $query = "SELECT *
                       FROM event
                       WHERE event_type IN ($typeHolders)
-                      AND \"isPublic\" = true ";
+                      AND \"isPublic\" = true
+                      AND event.calendar_date >= current_date";
 
             $stmt = $conn->prepare($query);
         }
@@ -340,6 +346,7 @@
            $query = 'SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
                      FROM event, to_tsquery(:name) AS query
                      WHERE "isPublic" = true
+                     AND event.calendar_date >= current_date
                      ORDER BY rank DESC';
 
             $stmt = $conn->prepare($query);
@@ -349,6 +356,7 @@
                       FROM event, to_tsquery(:name) AS query
                       JOIN invitation ON ("idUser" = :id)
                       WHERE "isPublic" = true
+                      AND event.calendar_date >= current_date
                       ORDER BY rank DESC';
 
             $stmt = $conn->prepare($query);

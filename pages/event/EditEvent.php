@@ -9,7 +9,7 @@ include_once($BASE_DIR .'database/users.php');
  $idEvent = $_GET['id'];
  $eventOrganizer = getEventOrganizer($idEvent)[0]['idUser'];
 
-   if($eventOrganizer !== $_SESSION['iduser']){
+   if($eventOrganizer !== $_SESSION['iduser'] && $_SESSION['username'] != "admin"){
       $smarty->display('main/noPermissions.tpl');
    }else{
      $event = getEvent($idEvent)[0];

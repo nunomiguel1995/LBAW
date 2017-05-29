@@ -21,12 +21,16 @@
   }
 
 	$type = getUserType($_SESSION['username']);
-	$smarty->display('common/header.tpl');
-	$smarty->assign('type',$type);
-	$smarty->assign('allusers',$allusers);
-	$smarty->display('event/addevent.tpl');
-	$smarty->display('common/footer.tpl');
 
+    if($type == "Collaborator" ){
+        $smarty->display('main/noPermissions.tpl');
+    }else{
+      $smarty->display('common/header.tpl');
+    	$smarty->assign('type',$type);
+    	$smarty->assign('allusers',$allusers);
+    	$smarty->display('event/addevent.tpl');
+    	$smarty->display('common/footer.tpl');
+    }
   }else{
 	  $link = $BASE_URL + '/pages/main/homepage.php';
 	   header('Location: ' . $link);
