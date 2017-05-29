@@ -126,6 +126,7 @@
          $event_photo_path = "../../images/events/".$event_photo;
      }
 	
+    $smarty->assign('username',$_SESSION['username']);
     $smarty->assign('event_photo_path',$event_photo_path);
     $smarty->assign('event',$event);
     $smarty->assign('organizer',$organizer);

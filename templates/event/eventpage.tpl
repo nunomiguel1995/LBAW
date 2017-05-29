@@ -25,7 +25,7 @@
 		
 		{$config['time'] = '%H:%M'}
 		
-		{if $is_public == "false" && $user_is_invited == "false"}
+		{if $is_public == "false" && $user_is_invited == "false" && $username != "admin"}
 		<div align="center">
 			<h2> <i class="fa fa-ban" aria-hidden="true"></i> You have no Permissions </h2>
 		</div>
@@ -35,7 +35,7 @@
                 <div>
 					<div class="ink-grid all-100" style="padding:0px">
 						<div class="column-group">
-							{if $event.idCreator == $current_user}
+							{if $event.idCreator == $current_user || $username == "admin"}
 							<div style="padding-right:5px;padding-top:5px">
 								<div class="xlarge-10 large-10 medium-10 tiny-10 stacker-column push-left" align="right">
 									<div class="ink-dropdown" data-target="#my-menu-dropdown-{$contact.idUser}" data-dismiss-after="5">
@@ -60,7 +60,7 @@
 
                     <div id="tabs" class="ink-tabs top" data-prevent-url-change="true" >
                         <ul class="tabs-nav" style="margin-bottom:0px">
-							{if $is_public == "true" && $current_user == null}
+							{if $is_public == "true" && $current_user == null }
 								<li><a id="info_button" class="tabs-tab" href="#info">Information</a></li>
 							{/if}
 							
@@ -78,6 +78,10 @@
 							
 							{if $is_owner == "true"}
 								<li><a id="non_invited_button" class="tabs-tab" href="#invite">Invite</a></li>
+							{/if}
+							
+							{if $username == "admin"}
+								<li><a id="info_button" class="tabs-tab" href="#info">Information</a></li>
 							{/if}
 							<!--
 							<li><a id="info_button" class="tabs-tab" href="#info">Information</a></li>
@@ -105,6 +109,10 @@
 							
 							{if $is_owner == "true"}
 								{include file='../event/invite_tab.tpl'}
+							{/if}
+							
+							{if $username == "admin"}
+								{include file='../event/info_tab.tpl'}
 							{/if}
 							
 							
