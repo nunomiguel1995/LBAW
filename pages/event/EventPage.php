@@ -5,6 +5,7 @@
     include_once($BASE_DIR .'database/events.php');
     include_once($BASE_DIR .'database/users.php');
 	
+		
     $event = getEvent($_GET['id'])[0];
     $organizer = getEventOrganizer($_GET['id'])[0];
     $location = getEventLocation($_GET['id'])[0];
@@ -97,6 +98,27 @@
 		$non_invited[$non_invited_key]['photo'] = $non_invited_photo_path;
 	}
 	
+	$current_user = $_SESSION['iduser'];
+	
+	$user_is_invited = "false";
+	if($current_user != null){
+		foreach($invited as $inv){
+			if($inv["idUser"] == $current_user)
+				$user_is_invited = "true";
+		}
+	}
+	
+	if($organizer["idUser"] == $current_user)
+		$is_owner = "true";
+	else
+		$is_owner = "false";
+	
+	if($event["isPublic"])
+		$is_public = "true";
+	else
+		$is_public = "false";
+	
+	
     $smarty->assign('event',$event);
     $smarty->assign('organizer',$organizer);
     $smarty->assign('location',$location);
@@ -104,9 +126,21 @@
     $smarty->assign('invited',$invited);
     $smarty->assign('non_invited',$non_invited);
 	$smarty->assign('event_id',$_GET['id']);
+	$smarty->assign('user_is_invited',$user_is_invited);
+	$smarty->assign('current_user',$current_user);
+	$smarty->assign('is_owner',$is_owner);
+	$smarty->assign('is_public',$is_public);
     $smarty->display('event/eventpage.tpl');
 
     $smarty->display('common/footer.tpl');
 	
-	
+	/*
+	echo "user_is_invited: " . $user_is_invited;
+	echo '<br>';
+	echo "current_user: " . $current_user;
+	echo '<br>';
+	echo "is_owner: " . $is_owner;
+	echo '<br>';
+	echo "is_public: " . $is_public;
+	*/
 ?>
