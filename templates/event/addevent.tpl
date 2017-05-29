@@ -128,14 +128,6 @@
                               <div class="modal-header">
                                   <button class="modal-close ink-dismiss"></button>
                                   <h2 id="modal-title">Invite People</h2>
-                                  <form action="#" class="ink-form" method="POST">
-                                    <div class="control-group all-50 small-100 tiny-100 push-center">
-                                      <div class="control append-button" role="search">
-                                        <span><input type="text" name="search_user_clOut" id="search_user_clOut" placeholder="Search People"></span>
-                                        <button class="ink-button"><i class="fa fa-search"></i> Search</button>
-                                      </div>
-                                    </div>
-                                  </form>
                               </div>
                               <div class="modal-body" id="modalContent">
 							  {foreach $allusers as $user}
