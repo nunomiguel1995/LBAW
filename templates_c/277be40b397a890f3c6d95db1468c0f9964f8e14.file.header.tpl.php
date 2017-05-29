@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-05-28 17:28:45
+<?php /* Smarty version Smarty-3.1.15, created on 2017-05-29 10:58:03
          compiled from "/opt/lbaw/lbaw1635/public_html/muss/templates/common/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1173723059591b387666fb47-81229636%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '277be40b397a890f3c6d95db1468c0f9964f8e14' => 
     array (
       0 => '/opt/lbaw/lbaw1635/public_html/muss/templates/common/header.tpl',
-      1 => 1495988923,
+      1 => 1496007306,
       2 => 'file',
     ),
   ),
@@ -82,7 +82,7 @@ pages/main/publicEvents.php">Public Events</a></li>
                                 <li><a href= "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 pages/event/searchEvents.php">Search</a></li>
                                 <li><a href= <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-pages/event/addEvent.php" <?php } else { ?> "#" <?php }?> >Create</a></li>
+pages/event/AddEvent.php" <?php } else { ?> "#" <?php }?> >Create</a></li>
                             </ul>
                         </li>
                         <li><a href="#">My Account</a>
@@ -91,8 +91,7 @@ pages/event/addEvent.php" <?php } else { ?> "#" <?php }?> >Create</a></li>
 pages/user/UserPage.php?id=<?php echo $_smarty_tpl->tpl_vars['IDUSER']->value;?>
 " <?php } else { ?> "#" <?php }?> >My Profile </a></li>
                               <li><a href=  <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-pages/user/MyEvents.php?id=<?php echo $_smarty_tpl->tpl_vars['IDUSER']->value;?>
-" <?php } else { ?> "#" <?php }?> >My Events </a></li>
+pages/user/MyEvents.php" <?php } else { ?> "#" <?php }?> >My Events </a></li>
                               <li><a href= <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 pages/user/Messages.php" <?php } else { ?> "#" <?php }?>> Messages </a></li>
                               <li><a href= <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?> "<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
@@ -100,15 +99,7 @@ pages/user/ContactList.php" <?php } else { ?> "#" <?php }?>> Contact List </a></
                             </ul>
                         </li>
 							
-						<li>
-						<a href="#">Help</a>
-							<ul class = "submenu">
-                              <li><a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-pages/help/UserHelp.php"  >User Help </a></li>
-                              <li><a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-pages/help/EventHelp.php"  >Event Help </a></li>
-							  </ul>
-						</li>
+						
                         <?php }?>
                         <div  class="push-right" id="logDiv">
                           <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?>

@@ -63,13 +63,7 @@
                             </ul>
                         </li>
 							
-						<li>
-						<a href="#">Help</a>
-							<ul class = "submenu">
-                              <li><a href="{$BASE_URL}pages/help/UserHelp.php"  >User Help </a></li>
-                              <li><a href="{$BASE_URL}pages/help/EventHelp.php"  >Event Help </a></li>
-							  </ul>
-						</li>
+						
                         {/if}
                         <div  class="push-right" id="logDiv">
                           {if $USERNAME}
