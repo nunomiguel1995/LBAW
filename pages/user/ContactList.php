@@ -16,7 +16,26 @@
     if(strcmp($searchTextIn, '') === 0){
         $users = getRemainUsers($idList);
     }else{
-      $users = getRemainUsersText($idList, $searchTextIn);
+        $users = getRemainUsersText($idList, $searchTextIn);
+    }
+
+    foreach ($contactUsers as $key => $contact) {
+      $photo = getPhotoName($contactUsers[$key]["idUser"]);
+      if(is_null($photo) ){
+          $path ="../../images/users/user.png";
+      }else{
+          $path = "../../images/users/".$photo;
+      }
+      $contactUsers[$key]['path']= $path;
+    }
+    foreach($users as $key => $user){
+      $photo = getPhotoName($users[$key]["idUser"]);
+      if(is_null($photo) ){
+          $path ="../../images/users/user.png";
+      }else{
+          $path = "../../images/users/".$photo;
+      }
+      $users[$key]['path']= $path;
     }
 
     $smarty->assign('users',$users);

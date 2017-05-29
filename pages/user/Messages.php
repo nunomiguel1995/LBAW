@@ -4,6 +4,8 @@
   include_once($BASE_DIR .'database/users.php');
 
   $id = $_SESSION['iduser'];
+  $text = $_POST["search_user_messages"];
+
   $inbox = getAllReceivedMessages($id);
   foreach ($inbox as $key => $imsg) {
     unset($photo);
@@ -28,21 +30,22 @@
     $sentMessages[$key]['photo'] = $path;
   }
 
-  /*$contactListID = getContactListID($id);
-  $contacts = getAllContactListUsers($contactListID);
+  $contactListID = getContactListID($id);
+  if(strcmp($text, '') === 0){
+      $contacts = getAllContactListUsers($contactListID);
+  }else{
+      $contacts = getContactListUsersText($contactListID, $text);
+  }
+
   foreach ($contacts as $key => $contact) {
-    unset($user);
-    unset($photo);
     $photo = getPhotoName($contacts[$key]["idUser"]);
     if(is_null($photo) ){
         $path ="../../images/users/user.png";
     }else{
         $path = "../../images/users/".$photo;
     }
-    $user = getUser($contacts[$key]["idUser"]);
-    $contacts[$key]['user'] = $user;
-    $contacts[$key]['user']['path']= $path;
-  }*/
+    $contacts[$key]['path']= $path;
+  }
 
   $smarty->assign('inbox',$inbox);
   $smarty->assign('sentMessages',$sentMessages);

@@ -13,8 +13,7 @@
         </div>
 
         <div class="modal-body" id="modalContent">
-          <!--> Form das mensagens <!-->
-            <form action="ContactList.php" class="ink-form" method="POST">
+            <form action="Messages.php" class="ink-form" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
               <div class="control append-button" role="search">
                 <span><input name="search_user_messages" type="text" id="searchuser" placeholder="Search in Contact List"></span>
@@ -32,14 +31,14 @@
                     <td >
                       <div id="stacker-container" class="column-group push-center">
                         <div class="xlarge-10 large-10 medium-10 tiny-100 stacker-column" style="margin:2%">
-                          <img src="{$contact.user.path}" width="50px" height="50px">
+                          <img src="{$contact.path}" width="50px" height="50px">
                         </div>
                         <div class="xlarge-60 large-60 medium-60 tiny-100 stacker-column" style="margin-top:3%">
-                          <a href="{$BASE_URL}pages/user/UserPage.php?id={$contact.user.idUser}">{$contact.user.name}</a>
+                          <a href="{$BASE_URL}pages/user/UserPage.php?id={$contact.idUser}">{$contact.name}</a>
                           <div class="xlarge-20 large-20 medium-20 tiny-100 push-right">
-                            <a  href="{$BASE_URL}pages/user/newMessage.php?id={$contact.user.idUser}" style="color: inherit">
+                            <a  href="{$BASE_URL}pages/user/newMessage.php?id={$contact.idUser}" style="color: inherit">
                               <span class="ink-tooltip" data-tip-text="Send Message" data-tip-color="grey" style="padding:4%">
-                                <i class="fa fa-envelope" aria-hidden="true" href="{$BASE_URL}pages/user/newMessage.php?id={$contact.user.idUser}"></i>
+                                <i class="fa fa-envelope" aria-hidden="true" href="{$BASE_URL}pages/user/newMessage.php?id={$contact.idUser}"></i>
                               </span>
                             </a>
                           </div>
