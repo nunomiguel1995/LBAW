@@ -66,13 +66,9 @@ function getContactListID($idUser){
 function getAllContactListUsers($idList){
   global $conn;
 
-  $stmt = $conn->prepare('SELECT "contactListUser". "idUser",
-                               "contactListUser"."idContactList",
-                               doc.name AS path,
-                               "appUser".*
+  $stmt = $conn->prepare('SELECT "contactListUser". "idUser","contactListUser"."idContactList", "appUser".name, "appUser"."idUser"
                         FROM "contactListUser"
-                        INNER JOIN "appUser" ON "appUser"."idUser" = "contactListUser"."idUser"
-                        INNER JOIN doc ON doc."idUser" = "contactListUser"."idUser"
+                        INNER JOIN "appUser" ON ("appUser"."idUser" = "contactListUser"."idUser")
                         WHERE "idContactList"= ?');
 
   $stmt->execute(array($idList));
@@ -86,12 +82,10 @@ function getContactListUsersText($idList, $name){
 
     $stmt = $conn->prepare('SELECT "contactListUser"."idUser",
                                "contactListUser"."idContactList",
-                               doc.name AS path,
                                "appUser".*,
                                ts_rank(to_tsvector("appUser".name), query, 1) AS rank
                         FROM to_tsquery(:name) AS query
                         INNER JOIN "contactListUser" ON "contactListUser"."idContactList"= :idList
-                        INNER JOIN doc ON doc."idUser" = "contactListUser"."idUser"
                         INNER JOIN "appUser" ON "appUser"."idUser" = "contactListUser"."idUser"
                         ORDER BY rank DESC');
 
@@ -108,12 +102,10 @@ function getRemainUsersText($idList, $text){
 
   $stmt = $conn->prepare('SELECT DISTINCT "appUser"."idUser",
                                           "appUser".name,
-                                          doc.name AS path,
                                           ts_rank(to_tsvector("appUser".name), query, 1) AS rank
                           FROM to_tsquery(:name) AS query
                           NATURAL JOIN "appUser"
                           LEFT JOIN "contactListUser" ON ("idContactList" = :id AND "contactListUser"."idUser" = "appUser"."idUser")
-                          LEFT JOIN doc ON (doc."idUser" = "appUser"."idUser")
                           WHERE "idContactList" is NULL
                           ORDER BY rank DESC');
 
@@ -128,10 +120,9 @@ function getRemainUsersText($idList, $text){
 
 function getRemainUsers($idList){
   global $conn;
-  $stmt = $conn->prepare('SELECT "appUser"."idUser" as "idUser", "appUser".name, doc.name AS path
+  $stmt = $conn->prepare('SELECT "appUser"."idUser" as "idUser", "appUser".name
                           FROM "appUser"
                           LEFT JOIN "contactListUser" ON ("idContactList" = ? AND "contactListUser"."idUser" = "appUser"."idUser")
-                          LEFT JOIN doc ON (doc."idUser" = "appUser"."idUser")
                           WHERE "idContactList" is NULL');
 
   $stmt->execute(array($idList));

@@ -1,4 +1,5 @@
 {include file='common/header.tpl'}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="../../javascript/contactList.js"></script>
 
 
@@ -16,12 +17,12 @@
 <div class="ink-shade fade push-center">
     <div id="myModal" class="ink-modal fade" data-trigger="#contactListTrigger" data-width="80%" data-height="80%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
       <div class="modal-header">
-            <button class="modal-close ink-dismiss"></button>
+            <button class="modal-close " onClick="reloadPage()"></button>
         </div>
 
         <div class="modal-body" id="modalContent">
 
-        <form action="ContactList.php" class="ink-form" method="POST">
+        <form id="allFinds" action="ContactList.php" class="ink-form" method="POST">
             <div class="control-group all-50 small-100 tiny-100 push-center">
               <div class="control append-button" role="search">
                 <span><input type="text" name="search_user_clIn" id="search_user_clIn" placeholder="Search in Contact List"></span>
@@ -30,7 +31,7 @@
             </div>
           </form>
 
-          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
+          <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination" id="addingUsers">
             <tbody>
                 {foreach $users as $user}
                   {if $user.idUser != $userID}
@@ -68,7 +69,7 @@
   {/if}
 
   <div class="xlarge-60 large-60 medium-100 tiny-100 push-center">
-    <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination">
+    <table class="ink-table alternating" style="table-layout:fixed;word-wrap: break-word" data-page-size="5" data-pagination="#myTablePagination" id="deletingUsers">
       <tbody>
           {foreach $contacts as $contact}
           <tr>

@@ -35,7 +35,7 @@
                             </div>
                           </div>
 						  <div class="control-group required">
-							<label for="ccSelector" >Enter a the address (country and city) for the event:</label>
+							<label for="ccSelector" >Enter the country and city of the event location:</label>
 							<div class="column-group horizontal-gutters" id="ccSelector" >
 								<div class="control all-50">
 									<input  id="country" name="country" type="text" data-rules="required|text[true,false]" placeholder="Country">
@@ -46,7 +46,7 @@
 							</div>
 						  </div>
                           <div class="control-group required">
-							<label for="location" align = "left">Enter a location for the event:</label>
+							<label for="location" align = "left">Enter the address of the event:</label>
                             <div class="control">
                                 <input  id="location" name="location" type="text" data-rules="required|text[true,false]" placeholder="Event Location">
                             </div>
@@ -127,6 +127,14 @@
                               <div class="modal-header">
                                   <button class="modal-close ink-dismiss"></button>
                                   <h2 id="modal-title">Invite People</h2>
+                                  <form action="#" class="ink-form" method="POST">
+                                    <div class="control-group all-50 small-100 tiny-100 push-center">
+                                      <div class="control append-button" role="search">
+                                        <span><input type="text" name="search_user_clOut" id="search_user_clOut" placeholder="Search People"></span>
+                                        <button class="ink-button"><i class="fa fa-search"></i> Search</button>
+                                      </div>
+                                    </div>
+                                  </form>
                               </div>
                               <div class="modal-body" id="modalContent">
 							  {foreach $allusers as $user}
@@ -138,7 +146,7 @@
                                     <div class="xlarge-50 large-50 medium-50 tiny-100 stacker-column">
                                       <a id= "link" href="#"> {$user.name} </a>
                                     </div>
-                                      <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
+                                      <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-center">
 
                                             <fieldset>
                                                 <div class="control-group">

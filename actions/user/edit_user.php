@@ -2,7 +2,6 @@
 $fullname = $_POST['fullname'];
 $email = $_POST['email'];
 $password = $_POST['newpassword'];
-var_dump($password);
 $options = ['cost' => 12];
 $id = $_GET['id'];
 

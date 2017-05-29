@@ -27,7 +27,7 @@
 	
 	{foreach $events as $event}
 		<div id="pEvent" align= "left" class="all-75 small-100 tiny-100 push-center" >
-			<a href="#" class="large" > {$event.name} </a>
+			<a href="{$BASE_URL}pages/event/EventPage.php?id={$event.idEvent}" class="large" > {$event.name} </a>
 			<p class="small"> <i class="fa fa-calendar-o" aria-hidden="true"></i> {$event.calendar_date} {$event.calendar_time} <i class="fa fa-map-marker" aria-hidden="true"></i> {$event.location} </p>
 			<hr>
 			<p> {$event.description} </p>

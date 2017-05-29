@@ -13,9 +13,16 @@ function onClickDeleteEvent(id){
 function addCommentClick(id){
 	var idpost = "post" + id;
 	var post = document.getElementById(idpost);
-	post.children[3].style.display = "none";
-	post.children[4].style.display = "inline";
-	post.children[5].style.display = "inline";
+	var n_children = post.childElementCount;
+	
+	if(n_children == 6)
+		var add = 1;
+	else
+		var add = 0;
+	
+	post.children[2 + add].style.display = "none";
+	post.children[3 + add].style.display = "inline";
+	post.children[4 + add].style.display = "inline";
 }
 
 function showPollForm(){
@@ -99,6 +106,12 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function AlertIt(link) {
+	var answer = confirm ("Please click on OK to continue.")
+	if (answer)
+	window.location=link;
 }
 
 

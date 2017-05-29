@@ -60,7 +60,7 @@ if(isset($_FILES['image'])){
 				move_uploaded_file($file_tmp,$photo_name);
 				$stmt= $conn->prepare('INSERT INTO doc(name, "idPost", "idUser", "idEvent") values (?, null, null, ?); ');
 				$stmt->execute(array($file_name,$eventid));
-				
+
 		 }else{
 			 echo "error";
 			 	var_dump($_FILES);
@@ -70,17 +70,16 @@ if(isset($_FILES['image'])){
 		 }
 	}
 foreach($usernames as $user){
-	
-	 
+
+
 	$usercb = $_POST[$user['username']];
 	if(isset($usercb)){
-		
-		
+
+
 		addInvitation($eventid,$user['idUser'],$ev_date);
 	}
 }
-//header('Location: ' . $_SERVER['HTTP_REFERER']);
-//MERDAS PA FAZER INSERT E O CRL
 
-
+$link = 'Location: ../../pages/main/homepage.php';
+header($link);
 ?>
