@@ -119,6 +119,14 @@
 		$is_public = "false";
 	
 	
+	$event_photo = getEventPhoto($_GET['id']);
+	if(is_null($event_photo) ){
+         $event_photo_path ="../../images/assets/event-generic.png";
+     }else{
+         $event_photo_path = "../../images/events/".$photo;
+     }
+	
+    $smarty->assign('event_photo_path',$event_photo_path);
     $smarty->assign('event',$event);
     $smarty->assign('organizer',$organizer);
     $smarty->assign('location',$location);

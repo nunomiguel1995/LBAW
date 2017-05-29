@@ -26,14 +26,36 @@
 		{$config['time'] = '%H:%M'}
 		
 		{if $is_public == "false" && $user_is_invited == "false"}
-		<h1>NO PERMISSION TO ACCESS THIS PAGE!</h1>
+		<div align="center">
+			<h2> <i class="fa fa-ban" aria-hidden="true"></i> You have no Permissions </h2>
+		</div>
 		{else}
         <div style="padding:5%px" class="ink-grid all-70 medium-100 small-100 tiny-100">
             <div class="column-group">
                 <div>
-                    <h2>{$event.name}</h2>
+					<div class="ink-grid all-100" style="padding:0px">
+						<div class="column-group">
+							{if $event.idCreator == $current_user}
+							<div style="padding-right:5px;padding-top:5px">
+								<div class="xlarge-10 large-10 medium-10 tiny-10 stacker-column push-left" align="right">
+									<div class="ink-dropdown" data-target="#my-menu-dropdown-{$contact.idUser}" data-dismiss-after="5">
+										<span><i class="fa fa-bars" aria-hidden="true"></i></span>
+										<ul id="my-menu-dropdown-{$contact.idUser}" class="dropdown-menu">
+											<li ><a href="../../pages/event/EditEvent.php?id={$event.idEvent}">Edit Event</a></li>
+											<li ><a onclick="AlertIt('../../actions/events/deleteEvent.php?idEvent={$event.idEvent}')">Delete Event</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							{/if}
+							<div class="all-80">
+								<h2>{$event.name}</h2>
+							</div>
+						</div>
+					</div>
+                    
                     <figure class="ink-image bottom-space">
-                        <img src="../../images/events/event%20page.png" class="imagequery">
+                        <img src="{$event_photo_path}" class="imagequery">
                     </figure>
 
                     <div id="tabs" class="ink-tabs top" data-prevent-url-change="true" >
