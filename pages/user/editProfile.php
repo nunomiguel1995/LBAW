@@ -15,7 +15,6 @@
       $path = "../../images/users/".$photo;
   }
   $upcomingEvents = getUserUpcomingEvents($id);
-
   $smarty->assign('user',$user);
   $smarty->assign('companyInfo', $info);
   $smarty->assign('photo',$path);

@@ -198,10 +198,10 @@
 		$stmt->execute(array($idEvent));
 		return $stmt->fetchAll();
 	}
-	
+
     function getEventsAdmin($text, $type, $availability){
         global $conn;
-        
+
         if(is_null($type)){
             $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
         }
@@ -210,7 +210,7 @@
         }
         $typeHolders = "'".implode("','", array_values($type))."'";
         $avalHolders = "'".implode("','", array_values($availability))."'";
-        
+
         if(strcmp($text, '') != 0){
             $text = $text . ":*";
             $query = "SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
@@ -218,7 +218,7 @@
                   WHERE \"isPublic\" IN ($avalHolders)
                   AND event_type IN ($typeHolders)
                   ORDER BY rank DESC";
-            
+
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
         }else{
@@ -226,19 +226,19 @@
                       FROM event
                       WHERE \"isPublic\" IN ($avalHolders)
                       AND event_type IN ($typeHolders)";
-            
+
             $stmt = $conn->prepare($query);
         }
-        
+
         $stmt->execute();
         $results = $stmt->fetchAll();
-        
+
         return $results;
     }
 
     function getEventsLoggedUser($text, $type, $availability){
         global $conn;
-        
+
         $id = $_SESSION['iduser'];
 
         if(is_null($type)){
@@ -249,10 +249,10 @@
         }
         $typeHolders = "'".implode("','", array_values($type))."'";
         $avalHolders = "'".implode("','", array_values($availability))."'";
-        
-        if(strcmp($text, '') != 0){    
+
+        if(strcmp($text, '') != 0){
             $text = $text . ":*";
-            
+
             $query = 'SELECT coalesce(i."idEvent",p."idEvent") AS "idEvent",
                              coalesce(i.name,p.name) AS name,
                              coalesce(i.calendar_date,p.calendar_date) AS calendar_date,
@@ -269,7 +269,7 @@
                       WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
                       AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))
                       ORDER BY rank DESC';
-            
+
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -287,14 +287,14 @@
                       FULL OUTER JOIN (SELECT * FROM event WHERE "isPublic" = true) p ON (i."idEvent" = p."idEvent")
                       WHERE (i."isPublic" IN ('.$avalHolders.') OR p."isPublic" IN ('.$avalHolders.'))
                       AND (i.event_type IN ('.$typeHolders.') OR p.event_type IN ('.$typeHolders.'))';
-            
+
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         }
-        
+
         $stmt->execute();
         $results = $stmt->fetchAll();
-                        
+
         return $results;
     }
 
@@ -304,15 +304,15 @@
             $type = array('Meeting', 'Workshop', 'Lecture/Conference', 'SocialGathering', 'KickOff');
         }
         $typeHolders = "'".implode("','", array_values($type))."'";
-        
-        if(strcmp($text, '') != 0){    
+
+        if(strcmp($text, '') != 0){
             $text = $text . ":*";
             $query = "SELECT *, ts_rank(to_tsvector(name), query, 1) AS rank
                   FROM event, to_tsquery(:name) AS query
                   WHERE event_type IN ($typeHolders)
                   AND \"isPublic\" = true
                   ORDER BY rank DESC";
-            
+
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
         }else{
@@ -320,13 +320,13 @@
                       FROM event
                       WHERE event_type IN ($typeHolders)
                       AND \"isPublic\" = true ";
-            
+
             $stmt = $conn->prepare($query);
         }
-        
+
         $stmt->execute();
         $results = $stmt->fetchAll();
-        
+
         return $results;
     }
 
@@ -341,7 +341,7 @@
                      FROM event, to_tsquery(:name) AS query
                      WHERE "isPublic" = true
                      ORDER BY rank DESC';
-            
+
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
         }else{//public events AND user events
@@ -350,18 +350,18 @@
                       JOIN invitation ON ("idUser" = :id)
                       WHERE "isPublic" = true
                       ORDER BY rank DESC';
-            
+
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':name', $text, PDO::PARAM_STR, strlen($text));
             $stmt->bindParam(':id', $id_user, PDO::PARAM_INT);
-        }        
+        }
 
         $stmt->execute();
         $results = $stmt->fetchAll();
 
         return $results;
     }
-	
+
 	function getEventByName($name){
 		global $conn;
 		 $stmt = $conn->prepare('SELECT "idEvent"
@@ -414,5 +414,15 @@
                             WHERE ("idUser" = ? AND solve = FALSE AND event.calendar_date >= current_date)');
     $stmt->execute(array($id));
     return $stmt->fetchAll();
+  }
+
+  function getEventPhoto($idEvent){
+    global $conn;
+    $stmt = $conn->prepare('SELECT name
+                            FROM doc WHERE "idEvent"= ?');
+    $stmt->execute(array($idEvent));
+    $result = $stmt->fetch();
+
+    return $result['name'];
   }
 ?>
