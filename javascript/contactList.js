@@ -30,3 +30,25 @@ function addUser(idList,idUser){
 function reloadPage(){
 	location.reload();
 }
+$(document).ready(function() {
+ $('#allFinds').submit(function(e) {
+	e.preventDefault();
+    $.ajax({
+       type: "POST",
+       url: '../../pages/user/ContactList.php',
+       data: $(this).serialize(),
+       success: function(result)
+       {
+		
+		 searchResult = $(result).find("#addingUsers");
+		 
+			var searching = document.URL + ' #addingUsers';
+			console.log(searching);
+		 $('#addingUsers').html(searchResult);
+         
+          
+       }
+   });
+   
+ });
+});
