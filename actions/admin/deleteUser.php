@@ -4,5 +4,5 @@
   global $conn;
   $stmt = $conn->prepare('DELETE FROM "appUser" WHERE "idUser" = ?');
   $stmt->execute(array($userId));
-  header('Location:../../pages/admin/adminDashboard.php');
+  header('Location:../../pages/admin/adminDashboard.php#manageUsers');
 ?>

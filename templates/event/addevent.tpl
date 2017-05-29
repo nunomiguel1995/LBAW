@@ -1,5 +1,5 @@
 
-	
+
     <style type="text/css">
       #page{
         background: white;
@@ -35,13 +35,13 @@
                             </div>
                           </div>
 						  <div class="control-group required">
-							<label for="ccSelector" >Enter a country and city for the event:</label>
-							<div class="column-group horizontal-gutters" id="ccSelector" >  
+							<label for="ccSelector" >Enter a the address (country and city) for the event:</label>
+							<div class="column-group horizontal-gutters" id="ccSelector" >
 								<div class="control all-50">
-									<input  id="country" name="country" type="text" data-rules="required|text[true,false]" placeholder="Event Location">
+									<input  id="country" name="country" type="text" data-rules="required|text[true,false]" placeholder="Country">
 								</div>
 								<div class="control all-50">
-									<input  id="city" name="city" type="text" data-rules="required|text[true,false]" placeholder="Event Location">
+									<input  id="city" name="city" type="text" data-rules="required|text[true,false]" placeholder="City">
 								</div>
 							</div>
 						  </div>
@@ -111,9 +111,9 @@
                       <h5 for="description" align = "left">Choose Event Photo <small>(Optional)</small></h5>
                       <div class="profilepic all-55">
                         <figure class = "ink-image">
-                          <img id="eventphoto" src="#" alt="event image">
+                          <img id="eventphoto" src="{$BASE_URL}images/assets/event-generic.png" alt="event image">
                         </figure>
-                        <input type="file" id="filechoice" name="image" class="ink-button" type="button" accept="image/*">
+                        <input type="file" id="filechoice" name="image" accept="image/*">
                       </div>
                     </div>
                   </div>
@@ -139,7 +139,7 @@
                                       <a id= "link" href="#"> {$user.name} </a>
                                     </div>
                                       <div class="xlarge-20 large-20 medium-20 tiny-100 stacker-column push-middle" align="right">
-                                        
+
                                             <fieldset>
                                                 <div class="control-group">
                                                     <ul class="control unstyled">
@@ -147,7 +147,7 @@
                                                     </ul>
                                                 </div>
                                             </fieldset>
-                                        
+
                                       </div>
                                   </div>
                                 </div>
@@ -185,17 +185,15 @@
 					<div align="center" style="margin:2%">
 						<input type="submit" name="sub" value="Create Event" class="ink-button success blue"/>
 					</div>
-					
+
                   </div>
-                  
+
                 </li>
             </ul>
             <nav id="my-carousel-1-pagination" class="ink-navigation">
                 <ul class="pagination grey"> </ul>
             </nav>
-			
+
           </form>
-		  <div align="center" >{include file='../help/addEventHelp.tpl'}</div>
       </div>
     </div>
-

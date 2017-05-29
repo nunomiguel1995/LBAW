@@ -186,8 +186,8 @@ CREATE TABLE notification(
 
 CREATE TABLE "eventNotification"(
   "idNotification" serial PRIMARY KEY NOT NULL,
-  "idUser" integer NOT NULL REFERENCES "appUser",
-  "idEvent" integer NOT NULL REFERENCES event,
+  "idUser" integer NOT NULL REFERENCES "appUser" ON DELETE CASCADE,
+  "idEvent" integer NOT NULL REFERENCES event ON DELETE CASCADE,
   solve boolean DEFAULT false
 );
 

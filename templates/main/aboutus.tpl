@@ -1,3 +1,4 @@
+{include file = 'common/header.tpl'}
 <style type="text/css">
            #about{
              background: white;
